@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "personal-site-fin-mavis",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A Personal site Fin Mavis",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Fin Mavis <fin.mavis@yahoo.com>",
   "dependencies": {
     "gatsby": "^2.15.15",
     "gatsby-image": "^2.2.19",
@@ -19,6 +19,11 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-react-app": "^5.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "prettier": "^1.18.2"
   },
   "keywords": [
@@ -28,10 +33,14 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier \"src/**/*.{js,jsx,json,css,scss,md,mdx}\"",
+    "prettier:fix": "npm run prettier -- --write",
+    "validate": "npm run lint && npm run prettier -- --list-different"
   },
   "repository": {
     "type": "git",
@@ -39,5 +48,20 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npm run lint:fix",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,json,css,scss,md,mdx}": [
+      "npm run prettier:fix",
+      "git add"
+    ]
   }
 }
