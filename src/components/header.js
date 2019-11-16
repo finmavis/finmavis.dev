@@ -1,42 +1,99 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'gatsby';
+import { css } from '@emotion/core';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+import Container from './container';
+import ToggleSwitch from './toggle-switch';
+
+export default function Header(props) {
+  return (
+    <header
+      css={css`
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        z-index: 10;
+      `}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to='/'
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+      <Container>
+        <nav
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0.75rem 0;
+
+            & > *:not(:last-child) {
+              margin-right: 0.5rem;
+            }
+
+            @media (max-width: 900px) {
+              justify-content: center;
+            }
+          `}
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-);
+          <Link
+            to='/'
+            css={css`
+              text-decoration: none;
+              padding: 0.25rem 0.5rem;
+              color: var(--color-secondary);
+              text-shadow: none;
+              background: none;
+              font-family: inherit;
+              font-weight: 700;
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
+              &.active {
+                color: var(--color-primary);
+              }
+            `}
+            activeClassName='active'
+          >
+            Home
+          </Link>
+          <Link
+            to='/about'
+            css={css`
+              text-decoration: none;
+              padding: 0.25rem 0.5rem;
+              color: var(--color-secondary);
+              text-shadow: none;
+              background: none;
+              font-family: inherit;
+              font-weight: 700;
 
-Header.defaultProps = {
-  siteTitle: ``,
-};
+              &.active {
+                color: var(--color-primary);
+              }
+            `}
+            activeClassName='active'
+          >
+            About
+          </Link>
+          <Link
+            to='/blog'
+            css={css`
+              text-decoration: none;
+              padding: 0.25rem 0.5rem;
+              color: var(--color-secondary);
+              text-shadow: none;
+              background: none;
+              font-family: inherit;
+              font-weight: 700;
 
-export default Header;
+              &.active {
+                color: var(--color-primary);
+              }
+            `}
+            activeClassName='active'
+          >
+            Blog
+          </Link>
+          <ToggleSwitch />
+        </nav>
+      </Container>
+    </header>
+  );
+}
