@@ -1,11 +1,26 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 import Container from './container';
 import ToggleSwitch from './toggle-switch';
 
-export default function Header(props) {
+const NavLink = styled(Link)`
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  color: var(--color-secondary);
+  text-shadow: none;
+  background: none;
+  font-family: inherit;
+  font-weight: 700;
+
+  &.active {
+    color: var(--color-primary);
+  }
+`;
+
+export default function Header() {
   return (
     <header
       css={css`
@@ -34,63 +49,15 @@ export default function Header(props) {
             }
           `}
         >
-          <Link
-            to='/'
-            css={css`
-              text-decoration: none;
-              padding: 0.25rem 0.5rem;
-              color: var(--color-secondary);
-              text-shadow: none;
-              background: none;
-              font-family: inherit;
-              font-weight: 700;
-
-              &.active {
-                color: var(--color-primary);
-              }
-            `}
-            activeClassName='active'
-          >
+          <NavLink to='/' activeClassName='active'>
             Home
-          </Link>
-          <Link
-            to='/about'
-            css={css`
-              text-decoration: none;
-              padding: 0.25rem 0.5rem;
-              color: var(--color-secondary);
-              text-shadow: none;
-              background: none;
-              font-family: inherit;
-              font-weight: 700;
-
-              &.active {
-                color: var(--color-primary);
-              }
-            `}
-            activeClassName='active'
-          >
+          </NavLink>
+          <NavLink to='/about' activeClassName='active'>
             About
-          </Link>
-          <Link
-            to='/blog'
-            css={css`
-              text-decoration: none;
-              padding: 0.25rem 0.5rem;
-              color: var(--color-secondary);
-              text-shadow: none;
-              background: none;
-              font-family: inherit;
-              font-weight: 700;
-
-              &.active {
-                color: var(--color-primary);
-              }
-            `}
-            activeClassName='active'
-          >
+          </NavLink>
+          <NavLink to='/blog' activeClassName='active'>
             Blog
-          </Link>
+          </NavLink>
           <ToggleSwitch />
         </nav>
       </Container>

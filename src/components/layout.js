@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Global, css } from '@emotion/core';
 
 import Header from './header';
+import Footer from './footer';
 
 export default function Layout({ children }) {
   return (
@@ -21,6 +22,7 @@ export default function Layout({ children }) {
             --mine-shaft: #2b2a2a;
             --cornflower-blue: #5e9bea;
             --dusty-gray: #959595;
+            --border-color: #979797;
           }
 
           body {
@@ -39,6 +41,8 @@ export default function Layout({ children }) {
               var(--bone) 58%
             );
             --bg-current-work: var(--white);
+            --bg-footer: var(--concrete);
+            --bg-experience: var(--bone);
           }
 
           .dark-mode {
@@ -47,14 +51,14 @@ export default function Layout({ children }) {
             --bg-color: var(--night);
             --bg-hero: linear-gradient(to bottom, #2b2a2a 65%, #393939 106%);
             --bg-current-work: var(--ship-gray);
+            --bg-footer: linear-gradient(to top, #2b2a2a 106%, #3c3c3e 65%);
+            --bg-experience: var(--mine-shaft);
           }
         `}
       />
       <Header />
       <main>{children}</main>
-      <footer>
-        <p>Footer</p>
-      </footer>
+      <Footer />
     </Fragment>
   );
 }

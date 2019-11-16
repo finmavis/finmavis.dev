@@ -46,7 +46,7 @@ export default function Hero() {
           <FinIcon
             css={css`
               position: relative;
-              bottom: -58px;
+              bottom: -2.4rem;
               width: 50%;
               max-width: 19rem;
             `}
@@ -56,7 +56,7 @@ export default function Hero() {
               position: absolute;
               left: 50%;
               transform: translateX(-50%);
-              bottom: -8px;
+              bottom: -0.25rem;
               width: 100%;
               max-width: 41rem;
             `}
