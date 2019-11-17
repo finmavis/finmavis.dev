@@ -2,6 +2,9 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import Container from './container';
+import ExperienceItem from './experience-item';
+
+import { EXPERIENCE_DATA } from '../shared/constants/experience.constant';
 
 export default function Experience() {
   return (
@@ -30,92 +33,9 @@ export default function Experience() {
           Experience
         </h2>
         <div>
-          <div
-            css={css`
-              padding-top: 1rem;
-              padding-bottom: 1rem;
-              border-bottom: 1px solid var(--border-color);
-              font-weight: 700;
-            `}
-          >
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                text-transform: uppercase;
-                margin-bottom: 0.25rem;
-              `}
-            >
-              <h4
-                css={css`
-                  margin: 0;
-                  color: var(--color-primary);
-                `}
-              >
-                style theory
-              </h4>
-              <span>2019 - current</span>
-            </div>
-            Jr. Web Engineer
-          </div>
-          <div
-            css={css`
-              padding-top: 1rem;
-              padding-bottom: 1rem;
-              border-bottom: 1px solid var(--border-color);
-              font-weight: 700;
-            `}
-          >
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                text-transform: uppercase;
-                margin-bottom: 0.25rem;
-              `}
-            >
-              <h4
-                css={css`
-                  margin: 0;
-                  color: var(--color-primary);
-                `}
-              >
-                tunaiku - amarbank
-              </h4>
-              <span>2019</span>
-            </div>
-            Frontend Engineer
-          </div>
-          <div
-            css={css`
-              padding-top: 1rem;
-              padding-bottom: 1rem;
-              font-weight: 700;
-            `}
-          >
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                text-transform: uppercase;
-                margin-bottom: 0.25rem;
-              `}
-            >
-              <h4
-                css={css`
-                  margin: 0;
-                  color: var(--color-primary);
-                `}
-              >
-                PT. Prima Garda Teknologi
-              </h4>
-              <span>2015 - 2018</span>
-            </div>
-            Engineer
-          </div>
+          {EXPERIENCE_DATA.map(item => (
+            <ExperienceItem key={item.company} {...item} />
+          ))}
         </div>
       </Container>
     </div>
