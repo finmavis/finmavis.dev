@@ -6,6 +6,7 @@ import SEO from '../components/seo';
 import Hero from '../components/hero';
 import Playground from '../components/playground';
 import Experience from '../components/experience';
+import Tech from '../components/tech';
 
 const IndexPage = () => (
   <Layout>
@@ -13,6 +14,7 @@ const IndexPage = () => (
     <Hero />
     <Playground />
     <Experience />
+    <Tech />
   </Layout>
 );
 
