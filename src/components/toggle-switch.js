@@ -17,20 +17,23 @@ export default function ToggleSwitch(props) {
         align-items: center;
       `}
     >
-      <LightIcon
+      <img
+        src={LightIcon}
         css={css`
           height: 19px;
           cursor: pointer;
+          margin: 0;
         `}
         onClick={disable}
+        alt='Light Button'
       />
       <div
         css={css`
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-left: 5px;
-          margin-right: 5px;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
         `}
       >
         <input
@@ -82,12 +85,15 @@ export default function ToggleSwitch(props) {
           Toggle Dark Mode
         </label>
       </div>
-      <DarkIcon
+      <img
+        src={DarkIcon}
         css={css`
           height: 15px;
           cursor: pointer;
+          margin: 0;
         `}
         onClick={enable}
+        alt='Dark Button'
       />
     </div>
   );

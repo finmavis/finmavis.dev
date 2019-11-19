@@ -3,8 +3,7 @@ import { css } from '@emotion/core';
 
 import Container from './container';
 
-import FinIcon from '../assets/svg/fin.svg';
-import FurnitureIcon from '../assets/svg/furniture.svg';
+import FinIcon from '../assets/svg/fin.inline.svg';
 
 export default function Hero() {
   return (
@@ -12,7 +11,7 @@ export default function Hero() {
       css={css`
         padding-top: 3.5rem;
         background-image: var(--bg-hero);
-        min-height: 90vh;
+        min-height: 32.5rem;
         display: block;
         text-align: center;
         position: relative;
@@ -38,31 +37,62 @@ export default function Hero() {
             Jakarta
           </span>
         </h1>
-        <div
-          css={css`
-            position: relative;
-          `}
-        >
-          <FinIcon
-            css={css`
-              position: relative;
-              bottom: -2.4rem;
-              width: 50%;
-              max-width: 19rem;
-            `}
-          />
-          <FurnitureIcon
-            css={css`
-              position: absolute;
-              left: 50%;
-              transform: translateX(-50%);
-              bottom: -0.25rem;
-              width: 100%;
-              max-width: 41rem;
-            `}
-          />
-        </div>
       </Container>
+      <div
+        css={css`
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          z-index: 1;
+          bottom: 1rem;
+          overflow: hidden;
+
+          @media (max-width: 1016px) {
+            bottom: 2.5rem;
+          }
+
+          @media (max-width: 900px) {
+            bottom: 2.7rem;
+          }
+
+          @media (max-width: 600px) {
+            bottom: 2.3rem;
+          }
+
+          @media (max-width: 546px) {
+            bottom: 3.8rem;
+          }
+
+          @media (max-width: 481px) {
+            bottom: 2.3rem;
+          }
+
+          @media (max-width: 467px) {
+            bottom: 3.7rem;
+          }
+        `}
+      >
+        <FinIcon
+          css={css`
+            height: 18rem;
+            flex: 0 0 auto;
+
+            @media (max-width: 900px) {
+              height: 16rem;
+            }
+
+            @media (max-width: 600px) {
+              height: 14rem;
+            }
+
+            @media (max-width: 320px) {
+              height: 12rem;
+            }
+          `}
+        />
+      </div>
       <div
         css={css`
           background-color: var(--bg-current-work);
@@ -75,6 +105,11 @@ export default function Hero() {
           max-width: 50rem;
           left: 50%;
           transform: translateX(-50%);
+          z-index: 2;
+
+          @media (max-width: 600px) {
+            padding: 1.15rem;
+          }
         `}
       >
         <p

@@ -14,7 +14,7 @@ const IndexPage = () => (
     <Hero />
     <Playground />
     <Experience />
-    <Tech />
+    {/* <Tech /> */}
   </Layout>
 );
 

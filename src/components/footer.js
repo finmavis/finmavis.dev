@@ -6,11 +6,11 @@ import styled from '@emotion/styled';
 import Container from './container';
 
 // import All Assets
-import Copyright from '../assets/svg/copyright.svg';
-import Codepen from '../assets/svg/codepen.svg';
-import Github from '../assets/svg/github.svg';
-import Twitter from '../assets/svg/twitter.svg';
-import Linkedin from '../assets/svg/linkedin.svg';
+import Copyright from '../assets/svg/copyright.inline.svg';
+import Codepen from '../assets/svg/codepen.inline.svg';
+import Github from '../assets/svg/github.inline.svg';
+import Twitter from '../assets/svg/twitter.inline.svg';
+import Linkedin from '../assets/svg/linkedin.inline.svg';
 
 const SocialLink = styled.a`
   background: none;
