@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import Container from './container';
+import HeadingSection from './heading-section';
 
 export default function Playground() {
   return (
@@ -12,16 +13,7 @@ export default function Playground() {
       `}
     >
       <Container>
-        <h2
-          css={css`
-            display: block;
-            color: var(--color-primary);
-            text-align: center;
-            margin-bottom: 2rem;
-          `}
-        >
-          Playground
-        </h2>
+        <HeadingSection>Playground</HeadingSection>
         <div
           css={css`
             display: flex;

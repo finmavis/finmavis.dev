@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import Container from './container';
+import HeadingSection from './heading-section';
 
 import AngularIcon from '../assets/svg/angular.svg';
 import ApolloIcon from '../assets/svg/apollo.svg';
@@ -13,14 +14,12 @@ import HtmlIcon from '../assets/svg/html.svg';
 import JsIcon from '../assets/svg/javascript.svg';
 import JestIcon from '../assets/svg/jest.svg';
 import NodejsIcon from '../assets/svg/nodejs.svg';
-import NpmIcon from '../assets/svg/npm.svg';
 import ParcelIcon from '../assets/svg/parceljs.svg';
 import ReactIcon from '../assets/svg/reactjs.svg';
 import ReduxIcon from '../assets/svg/redux.svg';
 import SassIcon from '../assets/svg/sass.svg';
 import TsIcon from '../assets/svg/typescript.svg';
 import WebpackIcon from '../assets/svg/webpack.svg';
-import YarnIcon from '../assets/svg/yarn.svg';
 
 export default function Tech() {
   return (
@@ -31,16 +30,7 @@ export default function Tech() {
       `}
     >
       <Container>
-        <h2
-          css={css`
-            display: block;
-            color: var(--color-primary);
-            text-align: center;
-            margin-bottom: 2rem;
-          `}
-        >
-          Technologies
-        </h2>
+        <HeadingSection>Technologies</HeadingSection>
         <div
           css={css`
             svg {
@@ -52,24 +42,143 @@ export default function Tech() {
             }
           `}
         >
-          <HtmlIcon />
-          <AngularIcon />
-          <ApolloIcon />
-          <BabelIcon />
-          <CssIcon />
-          <GatsbyIcon />
-          <GraphQLIcon />
-          <JsIcon />
-          <JestIcon />
-          <NodejsIcon />
-          <NpmIcon />
-          <ParcelIcon />
-          <ReactIcon />
-          <ReduxIcon />
-          <SassIcon />
-          <TsIcon />
-          <WebpackIcon />
-          <YarnIcon />
+          <img
+            src={HtmlIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={CssIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={JsIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={TsIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+
+          <img
+            src={SassIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+
+          {/* <hr /> */}
+
+          <img
+            src={BabelIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={JestIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={WebpackIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={ParcelIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+
+          {/* <hr /> */}
+
+          <img
+            src={AngularIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={ApolloIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+
+          <img
+            src={GatsbyIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+
+          <img
+            src={NodejsIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={ReactIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={ReduxIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
+          <img
+            src={GraphQLIcon}
+            alt='Tes'
+            css={css`
+              display: inline-block;
+              height: 5rem;
+            `}
+          />
         </div>
       </Container>
     </div>
