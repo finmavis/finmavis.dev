@@ -31,6 +31,18 @@ export default function Layout({ children }) {
             position: relative;
           }
 
+          a {
+            text-shadow: none;
+            background: none;
+          }
+
+          main {
+            display: block;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 4rem;
+          }
+
           .light-mode {
             --color-primary: var(--charcoal);
             --color-secondary: var(--ash);

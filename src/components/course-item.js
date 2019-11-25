@@ -37,8 +37,9 @@ export default function CourseItem({ title, data }) {
       >
         {data.map(item => (
           <p
+            key={item.name}
             css={css`
-              margin-top: 0.5rem;
+              margin-top: 0.25rem;
               margin-bottom: 0;
               display: flex;
               justify-content: space-between;

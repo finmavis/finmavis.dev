@@ -10,8 +10,6 @@ const NavLink = styled(Link)`
   text-decoration: none;
   padding: 0.25rem 0.5rem;
   color: var(--color-secondary);
-  text-shadow: none;
-  background: none;
   font-family: inherit;
   font-weight: 700;
 
@@ -52,10 +50,10 @@ export default function Header() {
           <NavLink to='/' activeClassName='active'>
             Home
           </NavLink>
-          <NavLink to='/about' activeClassName='active'>
+          <NavLink to='/about/' activeClassName='active'>
             About
           </NavLink>
-          <NavLink to='/blog' activeClassName='active'>
+          <NavLink to='/blog/' activeClassName='active'>
             Blog
           </NavLink>
           <ToggleSwitch />

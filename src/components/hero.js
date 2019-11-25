@@ -20,7 +20,6 @@ export default function Hero() {
       <Container>
         <h1
           css={css`
-            font-family: inherit;
             color: var(--color-primary);
           `}
         >
@@ -29,7 +28,7 @@ export default function Hero() {
             css={css`
               display: block;
               color: var(--color-secondary);
-              font-size: 1.2rem;
+              font-size: 1.1rem;
               margin-top: 0.75rem;
             `}
           >

@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 import Container from './container';
 
 // import All Assets
-import Copyright from '../assets/svg/copyright.inline.svg';
 import Codepen from '../assets/svg/codepen.inline.svg';
 import Github from '../assets/svg/github.inline.svg';
 import Twitter from '../assets/svg/twitter.inline.svg';
@@ -25,6 +24,9 @@ export default function Footer() {
   return (
     <footer
       css={css`
+        position: absolute;
+        bottom: 0;
+        width: 100%;
         background: var(--bg-footer);
         display: block;
         height: 4rem;
@@ -47,13 +49,7 @@ export default function Footer() {
             align-items: center;
           `}
         >
-          <Copyright
-            css={css`
-              fill: var(--color-primary);
-              height: 0.75rem;
-            `}
-          />
-          &nbsp;Aris Rinardi - 2019
+          &copy; Fin Mavis - 2019
         </div>
         <div
           css={css`
