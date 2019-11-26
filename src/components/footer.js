@@ -5,11 +5,7 @@ import styled from '@emotion/styled';
 // Import all Component
 import Container from './container';
 
-// import All Assets
-import Codepen from '../assets/svg/codepen.inline.svg';
-import Github from '../assets/svg/github.inline.svg';
-import Twitter from '../assets/svg/twitter.inline.svg';
-import Linkedin from '../assets/svg/linkedin.inline.svg';
+import { SOCIAL_LINK } from '../shared/constants/social-link-footer.constant';
 
 const SocialLink = styled.a`
   background: none;
@@ -49,7 +45,7 @@ export default function Footer() {
             align-items: center;
           `}
         >
-          &copy; Fin Mavis - 2019
+          &copy; Fin Mavis - {new Date().getFullYear()}
         </div>
         <div
           css={css`
@@ -58,38 +54,15 @@ export default function Footer() {
             width: 6rem;
           `}
         >
-          <SocialLink
-            href='https://codepen.io/finmavis'
-            target='_blank'
-            rel='noopener noreferrer'
-            alt='Fin Mavis Codepen'
-          >
-            <Codepen />
-          </SocialLink>
-          <SocialLink
-            href='https://github.com/finmavis'
-            target='_blank'
-            rel='noopener noreferrer'
-            alt='Fin Mavis Github'
-          >
-            <Github />
-          </SocialLink>
-          <SocialLink
-            href='https://twitter.com/finmavis'
-            target='_blank'
-            rel='noopener noreferrer'
-            alt='Fin Mavis Twitter'
-          >
-            <Twitter />
-          </SocialLink>
-          <SocialLink
-            href='https://linkedin.com/in/aris-rinardi'
-            target='_blank'
-            rel='noopener noreferrer'
-            alt='Linkedin'
-          >
-            <Linkedin />
-          </SocialLink>
+          {SOCIAL_LINK.map(item => (
+            <SocialLink
+              href={item.link}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {item.content}
+            </SocialLink>
+          ))}
         </div>
       </Container>
     </footer>

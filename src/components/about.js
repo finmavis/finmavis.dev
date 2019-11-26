@@ -8,6 +8,8 @@ import Container from './container';
 import EmailIcon from '../assets/svg/email.inline.svg';
 import LocationIcon from '../assets/svg/location.inline.svg';
 
+import { SOCIAL_LINK } from '../shared/constants/social-link-about.constant';
+
 export default function About() {
   const data = useStaticQuery(graphql`
     query {
@@ -124,6 +126,65 @@ export default function About() {
                 width: 100%;
               `}
             />
+          </div>
+        </div>
+        <div>
+          <h3
+            css={css`
+              color: var(--color-primary);
+            `}
+          >
+            Or somewhere else on the web
+          </h3>
+          <div
+            css={css`
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              color: var(--color-primary);
+              padding-top: 0.5rem;
+              margin-bottom: 2rem;
+
+              & > * {
+                flex: 0 0 100%;
+                max-width: 100%;
+                color: var(--color-primary);
+                margin-bottom: 1rem;
+
+                @media (min-width: 300px) {
+                  flex: 0 0 calc(100% / 2);
+                  max-width: calc(100 / 2);
+                }
+
+                @media (min-width: 700px) {
+                  flex: 0 0 calc(100% / 4);
+                  max-width: calc(100% / 4);
+                }
+
+                &:hover {
+                  svg {
+                    transform: scale(1.25);
+                  }
+                }
+              }
+
+              svg {
+                height: 1rem;
+                fill: var(--color-primary);
+                transition: all 0.25s;
+              }
+            `}
+          >
+            {SOCIAL_LINK.map(item => (
+              <a
+                key={item.name}
+                href={item.link}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {item.content}
+              </a>
+            ))}
           </div>
         </div>
       </Container>
