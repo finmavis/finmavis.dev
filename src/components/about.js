@@ -65,7 +65,16 @@ export default function About() {
               I’m Aris Rinardi, also known as Fin Mavis. I’m a self-taught
               Frontend Developer based in Jakarta. I’m really interested in
               technology &amp; solving technical problems. You can know more
-              about me by reading my <Link to='/blog/'>articles</Link>.
+              about me by reading my{' '}
+              <Link
+                to='/blog/'
+                css={css`
+                  color: var(--cornflower-blue);
+                `}
+              >
+                articles
+              </Link>
+              .
             </p>
             <p
               css={css`
@@ -144,35 +153,6 @@ export default function About() {
               color: var(--color-primary);
               padding-top: 0.5rem;
               margin-bottom: 2rem;
-
-              & > * {
-                flex: 0 0 100%;
-                max-width: 100%;
-                color: var(--color-primary);
-                margin-bottom: 1rem;
-
-                @media (min-width: 300px) {
-                  flex: 0 0 calc(100% / 2);
-                  max-width: calc(100 / 2);
-                }
-
-                @media (min-width: 700px) {
-                  flex: 0 0 calc(100% / 4);
-                  max-width: calc(100% / 4);
-                }
-
-                &:hover {
-                  svg {
-                    transform: scale(1.25);
-                  }
-                }
-              }
-
-              svg {
-                height: 1rem;
-                fill: var(--color-primary);
-                transition: all 0.25s;
-              }
             `}
           >
             {SOCIAL_LINK.map(item => (
@@ -181,6 +161,29 @@ export default function About() {
                 href={item.link}
                 target='_blank'
                 rel='noopener noreferrer'
+                css={css`
+                  flex: 0 0 100%;
+                  max-width: 100%;
+                  color: var(--color-primary);
+                  margin-bottom: 1rem;
+                  transition: all 0.2s ease;
+
+                  @media (min-width: 300px) {
+                    flex: 0 0 calc(100% / 2);
+                    max-width: calc(100 / 2);
+                  }
+
+                  @media (min-width: 700px) {
+                    flex: 0 0 calc(100% / 4);
+                    max-width: calc(100% / 4);
+                  }
+
+                  svg {
+                    height: 1rem;
+                    fill: var(--color-primary);
+                    margin-right: 0.25rem;
+                  }
+                `}
               >
                 {item.content}
               </a>

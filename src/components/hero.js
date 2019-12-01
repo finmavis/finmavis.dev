@@ -30,6 +30,10 @@ export default function Hero() {
               color: var(--color-secondary);
               font-size: 1.1rem;
               margin-top: 0.75rem;
+
+              @media (max-width: 875px) {
+                line-height: 1.4;
+              }
             `}
           >
             Also known as Fin Mavis, a self-taught Frontend Developer based in

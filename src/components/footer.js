@@ -9,10 +9,16 @@ import { SOCIAL_LINK } from '../shared/constants/social-link-footer.constant';
 
 const SocialLink = styled.a`
   background: none;
+  transition: all 0.2s ease;
 
   svg {
     fill: var(--color-primary);
     height: 0.9rem;
+  }
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.2);
   }
 `;
 
@@ -52,10 +58,15 @@ export default function Footer() {
             display: flex;
             justify-content: space-between;
             width: 6rem;
+
+            &:hover > * {
+              opacity: 0.4;
+            }
           `}
         >
           {SOCIAL_LINK.map(item => (
             <SocialLink
+              key={item.link}
               href={item.link}
               target='_blank'
               rel='noopener noreferrer'
