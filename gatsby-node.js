@@ -7,11 +7,6 @@
 // You can delete this file if you're not using it
 const path = require(`path`);
 
-// exports.onCreateNode = ({ node, actions }) => {
-//   const { createNodeField } = actions
-//   console.log(JSON.stringify(node, undefined, 2));
-// };
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
   // Get path to template
