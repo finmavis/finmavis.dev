@@ -6,7 +6,7 @@ import HeadingSection from './heading-section';
 
 export default function Playground() {
   return (
-    <div
+    <section
       css={css`
         padding-top: 2rem;
         padding-bottom: 4rem;
@@ -38,6 +38,6 @@ export default function Playground() {
           </div>
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

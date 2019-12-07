@@ -86,7 +86,7 @@ const slide6 = keyframes`
 
 export default function Tech() {
   return (
-    <div
+    <section
       css={css`
         padding-top: 2rem;
         padding-bottom: 4rem;
@@ -120,7 +120,7 @@ export default function Tech() {
             css={css`
               display: flex;
               justify-content: space-around;
-              margin-bottom: 2rem;
+              margin-bottom: 1rem;
               width: 71.75rem;
               animation: ${slide} 30s linear alternate both infinite;
 
@@ -205,6 +205,6 @@ export default function Tech() {
           </div>
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

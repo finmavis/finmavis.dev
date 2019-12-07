@@ -9,7 +9,7 @@ import { EXPERIENCE_DATA } from '../shared/constants/experience.constant';
 
 export default function Experience() {
   return (
-    <div
+    <section
       css={css`
         background-color: var(--bg-experience);
         padding-top: 2rem;
@@ -30,6 +30,6 @@ export default function Experience() {
           ))}
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

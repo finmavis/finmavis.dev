@@ -6,7 +6,7 @@ import NotFoundIcon from '../assets/svg/not-found.inline.svg';
 
 export default function NotFound() {
   return (
-    <div
+    <section
       css={css`
         display: flex;
         justify-content: center;
@@ -47,6 +47,6 @@ export default function NotFound() {
       >
         Go back home
       </Link>
-    </div>
+    </section>
   );
 }

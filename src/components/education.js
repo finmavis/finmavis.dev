@@ -13,7 +13,7 @@ import {
 
 export default function Education() {
   return (
-    <div
+    <section
       css={css`
         background-color: var(--bg-experience);
         padding-top: 2rem;
@@ -44,6 +44,6 @@ export default function Education() {
           ))}
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

@@ -55,6 +55,7 @@ export default function Layout({ children }) {
             --bg-current-work: var(--white);
             --bg-footer: var(--concrete);
             --bg-experience: var(--bone);
+            --bg-blog-list: var(--mine-white);
           }
 
           .dark-mode {
@@ -65,6 +66,7 @@ export default function Layout({ children }) {
             --bg-current-work: var(--ship-gray);
             --bg-footer: linear-gradient(to top, #2b2a2a 106%, #3c3c3e 65%);
             --bg-experience: var(--mine-shaft);
+            --bg-blog-list: var(--mine-shaft);
           }
         `}
       />
