@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 
 import Layout from '../components/layout';
@@ -15,7 +15,9 @@ export const query = graphql`
   }
 `;
 
-export default function BlogPost({ data }) {
+export default function BlogPost({ data, pageContext }) {
+  const { previous, next } = pageContext;
+
   return (
     <Layout>
       <Container>
@@ -27,6 +29,8 @@ export default function BlogPost({ data }) {
           `}
         >
           <h1>{data.markdownRemark.frontmatter.title}</h1>
+          {previous && <Link to={previous.frontmatter.path}>Previous</Link>}
+          {next && <Link to={next.frontmatter.path}>Next</Link>}
         </section>
       </Container>
     </Layout>

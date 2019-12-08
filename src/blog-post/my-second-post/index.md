@@ -1,8 +1,9 @@
 ---
 path: '/blog/my-second-post'
 title: 'Blog Title 2'
-date: '2019-05-04'
+date: '2019-05-10'
 author: 'Fin Mavis'
+tags: ['this', that]
 description: 'Some description'
 banner: './essentialiving.jpg'
 bannerCredit: 'Photo by [Essentialiving](https://unsplash.com/photos/J9kPqYxX7Gk)'

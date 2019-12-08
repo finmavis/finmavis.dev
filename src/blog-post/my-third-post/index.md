@@ -1,12 +1,12 @@
 ---
-path: '/blog/my-first-post'
-title: 'Blog Title 1'
-date: '2019-05-04'
+path: '/blog/my-third-post'
+title: 'Blog Title 3'
+date: '2019-12-09'
 author: 'Fin Mavis'
-tags: ['this', 'that']
+tags: ['this', that]
 description: 'Some description'
-banner: './essential-living.jpg'
-bannerCredit: 'Photo by [Essentialiving](https://unsplash.com/photos/zvknk8Ny_r0)'
+banner: './essentialiving.jpg'
+bannerCredit: 'Photo by [Essentialiving](https://unsplash.com/photos/J9kPqYxX7Gk)'
 ---
 
 Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
