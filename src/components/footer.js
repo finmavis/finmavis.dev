@@ -2,7 +2,6 @@ import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-// Import all Component
 import Container from './container';
 
 import { SOCIAL_LINK } from '../shared/constants/social-link-footer.constant';

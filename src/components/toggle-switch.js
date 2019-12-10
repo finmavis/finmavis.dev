@@ -1,9 +1,7 @@
-/** Import Dependencies */
 import React from 'react';
 import { css } from '@emotion/core';
 import useDarkMode from 'use-dark-mode';
 
-/** Import Assets */
 import LightIcon from '../shared/assets/svg/light-icon.svg';
 import DarkIcon from '../shared/assets/svg/dark-icon.svg';
 
@@ -20,7 +18,7 @@ export default function ToggleSwitch(props) {
       <img
         src={LightIcon}
         css={css`
-          height: 19px;
+          height: 0.95rem;
           cursor: pointer;
           margin: 0;
         `}
@@ -49,7 +47,7 @@ export default function ToggleSwitch(props) {
             }
 
             &:checked + label:after {
-              left: calc(100% - 4px);
+              left: calc(100% - 0.2rem);
               transform: translateX(-100%);
             }
           `}
@@ -61,23 +59,23 @@ export default function ToggleSwitch(props) {
           css={css`
             cursor: pointer;
             text-indent: -9999px;
-            width: 50px;
-            height: 19px;
+            width: 2.5rem;
+            height: 0.95rem;
             background: transparent;
             display: block;
-            border-radius: 100px;
+            border-radius: 5rem;
             position: relative;
             border: 1px solid var(--ash);
 
             &:after {
               content: '';
               position: absolute;
-              top: 2px;
-              left: 4px;
-              width: 13px;
-              height: 13px;
+              top: 0.1rem;
+              left: 0.2rem;
+              width: 0.65rem;
+              height: 0.65rem;
               background: var(--ash);
-              border-radius: 13px;
+              border-radius: 0.65rem;
               transition: 0.2s ease;
             }
           `}
@@ -88,7 +86,7 @@ export default function ToggleSwitch(props) {
       <img
         src={DarkIcon}
         css={css`
-          height: 15px;
+          height: 0.75rem;
           cursor: pointer;
           margin: 0;
         `}

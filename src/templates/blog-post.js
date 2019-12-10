@@ -10,7 +10,11 @@ export default function BlogPost({ data, pageContext }) {
 
   return (
     <Layout>
-      <Container>
+      <Container
+        css={css`
+          max-width: 800px;
+        `}
+      >
         <section
           css={css`
             display: block;
@@ -19,8 +23,10 @@ export default function BlogPost({ data, pageContext }) {
           `}
         >
           <h1>{data.markdownRemark.frontmatter.title}</h1>
-          {previous && <Link to={previous.frontmatter.path}>Previous</Link>}
-          {next && <Link to={next.frontmatter.path}>Next</Link>}
+          {previous && (
+            <Link to={previous.frontmatter.path}>&larr; Previous</Link>
+          )}
+          {next && <Link to={next.frontmatter.path}>Next &rarr;</Link>}
         </section>
       </Container>
     </Layout>

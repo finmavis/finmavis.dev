@@ -31,11 +31,6 @@ export default function Layout({ children }) {
             position: relative;
           }
 
-          a {
-            text-shadow: none;
-            background: none;
-          }
-
           main {
             display: block;
             position: relative;

@@ -23,7 +23,11 @@ export default function Blog({ data, pageContext }) {
           display: block;
         `}
       >
-        <Container>
+        <Container
+          css={css`
+            max-width: 800px;
+          `}
+        >
           <HeadingSection
             css={css`
               text-align: left;
@@ -39,12 +43,23 @@ export default function Blog({ data, pageContext }) {
                   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
                   background-color: var(--bg-blog-list);
                   margin-bottom: 3rem;
+
+                  @media (max-width: 900px) {
+                    margin-bottom: 1.5em;
+                  }
                 `}
               >
-                <div>
+                <div
+                  css={css`
+                    max-height: 20rem;
+                  `}
+                >
                   <Img
                     fluid={node.frontmatter.banner.childImageSharp.fluid}
                     alt={node.frontmatter.bannerCreadit}
+                    css={css`
+                      max-height: 20rem;
+                    `}
                   />
                 </div>
                 <div
@@ -53,7 +68,7 @@ export default function Blog({ data, pageContext }) {
                     color: var(--color-primary);
 
                     @media (max-width: 900px) {
-                      padding: 0 1rem 1rem;
+                      padding: 0 1.5rem 1.5rem;
                     }
                   `}
                 >
@@ -79,12 +94,12 @@ export default function Blog({ data, pageContext }) {
           </div>
           {!isFirst && (
             <Link to={prevPage} rel='prev'>
-              ← Previous Page
+              &larr; Previous Page
             </Link>
           )}
           {!isLast && (
             <Link to={nextPage} rel='next'>
-              Next Page →
+              Next Page &rarr;
             </Link>
           )}
         </Container>
@@ -110,7 +125,7 @@ export const query = graphql`
             title
             banner {
               childImageSharp {
-                fluid(maxWidth: 900) {
+                fluid(maxWidth: 800) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
