@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import Img from 'gatsby-image';
 
+import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Container from '../components/container';
 import HeadingSection from '../components/heading-section';
@@ -17,6 +18,7 @@ export default function Blog({ data, pageContext }) {
 
   return (
     <Layout>
+      <SEO title='Blog' />
       <section
         css={css`
           padding-top: 3.5rem;
@@ -54,13 +56,15 @@ export default function Blog({ data, pageContext }) {
                     max-height: 20rem;
                   `}
                 >
-                  <Img
-                    fluid={node.frontmatter.banner.childImageSharp.fluid}
-                    alt={node.frontmatter.bannerCreadit}
-                    css={css`
-                      max-height: 20rem;
-                    `}
-                  />
+                  <Link to={node.frontmatter.path}>
+                    <Img
+                      fluid={node.frontmatter.banner.childImageSharp.fluid}
+                      alt={node.frontmatter.bannerCreadit}
+                      css={css`
+                        max-height: 20rem;
+                      `}
+                    />
+                  </Link>
                 </div>
                 <div
                   css={css`
@@ -72,13 +76,25 @@ export default function Blog({ data, pageContext }) {
                     }
                   `}
                 >
-                  <h3
+                  <Link to={node.frontmatter.path}>
+                    <h3
+                      css={css`
+                        color: var(--color-primary);
+                        margin-bottom: 0.3rem;
+                      `}
+                    >
+                      {node.frontmatter.title}
+                    </h3>
+                  </Link>
+                  <p
                     css={css`
-                      color: var(--color-primary);
+                      margin-bottom: 0.725rem;
                     `}
                   >
-                    {node.frontmatter.title}
-                  </h3>
+                    <small>
+                      {node.frontmatter.date} • {node.timeToRead} min read
+                    </small>
+                  </p>
                   <p>{node.excerpt}</p>
                   <Link
                     css={css`
@@ -117,10 +133,11 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           excerpt
+          timeToRead
           frontmatter {
-            author
-            date
+            date(formatString: "MMMM DD, YYYY")
             path
             title
             banner {
@@ -130,10 +147,7 @@ export const query = graphql`
                 }
               }
             }
-            bannerCredit
           }
-          html
-          id
         }
       }
     }

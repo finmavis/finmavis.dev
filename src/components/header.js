@@ -53,7 +53,7 @@ export default function Header() {
           <NavLink to='/about/' activeClassName='active'>
             About
           </NavLink>
-          <NavLink to='/blog/' activeClassName='active'>
+          <NavLink to='/blog/' partiallyActive={true} activeClassName='active'>
             Blog
           </NavLink>
           <ToggleSwitch />
