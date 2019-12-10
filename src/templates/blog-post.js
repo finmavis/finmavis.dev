@@ -5,16 +5,6 @@ import { css } from '@emotion/core';
 import Layout from '../components/layout';
 import Container from '../components/container';
 
-export const query = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      frontmatter {
-        title
-      }
-    }
-  }
-`;
-
 export default function BlogPost({ data, pageContext }) {
   const { previous, next } = pageContext;
 
@@ -36,3 +26,13 @@ export default function BlogPost({ data, pageContext }) {
     </Layout>
   );
 }
+
+export const query = graphql`
+  query($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      frontmatter {
+        title
+      }
+    }
+  }
+`;

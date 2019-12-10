@@ -5,8 +5,8 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Container from './container';
 
-import EmailIcon from '../assets/svg/email.inline.svg';
-import LocationIcon from '../assets/svg/location.inline.svg';
+import EmailIcon from '../shared/assets/svg/email.inline.svg';
+import LocationIcon from '../shared/assets/svg/location.inline.svg';
 
 import { SOCIAL_LINK } from '../shared/constants/social-link-about.constant';
 

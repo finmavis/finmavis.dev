@@ -9,9 +9,9 @@ import HeadingSection from '../components/heading-section';
 
 export default function Blog({ data, pageContext }) {
   const { allMarkdownRemark } = data;
-  const { currentPage, numPages } = pageContext;
+  const { currentPage, numberOfPages } = pageContext;
   const isFirst = currentPage === 1;
-  const isLast = currentPage === numPages;
+  const isLast = currentPage === numberOfPages;
   const prevPage = currentPage - 1 === 1 ? '/blog' : `/blog/${currentPage - 1}`;
   const nextPage = `/blog/${currentPage + 1}`;
 

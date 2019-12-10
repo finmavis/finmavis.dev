@@ -4,8 +4,8 @@ import { css } from '@emotion/core';
 import useDarkMode from 'use-dark-mode';
 
 /** Import Assets */
-import LightIcon from '../assets/svg/light-icon.svg';
-import DarkIcon from '../assets/svg/dark-icon.svg';
+import LightIcon from '../shared/assets/svg/light-icon.svg';
+import DarkIcon from '../shared/assets/svg/dark-icon.svg';
 
 export default function ToggleSwitch(props) {
   const { value, toggle, enable, disable } = useDarkMode();

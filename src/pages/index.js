@@ -8,15 +8,15 @@ import Experience from '../components/experience';
 import Tech from '../components/tech';
 import Education from '../components/education';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title='Home' />
-    <Hero />
-    <Playground />
-    <Experience />
-    <Tech />
-    <Education />
-  </Layout>
-);
-
-export default IndexPage;
+export default function IndexPage() {
+  return (
+    <Layout>
+      <SEO title='Home' />
+      <Hero />
+      <Playground />
+      <Experience />
+      <Tech />
+      <Education />
+    </Layout>
+  );
+}

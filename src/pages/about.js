@@ -4,11 +4,11 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import About from '../components/about';
 
-const AboutPage = () => (
-  <Layout>
-    <SEO title='About' />
-    <About />
-  </Layout>
-);
-
-export default AboutPage;
+export default function AboutPage() {
+  return (
+    <Layout>
+      <SEO title='About' />
+      <About />
+    </Layout>
+  );
+}

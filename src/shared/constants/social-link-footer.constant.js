@@ -1,9 +1,9 @@
 import React from 'react';
 
-import CodepenIcon from '../../assets/svg/codepen.inline.svg';
-import GithubIcon from '../../assets/svg/github.inline.svg';
-import TwitterIcon from '../../assets/svg/twitter.inline.svg';
-import LinkedinIcon from '../../assets/svg/linkedin.inline.svg';
+import CodepenIcon from '../../shared/assets/svg/codepen.inline.svg';
+import GithubIcon from '../../shared/assets/svg/github.inline.svg';
+import TwitterIcon from '../../shared/assets/svg/twitter.inline.svg';
+import LinkedinIcon from '../../shared/assets/svg/linkedin.inline.svg';
 
 export const SOCIAL_LINK = [
   {

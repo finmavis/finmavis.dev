@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 
 import Container from './container';
 
-import FinIcon from '../assets/svg/fin.inline.svg';
+import FinIcon from '../shared/assets/svg/fin.inline.svg';
 
 export default function Hero() {
   return (

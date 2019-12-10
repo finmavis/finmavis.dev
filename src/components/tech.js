@@ -4,22 +4,22 @@ import { css, keyframes } from '@emotion/core';
 import Container from './container';
 import HeadingSection from './heading-section';
 
-import AngularIcon from '../assets/svg/angular.svg';
-import ApolloIcon from '../assets/svg/apollo.inline.svg';
-import BabelIcon from '../assets/svg/babel.svg';
-import CssIcon from '../assets/svg/css.svg';
-import GatsbyIcon from '../assets/svg/gatsby.inline.svg';
-import GraphQLIcon from '../assets/svg/graphql.svg';
-import HtmlIcon from '../assets/svg/html.svg';
-import JsIcon from '../assets/svg/javascript.svg';
-import JestIcon from '../assets/svg/jest.svg';
-import NodejsIcon from '../assets/svg/nodejs.inline.svg';
-import ParcelIcon from '../assets/svg/parceljs.svg';
-import ReactIcon from '../assets/svg/reactjs.svg';
-import ReduxIcon from '../assets/svg/redux.inline.svg';
-import SassIcon from '../assets/svg/sass.svg';
-import TsIcon from '../assets/svg/typescript.svg';
-import WebpackIcon from '../assets/svg/webpack.inline.svg';
+import AngularIcon from '../shared/assets/svg/angular.svg';
+import ApolloIcon from '../shared/assets/svg/apollo.inline.svg';
+import BabelIcon from '../shared/assets/svg/babel.svg';
+import CssIcon from '../shared/assets/svg/css.svg';
+import GatsbyIcon from '../shared/assets/svg/gatsby.inline.svg';
+import GraphQLIcon from '../shared/assets/svg/graphql.svg';
+import HtmlIcon from '../shared/assets/svg/html.svg';
+import JsIcon from '../shared/assets/svg/javascript.svg';
+import JestIcon from '../shared/assets/svg/jest.svg';
+import NodejsIcon from '../shared/assets/svg/nodejs.inline.svg';
+import ParcelIcon from '../shared/assets/svg/parceljs.svg';
+import ReactIcon from '../shared/assets/svg/reactjs.svg';
+import ReduxIcon from '../shared/assets/svg/redux.inline.svg';
+import SassIcon from '../shared/assets/svg/sass.svg';
+import TsIcon from '../shared/assets/svg/typescript.svg';
+import WebpackIcon from '../shared/assets/svg/webpack.inline.svg';
 
 const slide = keyframes`
   0% {
