@@ -5,8 +5,8 @@ date: '2019-12-11'
 author: 'Fin Mavis'
 tags: ['JavaScript', 'ParcelJS', 'Bundler']
 description: 'Some description'
-banner: './images/vitor-santos.jpg'
-bannerCredit: 'Photo by [Vitor Santos](https://unsplash.com/photos/GOQ32dlahDk)'
+banner: './images/kelli-mcclintock.jpg'
+bannerCredit: 'Photo by [Kelli McClintock](https://unsplash.com/photos/GopRYASfsOc)'
 ---
 
 Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.

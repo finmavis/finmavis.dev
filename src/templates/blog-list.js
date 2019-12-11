@@ -44,10 +44,10 @@ export default function Blog({ data, pageContext }) {
                 css={css`
                   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
                   background-color: var(--bg-blog-list);
-                  margin-bottom: 3rem;
+                  margin-bottom: 2rem;
 
                   @media (max-width: 900px) {
-                    margin-bottom: 1.5em;
+                    margin-bottom: 1em;
                   }
                 `}
               >
@@ -108,15 +108,36 @@ export default function Blog({ data, pageContext }) {
               </div>
             ))}
           </div>
-          {!isFirst && (
-            <Link to={prevPage} rel='prev'>
-              &larr; Previous Page
-            </Link>
-          )}
-          {!isLast && (
-            <Link to={nextPage} rel='next'>
-              Next Page &rarr;
-            </Link>
+          {numberOfPages !== 1 && (
+            <div
+              css={css`
+                display: flex;
+                margin-bottom: 2rem;
+              `}
+            >
+              {!isFirst && (
+                <Link
+                  to={prevPage}
+                  rel='prev'
+                  css={css`
+                    margin-right: auto;
+                  `}
+                >
+                  &larr; Previous Page
+                </Link>
+              )}
+              {!isLast && (
+                <Link
+                  to={nextPage}
+                  rel='next'
+                  css={css`
+                    margin-left: auto;
+                  `}
+                >
+                  Next Page &rarr;
+                </Link>
+              )}
+            </div>
           )}
         </Container>
       </section>

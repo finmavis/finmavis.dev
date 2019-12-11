@@ -5,8 +5,16 @@ import { css } from '@emotion/core';
 import Layout from '../components/layout';
 import Container from '../components/container';
 
-export default function BlogPost({ data, pageContext }) {
+export default function BlogPost({ data, pageContext, location, navigate }) {
   const { previous, next } = pageContext;
+
+  const onGoBack = () => {
+    if (document.referrer.indexOf(location.host) !== -1) {
+      window.history.back();
+    } else {
+      navigate('/blog/');
+    }
+  };
 
   return (
     <Layout>
@@ -22,6 +30,7 @@ export default function BlogPost({ data, pageContext }) {
             color: var(--color-primary);
           `}
         >
+          <button onClick={onGoBack}>Back</button>
           <h1>{data.markdownRemark.frontmatter.title}</h1>
           {previous && (
             <Link to={previous.frontmatter.path}>&larr; Previous</Link>
