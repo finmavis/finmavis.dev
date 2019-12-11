@@ -28,6 +28,10 @@ export default function About() {
       css={css`
         padding-top: 3.5rem;
         display: block;
+
+        @media (max-width: 900px) {
+          padding-top: 2rem;
+        }
       `}
     >
       <Container>
@@ -71,6 +75,7 @@ export default function About() {
                 css={css`
                   border: 1px solid transparent;
                   position: relative;
+                  color: var(--cornflower-blue);
 
                   &::after {
                     background-color: var(--cornflower-blue);

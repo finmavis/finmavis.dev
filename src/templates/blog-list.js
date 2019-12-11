@@ -23,6 +23,10 @@ export default function Blog({ data, pageContext }) {
         css={css`
           padding-top: 3.5rem;
           display: block;
+
+          @media (max-width: 900px) {
+            padding-top: 2rem;
+          }
         `}
       >
         <Container
@@ -47,7 +51,7 @@ export default function Blog({ data, pageContext }) {
                   margin-bottom: 2rem;
 
                   @media (max-width: 900px) {
-                    margin-bottom: 1em;
+                    margin-bottom: 1.5em;
                   }
                 `}
               >
@@ -59,7 +63,7 @@ export default function Blog({ data, pageContext }) {
                   <Link to={node.frontmatter.path}>
                     <Img
                       fluid={node.frontmatter.banner.childImageSharp.fluid}
-                      alt={node.frontmatter.bannerCreadit}
+                      alt={node.frontmatter.bannerCreditName}
                       css={css`
                         max-height: 20rem;
                       `}
@@ -168,6 +172,7 @@ export const query = graphql`
                 }
               }
             }
+            bannerCreditName
           }
         }
       }

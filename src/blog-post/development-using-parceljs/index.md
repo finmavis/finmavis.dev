@@ -1,12 +1,13 @@
 ---
-path: '/blog/how-to-use-parceljs'
-title: 'How to use ParcelJS'
+path: '/blog/development-using-parceljs'
+title: 'Development using ParcelJS'
 date: '2019-12-11'
 author: 'Fin Mavis'
 tags: ['JavaScript', 'ParcelJS', 'Bundler']
 description: 'Some description'
 banner: './images/kelli-mcclintock.jpg'
-bannerCredit: 'Photo by [Kelli McClintock](https://unsplash.com/photos/GopRYASfsOc)'
+bannerCreditName: 'Kelli McClintock'
+bannerCreditLink: 'https://unsplash.com/photos/GopRYASfsOc'
 ---
 
 Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.

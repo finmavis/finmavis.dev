@@ -74,6 +74,7 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-catch-links',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

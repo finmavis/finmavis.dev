@@ -6,7 +6,8 @@ author: 'Fin Mavis'
 tags: ['CSS', 'Bottom Sheet']
 description: 'Bottom Sheet'
 banner: './images/ana-cruz.jpg'
-bannerCredit: 'Photo by [Ana Cruz](https://unsplash.com/photos/S0qh0ONK-AE)'
+bannerCreditName: 'Ana Cruz'
+bannerCreditLink: 'https://unsplash.com/photos/S0qh0ONK-AE'
 ---
 
 Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
