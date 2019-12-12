@@ -1,8 +1,14 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
+import {
+  TwitterShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+} from 'react-share';
 
 import Img from 'gatsby-image';
+import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Container from '../components/container';
 
@@ -20,6 +26,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
 
   return (
     <Layout>
+      <SEO title={markdownRemark.frontmatter.title} />
       <Container
         css={css`
           max-width: 800px;
@@ -94,10 +101,69 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
               </figcaption>
             </figure>
             <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
-            {previous && (
-              <Link to={previous.frontmatter.path}>&larr; Previous</Link>
-            )}
-            {next && <Link to={next.frontmatter.path}>Next &rarr;</Link>}
+            <div
+              css={css`
+                text-align: center;
+                margin-top: 3.5rem;
+                margin-bottom: 1.5rem;
+              `}
+            >
+              <p>Share this article:</p>
+              <div
+                css={css`
+                  display: flex;
+                  justify-content: center;
+
+                  & > * {
+                    cursor: pointer;
+                    margin: 0 0.25rem;
+                  }
+                `}
+              >
+                <FacebookShareButton
+                  url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
+                >
+                  Facebook
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
+                >
+                  Twitter
+                </TwitterShareButton>
+                <LinkedinShareButton
+                  url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
+                >
+                  Linkedin
+                </LinkedinShareButton>
+              </div>
+            </div>
+            <div
+              css={css`
+                margin-bottom: 1.5rem;
+                display: flex;
+              `}
+            >
+              {previous && (
+                <Link
+                  to={previous.frontmatter.path}
+                  css={css`
+                    margin-right: auto;
+                  `}
+                >
+                  &larr; {previous.frontmatter.title}
+                </Link>
+              )}
+              {next && (
+                <Link
+                  to={next.frontmatter.path}
+                  css={css`
+                    margin-left: auto;
+                  `}
+                >
+                  {next.frontmatter.title} &rarr;
+                </Link>
+              )}
+            </div>
           </article>
         </section>
       </Container>
@@ -110,6 +176,7 @@ export const query = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       timeToRead
       frontmatter {
+        path
         date(formatString: "MMMM DD, YYYY")
         title
         banner {
