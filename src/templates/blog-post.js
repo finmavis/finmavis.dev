@@ -12,6 +12,10 @@ import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Container from '../components/container';
 
+import FacebookRoundedIcon from '../shared/assets/svg/facebook-rounded.inline.svg';
+import TwitterRoundedIcon from '../shared/assets/svg/twitter-rounded.inline.svg';
+import LinkedinRoundedIcon from '../shared/assets/svg/linkedin-rounded.inline.svg';
+
 export default function BlogPost({ data, pageContext, location, navigate }) {
   const { markdownRemark } = data;
   const { previous, next } = pageContext;
@@ -104,36 +108,56 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
             <div
               css={css`
                 text-align: center;
-                margin-top: 3.5rem;
+                margin-top: 2.5rem;
                 margin-bottom: 1.5rem;
               `}
             >
-              <p>Share this article:</p>
+              <p
+                css={css`
+                  margin-bottom: 0.75rem;
+                `}
+              >
+                Share this article:
+              </p>
               <div
                 css={css`
                   display: flex;
                   justify-content: center;
 
+                  &:hover > * {
+                    opacity: 0.4;
+                  }
+
                   & > * {
                     cursor: pointer;
-                    margin: 0 0.25rem;
+                    margin: 0;
+                    transition: all 0.2s ease;
+                    outline: none;
+
+                    &:hover {
+                      opacity: 1;
+                    }
+                  }
+
+                  svg {
+                    height: 2rem;
                   }
                 `}
               >
                 <FacebookShareButton
                   url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
                 >
-                  Facebook
+                  <FacebookRoundedIcon />
                 </FacebookShareButton>
                 <TwitterShareButton
                   url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
                 >
-                  Twitter
+                  <TwitterRoundedIcon />
                 </TwitterShareButton>
                 <LinkedinShareButton
                   url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
                 >
-                  Linkedin
+                  <LinkedinRoundedIcon />
                 </LinkedinShareButton>
               </div>
             </div>
@@ -148,6 +172,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                   to={previous.frontmatter.path}
                   css={css`
                     margin-right: auto;
+                    text-align: left;
                   `}
                 >
                   &larr; {previous.frontmatter.title}
@@ -158,12 +183,20 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                   to={next.frontmatter.path}
                   css={css`
                     margin-left: auto;
+                    text-align: right;
                   `}
                 >
                   {next.frontmatter.title} &rarr;
                 </Link>
               )}
             </div>
+            <hr
+              css={css`
+                background: var(--border-color);
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+              `}
+            />
           </article>
         </section>
       </Container>
