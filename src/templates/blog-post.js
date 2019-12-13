@@ -17,7 +17,7 @@ import TwitterRoundedIcon from '../shared/assets/svg/twitter-rounded.inline.svg'
 import LinkedinRoundedIcon from '../shared/assets/svg/linkedin-rounded.inline.svg';
 
 export default function BlogPost({ data, pageContext, location, navigate }) {
-  const { markdownRemark } = data;
+  const { markdownRemark, file } = data;
   const { previous, next } = pageContext;
 
   const onGoBack = () => {
@@ -65,7 +65,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
               css={css`
                 color: var(--color-primary);
                 text-align: center;
-                margin: 1rem auto 0;
+                margin: 1rem auto 0.25rem;
               `}
             >
               {markdownRemark.frontmatter.title}
@@ -94,14 +94,16 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                   margin-top: 0.3rem;
                 `}
               >
-                Photo by{' '}
-                <a
-                  href={markdownRemark.frontmatter.bannerCreditLink}
-                  target='_blank'
-                  rel='noopener noreferrer nofollow'
-                >
-                  {markdownRemark.frontmatter.bannerCreditName}
-                </a>
+                <em>
+                  Photo by{' '}
+                  <a
+                    href={markdownRemark.frontmatter.bannerCreditLink}
+                    target='_blank'
+                    rel='noopener noreferrer nofollow'
+                  >
+                    {markdownRemark.frontmatter.bannerCreditName}
+                  </a>
+                </em>
               </figcaption>
             </figure>
             <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
@@ -163,7 +165,6 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
             </div>
             <div
               css={css`
-                margin-bottom: 1.5rem;
                 display: flex;
               `}
             >
@@ -193,10 +194,58 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
             <hr
               css={css`
                 background: var(--border-color);
-                margin-top: 2rem;
-                margin-bottom: 2rem;
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
               `}
             />
+            <div
+              css={css`
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.5rem;
+              `}
+            >
+              <div
+                css={css`
+                  width: 3rem;
+                  margin-right: 0.75rem;
+                `}
+              >
+                <Img
+                  fluid={file.childImageSharp.fluid}
+                  alt='Fin Mavis Photo'
+                  css={css`
+                    border-radius: 50%;
+                    width: 100%;
+                  `}
+                />
+              </div>
+              <div
+                css={css`
+                  p {
+                    margin-bottom: 0;
+                    color: var(--color-secondary);
+                  }
+                `}
+              >
+                <p>
+                  <em>
+                    Personal notes by{' '}
+                    <a
+                      href='https://twitter.com/finmavis'
+                      target='_blank'
+                      rel='noopener noreferrer nofollow'
+                    >
+                      Fin Mavis
+                    </a>
+                    .
+                  </em>
+                </p>
+                <p>
+                  <em>As reminders to My Future Self while learning.</em>
+                </p>
+              </div>
+            </div>
           </article>
         </section>
       </Container>
@@ -223,6 +272,13 @@ export const query = graphql`
         bannerCreditLink
       }
       html
+    }
+    file(relativePath: { eq: "profile.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 60) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
     }
   }
 `;
