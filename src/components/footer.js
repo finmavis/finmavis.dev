@@ -9,10 +9,11 @@ import { SOCIAL_LINK } from '../shared/constants/social-link-footer.constant';
 const SocialLink = styled.a`
   background: none;
   transition: all 0.2s ease;
+  padding: 0.75rem 0.75rem 0.25rem;
 
   svg {
     fill: var(--color-primary);
-    height: 0.9rem;
+    height: 1rem;
   }
 
   &:hover {
@@ -56,7 +57,8 @@ export default function Footer() {
           css={css`
             display: flex;
             justify-content: space-between;
-            width: 6rem;
+            align-items: center;
+            height: 100%;
 
             &:hover > * {
               opacity: 0.4;
