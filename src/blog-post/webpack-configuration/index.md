@@ -1,13 +1,14 @@
 ---
-path: '/blog/how-to-create-bottom-sheet'
-title: 'How to create Bottom Sheet'
-date: '2019-12-11'
+path: '/blog/webpack-configuration-step-by-step'
+title: 'Webpack Configuration step by step - Development to Production'
+date: '2019-10-15'
 author: 'Fin Mavis'
-tags: ['CSS', 'Bottom Sheet']
-description: 'Bottom Sheet'
-banner: './images/ana-cruz.jpg'
-bannerCreditName: 'Ana Cruz'
-bannerCreditLink: 'https://unsplash.com/photos/S0qh0ONK-AE'
+tags:
+  ['JavaScript', 'Webpack', 'BabelJS', 'SASS', 'SCSS', 'Autoprefix', 'Bundler']
+description: 'Some Description'
+banner: './images/adi-goldstein.jpg'
+bannerCreditName: 'Adi Goldstein'
+bannerCreditLink: 'https://unsplash.com/photos/mDinBvq1Sfg'
 ---
 
 Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.

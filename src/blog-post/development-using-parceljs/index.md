@@ -1,7 +1,7 @@
 ---
 path: '/blog/development-using-parceljs'
 title: 'Development using ParcelJS'
-date: '2019-12-11'
+date: '2019-11-25'
 author: 'Fin Mavis'
 tags: ['JavaScript', 'ParcelJS', 'Bundler']
 description: 'Some description'
