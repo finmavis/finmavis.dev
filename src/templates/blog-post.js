@@ -242,7 +242,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                   </em>
                 </p>
                 <p>
-                  <em>As reminders to My Future Self while learning.</em>
+                  <em>As a reminder to my future self while learning.</em>
                 </p>
               </div>
             </div>
