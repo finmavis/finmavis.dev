@@ -69,6 +69,7 @@ export default function Footer() {
               href={item.link}
               target='_blank'
               rel='noopener noreferrer'
+              aria-label={item.ariaLabel}
             >
               {item.content}
             </SocialLink>

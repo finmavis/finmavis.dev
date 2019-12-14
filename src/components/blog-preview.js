@@ -90,7 +90,10 @@ export default function BlogPreview() {
                     max-height: 10rem;
                   `}
                 >
-                  <Link to={node.frontmatter.path}>
+                  <Link
+                    to={node.frontmatter.path}
+                    aria-label={node.frontmatter.title}
+                  >
                     <Img
                       fluid={node.frontmatter.banner.childImageSharp.fluid}
                       alt={node.frontmatter.title}
@@ -107,7 +110,10 @@ export default function BlogPreview() {
                     font-size: 0.9rem;
                   `}
                 >
-                  <Link to={node.frontmatter.path}>
+                  <Link
+                    to={node.frontmatter.path}
+                    aria-label={node.frontmatter.title}
+                  >
                     <h4
                       css={css`
                         color: var(--color-primary);
@@ -132,6 +138,7 @@ export default function BlogPreview() {
                       color: var(--cornflower-blue);
                     `}
                     to={node.frontmatter.path}
+                    aria-label={node.frontmatter.title}
                   >
                     Read &rarr;
                   </Link>
@@ -147,6 +154,7 @@ export default function BlogPreview() {
           `}
         >
           <Link
+            aria-label='Go to blog page to see more article'
             to='/blog/'
             css={css`
               padding: 0.5rem 2rem;

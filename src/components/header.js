@@ -47,13 +47,22 @@ export default function Header() {
             }
           `}
         >
-          <NavLink to='/' activeClassName='active'>
+          <NavLink to='/' activeClassName='active' aria-label='Go to home page'>
             Home
           </NavLink>
-          <NavLink to='/about/' activeClassName='active'>
+          <NavLink
+            to='/about/'
+            activeClassName='active'
+            aria-label='Go to about page'
+          >
             About
           </NavLink>
-          <NavLink to='/blog/' partiallyActive={true} activeClassName='active'>
+          <NavLink
+            to='/blog/'
+            partiallyActive={true}
+            activeClassName='active'
+            aria-label='Go to blog page'
+          >
             Blog
           </NavLink>
           <ToggleSwitch />

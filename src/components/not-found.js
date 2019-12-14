@@ -24,6 +24,7 @@ export default function NotFound() {
       />
       <p>Oops..Page Not Found</p>
       <Link
+        aria-label='Go back to home page'
         to='/'
         css={css`
           padding: 0.35rem 1.75rem;

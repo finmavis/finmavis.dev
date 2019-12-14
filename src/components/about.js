@@ -71,6 +71,7 @@ export default function About() {
               technology &amp; solving technical problems. You can know more
               about me by reading my{' '}
               <Link
+                aria-label='Go to blog page'
                 to='/blog/'
                 css={css`
                   border: 1px solid transparent;
@@ -183,6 +184,7 @@ export default function About() {
           >
             {SOCIAL_LINK.map(item => (
               <a
+                aria-label={item.ariaLabel}
                 key={item.name}
                 href={item.link}
                 target='_blank'

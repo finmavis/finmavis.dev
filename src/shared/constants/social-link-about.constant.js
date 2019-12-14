@@ -9,6 +9,7 @@ export const SOCIAL_LINK = [
   {
     name: 'linkedin',
     link: 'https://linkedin.com/in/aris-rinardi',
+    ariaLabel: 'Visit Fin Mavis codepen',
     content: (
       <Fragment>
         <LinkedinIcon />
@@ -19,6 +20,7 @@ export const SOCIAL_LINK = [
   {
     name: 'twitter',
     link: 'https://twitter.com/finmavis',
+    ariaLabel: 'Visit Fin Mavis github',
     content: (
       <Fragment>
         <TwitterIcon />
@@ -29,6 +31,7 @@ export const SOCIAL_LINK = [
   {
     name: 'github',
     link: 'https://github.com/finmavis',
+    ariaLabel: 'Visit Fin Mavis twitter',
     content: (
       <Fragment>
         <GithubIcon />
@@ -39,6 +42,7 @@ export const SOCIAL_LINK = [
   {
     name: 'codepen',
     link: 'https://codepen.io/finmavis',
+    ariaLabel: 'Visit Fin Mavis linkedin',
     content: (
       <Fragment>
         <CodepenIcon />

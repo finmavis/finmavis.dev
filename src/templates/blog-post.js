@@ -44,6 +44,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
           `}
         >
           <button
+            aria-label='Back to blog list page'
             onClick={onGoBack}
             css={css`
               background: none;
@@ -97,6 +98,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                 <em>
                   Photo by{' '}
                   <a
+                    aria-label={`View photo by ${markdownRemark.frontmatter.bannerCreditName} on Unsplash`}
                     href={markdownRemark.frontmatter.bannerCreditLink}
                     target='_blank'
                     rel='noopener noreferrer nofollow'
@@ -170,6 +172,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
             >
               {previous && (
                 <Link
+                  aria-label='Navigate to previous blog page'
                   to={previous.frontmatter.path}
                   css={css`
                     margin-right: auto;
@@ -181,6 +184,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
               )}
               {next && (
                 <Link
+                  aria-label='Navigate to next blog page'
                   to={next.frontmatter.path}
                   css={css`
                     margin-left: auto;
@@ -235,6 +239,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                       href='https://twitter.com/finmavis'
                       target='_blank'
                       rel='noopener noreferrer nofollow'
+                      aria-label='Visit Fin Mavis twitter'
                     >
                       Fin Mavis
                     </a>

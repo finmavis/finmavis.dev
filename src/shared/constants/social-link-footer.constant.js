@@ -9,21 +9,25 @@ export const SOCIAL_LINK = [
   {
     name: 'codepen',
     link: 'https://codepen.io/finmavis',
+    ariaLabel: 'Visit Fin Mavis codepen',
     content: <CodepenIcon />,
   },
   {
     name: 'github',
     link: 'https://github.com/finmavis',
+    ariaLabel: 'Visit Fin Mavis github',
     content: <GithubIcon />,
   },
   {
     name: 'twitter',
     link: 'https://twitter.com/finmavis',
+    ariaLabel: 'Visit Fin Mavis twitter',
     content: <TwitterIcon />,
   },
   {
     name: 'linkedin',
     link: 'https://linkedin.com/in/aris-rinardi',
+    ariaLabel: 'Visit Fin Mavis linkedin',
     content: <LinkedinIcon />,
   },
 ];
