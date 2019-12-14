@@ -224,7 +224,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                 css={css`
                   p {
                     margin-bottom: 0;
-                    color: var(--color-secondary);
+                    color: var(--color-primary);
                   }
                 `}
               >

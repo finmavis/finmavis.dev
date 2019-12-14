@@ -7,6 +7,7 @@ import Playground from '../components/playground';
 import Experience from '../components/experience';
 import Tech from '../components/tech';
 import Education from '../components/education';
+import BlogPreview from '../components/blog-preview';
 
 export default function IndexPage() {
   return (
@@ -17,6 +18,7 @@ export default function IndexPage() {
       <Experience />
       <Tech />
       <Education />
+      <BlogPreview />
     </Layout>
   );
 }

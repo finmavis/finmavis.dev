@@ -63,7 +63,7 @@ export default function Blog({ data, pageContext }) {
                   <Link to={node.frontmatter.path}>
                     <Img
                       fluid={node.frontmatter.banner.childImageSharp.fluid}
-                      alt={node.frontmatter.bannerCreditName}
+                      alt={node.frontmatter.title}
                       css={css`
                         max-height: 20rem;
                       `}
