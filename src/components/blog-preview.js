@@ -24,7 +24,7 @@ export default function BlogPreview() {
               title
               banner {
                 childImageSharp {
-                  fluid(maxWidth: 800) {
+                  fluid(maxWidth: 415) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
