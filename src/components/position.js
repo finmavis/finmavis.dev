@@ -27,7 +27,6 @@ export default function Position({ name, year, subText }) {
         <h4
           css={css`
             margin: 0;
-            color: var(--color-primary);
           `}
         >
           {name}

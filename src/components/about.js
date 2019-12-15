@@ -58,13 +58,7 @@ export default function About() {
               }
             `}
           >
-            <h2
-              css={css`
-                color: var(--color-primary);
-              `}
-            >
-              About Me
-            </h2>
+            <h2>About Me</h2>
             <p>
               I’m Aris Rinardi, also known as Fin Mavis. I’m a self-taught
               Frontend Developer based in Jakarta. I’m really interested in
@@ -165,13 +159,7 @@ export default function About() {
           </div>
         </div>
         <div>
-          <h3
-            css={css`
-              color: var(--color-primary);
-            `}
-          >
-            Or somewhere else on the web
-          </h3>
+          <h3>Or somewhere else on the web</h3>
           <div
             css={css`
               display: flex;

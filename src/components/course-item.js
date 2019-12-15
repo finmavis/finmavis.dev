@@ -24,7 +24,6 @@ export default function CourseItem({ title, data }) {
         <h4
           css={css`
             margin: 0;
-            color: var(--color-primary);
           `}
         >
           {title}

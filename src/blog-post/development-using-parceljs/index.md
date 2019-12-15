@@ -10,86 +10,82 @@ bannerCreditName: 'Kira auf der Heide'
 bannerCreditLink: 'https://unsplash.com/photos/IPx7J1n_xUc'
 ---
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+## What is ParcelJS ?
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+According to the tag line on their home page, [Parcel](https://parceljs.org/) is a "Blazing fast, zero-configuration web application bundler". But in my opinion Parcel is a bundler that amazingly super simple to use, it's like magic. But, what do i mean by Magic ? Because Parcel will bundle all of our code like HTML, CSS, SASS, JavaScript, TypeScript without the complex of configuration stuff, so we can focus more on developing our apps instead of configure it.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+## Getting Started
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+First, we need to create our Project. Create a new folder,and i'll pick a folder name `parcel-boilerplate`. Inside that folder initialize our project with `npm init` or `yarn init`. Once we done, inside our will have `package.json`.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+## Install ParcelJS
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+We can now install ParcelJS, along with our other dependencies. Run the following to install Parcel :
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+If you're using `yarn`
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```bash
+yarn add --dev parcel-bundler
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+If you're using `npm`
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```bash
+npm install --save-dev parcel-bundler
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Once we done, we can move on to adding some basic code to get our app started.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+## Basic Code
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If we link our main JavaScript file in the HTML using a relative path, Parcel will also process it for us, and replace the reference with a URL to the output file. So let's create our HTML and JavaSCript file. Create a `src` folder inside our project directory and create two file inside that directory, `index.html` and `index.js`. And our Project structure look like below :
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```text
+|-- src
+    |-- index.html
+    |-- index.js
+|-- package.json
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Add the following to `index.html`
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <title>Parcel Boilerplate</title>
+  </head>
+  <body>
+    <h1 class="Tes">Parcel Boilerplate</h1>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <script src="./index.js"></script>
+  </body>
+</html>
+```
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+And then Add the following to `index.js`
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```js
+function HelloWorld() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Hello World'), 1000);
+  });
+}
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+HelloWorld().then(value => console.log(value));
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Open `package.json` and add new scripts for starting our parcel:
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```json
+"scripts": {
+  "start": "parcel ./src/index.html --open",
+  "build": "parcel build ./src/index.html"
+},
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
-
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+These commands will allow us to start the development mode and have it open in the browser automatically, and build our app for production.

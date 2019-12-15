@@ -18,11 +18,7 @@ export default function Hero() {
       `}
     >
       <Container>
-        <h1
-          css={css`
-            color: var(--color-primary);
-          `}
-        >
+        <h1>
           Hello, I’m Aris Rinardi{' '}
           <span
             css={css`

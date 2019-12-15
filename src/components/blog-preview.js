@@ -116,7 +116,6 @@ export default function BlogPreview() {
                   >
                     <h4
                       css={css`
-                        color: var(--color-primary);
                         margin: 1rem 0 0;
                       `}
                     >

@@ -27,7 +27,6 @@ export default function ExperienceItem({ company, year, position }) {
         <h4
           css={css`
             margin: 0;
-            color: var(--color-primary);
           `}
         >
           {company}
