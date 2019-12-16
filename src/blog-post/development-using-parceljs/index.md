@@ -60,7 +60,7 @@ Add the following to `index.html`
     <title>Parcel Boilerplate</title>
   </head>
   <body>
-    <h1 class="Tes">Parcel Boilerplate</h1>
+    <h1>Parcel Boilerplate</h1>
 
     <script src="./index.js"></script>
   </body>

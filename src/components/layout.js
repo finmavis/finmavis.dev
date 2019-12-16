@@ -78,7 +78,7 @@ export default function Layout({ children }) {
             */
           code[class*='language-'],
           pre[class*='language-'] {
-            color: #fff;
+            color: #f1faff;
             background: none;
             font-feature-settings: normal;
             text-align: left;
@@ -154,7 +154,7 @@ export default function Layout({ children }) {
           .token.char,
           .token.constant,
           .token.function {
-            color: rgb(130, 170, 255);
+            color: #0099fa;
           }
 
           .token.punctuation {
@@ -173,7 +173,7 @@ export default function Layout({ children }) {
           .token.tag,
           .token.operator,
           .token.keyword {
-            color: #7fdbca;
+            color: #00c6b7;
           }
 
           .token.boolean {
@@ -181,7 +181,7 @@ export default function Layout({ children }) {
           }
 
           .token.property {
-            color: rgb(128, 203, 196);
+            color: #ffce93;
           }
 
           .token.namespace {
