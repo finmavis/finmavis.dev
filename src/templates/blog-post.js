@@ -30,7 +30,10 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
 
   return (
     <Layout>
-      <SEO title={markdownRemark.frontmatter.title} />
+      <SEO
+        title={markdownRemark.frontmatter.title}
+        description={markdownRemark.frontmatter.description}
+      />
       <Container
         css={css`
           max-width: 800px;
@@ -108,6 +111,9 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                 </em>
               </figcaption>
             </figure>
+            <p>
+              <em>{markdownRemark.frontmatter.description}</em>
+            </p>
             <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
             <div
               css={css`
@@ -275,6 +281,7 @@ export const query = graphql`
         }
         bannerCreditName
         bannerCreditLink
+        description
       }
       html
     }

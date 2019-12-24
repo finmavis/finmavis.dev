@@ -171,18 +171,12 @@ export default function About() {
             `}
           >
             {SOCIAL_LINK.map(item => (
-              <a
-                aria-label={item.ariaLabel}
+              <div
                 key={item.name}
-                href={item.link}
-                target='_blank'
-                rel='noopener noreferrer'
                 css={css`
                   flex: 0 0 100%;
                   max-width: 100%;
-                  color: var(--color-primary);
                   margin-bottom: 1rem;
-                  transition: all 0.2s ease;
 
                   @media (min-width: 300px) {
                     flex: 0 0 calc(100% / 2);
@@ -193,16 +187,26 @@ export default function About() {
                     flex: 0 0 calc(100% / 4);
                     max-width: calc(100% / 4);
                   }
-
-                  svg {
-                    height: 1rem;
-                    fill: var(--color-primary);
-                    margin-right: 0.25rem;
-                  }
                 `}
               >
-                {item.content}
-              </a>
+                <a
+                  aria-label={item.ariaLabel}
+                  href={item.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  css={css`
+                    color: var(--color-primary);
+
+                    svg {
+                      height: 1rem;
+                      fill: var(--color-primary);
+                      margin-right: 0.25rem;
+                    }
+                  `}
+                >
+                  {item.content}
+                </a>
+              </div>
             ))}
           </div>
         </div>

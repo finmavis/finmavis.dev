@@ -6,7 +6,7 @@ import LightIcon from '../shared/assets/svg/light-icon.svg';
 import DarkIcon from '../shared/assets/svg/dark-icon.svg';
 
 export default function ToggleSwitch(props) {
-  const { value, toggle, enable, disable } = useDarkMode();
+  const { value, toggle, enable, disable } = useDarkMode(true);
 
   return (
     <div

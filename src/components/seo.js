@@ -3,6 +3,9 @@
  *  Gatsby's useStaticQuery React hook
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
+ *
+ * TODO:
+ * Add siteUrl
  */
 
 import React from 'react';
@@ -35,10 +38,21 @@ function SEO({ description, lang, meta, title }) {
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
+        /**
+         * General Tags
+         * TODO: Add meta name image
+         */
         {
           name: `description`,
           content: metaDescription,
         },
+        /**
+         * OpenGraph tags
+         * TODO:
+         * Add meta og:url
+         * Add meta og:image
+         * Update og:type to article only if on blog post page
+         */
         {
           property: `og:title`,
           content: title,
@@ -51,6 +65,10 @@ function SEO({ description, lang, meta, title }) {
           property: `og:type`,
           content: `website`,
         },
+        /**
+         * Twitter Card tags
+         * TODO: Add meta twitter:image
+         */
         {
           name: `twitter:card`,
           content: `summary`,
