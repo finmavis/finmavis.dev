@@ -176,28 +176,28 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                 display: flex;
               `}
             >
-              {previous && (
-                <Link
-                  aria-label='Navigate to previous blog page'
-                  to={previous.frontmatter.path}
-                  css={css`
-                    margin-right: auto;
-                    text-align: left;
-                  `}
-                >
-                  &larr; {previous.frontmatter.title}
-                </Link>
-              )}
               {next && (
                 <Link
                   aria-label='Navigate to next blog page'
                   to={next.frontmatter.path}
                   css={css`
+                    margin-right: auto;
+                    text-align: left;
+                  `}
+                >
+                  &larr; {next.frontmatter.title}
+                </Link>
+              )}
+              {previous && (
+                <Link
+                  aria-label='Navigate to previous blog page'
+                  to={previous.frontmatter.path}
+                  css={css`
                     margin-left: auto;
                     text-align: right;
                   `}
                 >
-                  {next.frontmatter.title} &rarr;
+                  {previous.frontmatter.title} &rarr;
                 </Link>
               )}
             </div>

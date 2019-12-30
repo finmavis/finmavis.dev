@@ -225,11 +225,10 @@ export default function Layout({ children }) {
           .gatsby-highlight-code-line {
             background-color: hsla(207, 95%, 15%, 1);
             display: block;
-            margin-right: -1.3125rem;
-            margin-left: -1.3125rem;
-            padding-right: 1em;
-            padding-left: 1.25em;
-            border-left: 0.25em solid #ffa7c4;
+            margin-left: -1rem;
+            margin-right: -1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
           }
 
           .gatsby-highlight {
@@ -242,6 +241,11 @@ export default function Layout({ children }) {
           .gatsby-highlight pre[class*='language-'] {
             float: left;
             min-width: 100%;
+          }
+
+          blockquote {
+            color: var(--color-primary);
+            border-left: 0.1rem solid #1ca086;
           }
         `}
       />

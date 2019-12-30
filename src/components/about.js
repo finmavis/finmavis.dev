@@ -196,6 +196,7 @@ export default function About() {
                   rel='noopener noreferrer'
                   css={css`
                     color: var(--color-primary);
+                    display: inline-block;
 
                     svg {
                       height: 1rem;

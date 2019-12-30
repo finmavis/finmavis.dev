@@ -1,95 +1,513 @@
 ---
 path: '/blog/server-side-rendering-react-with-razzle'
-title: 'Server-side Rendering React with Razzle'
+title: 'Server side rendering React with Razzle'
 date: '2019-11-15'
 author: 'Fin Mavis'
-tags: ['JavaScript', 'React', 'Razzle', 'Server-side Rendering']
-description: 'Some Description'
+tags: ['JavaScript', 'React', 'Razzle', 'Server Side Rendering']
+description: 'Learn how to create server side rendering React app using Razzle.'
 banner: './images/christopher-burns.jpg'
 bannerCreditName: 'Christopher Burns'
 bannerCreditLink: 'https://unsplash.com/photos/8KfCR12oeUM'
 ---
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+So, you've been using React for some time, maybe you use `create-react-app` to starting your project, or maybe you use your own webpack or parcel configuration to build an app using React. Time passed and you pretty happy about it.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Then everything changed when the Fire Nation attacked. Your colleague or maybe your team ask you about server side rendering, they said &ldquo;I heard that server side rendering is really legit for performance so it will much better for user experience and it's really good to improve SEO too&rdquo;. Or maybe you're just curious enough how to improving your site performances and stumbleupon server side rendering, but you have no idea what it is or how to implement it.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+## What is server side rendering?
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Before we discuss about server side rendering, let's take a step back and review how normally React render content (client side rendering).
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Here's the summary:
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+1. Users go to our site
+2. Our server receive a request then response with initial `html` document. And the document might be like this:
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+```html{15}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <title>React App</title>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <link href="/static/css/main.d1b05096.chunk.css" rel="stylesheet" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <div id="root"></div>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <script src="/static/js/2.7a2f12fb.chunk.js"></script>
+    <script src="/static/js/main.e2bdf7b7.chunk.js"></script>
+  </body>
+</html>
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+3. Browser receive that document and parse the html, then browsers see a `css` and kinda say, &ldquo;Ohh shooottt! I need to request this file&rdquo;, so browser make a request to the server and pause the render process and waiting for the response
+4. Our server be like, I got another request, this user request `css` file, let me give the response again with the `css` file that being requested
+5. Browser receive that `css` file and continue to render, while rendering, the browser see `js` file and need to request again that file to the server, and be like, &ldquo;Yoooo, I need this `js` file, can you send it to me ?&rdquo; and pause the render process again
+6. Copy that, sending you the `js` file
+7. Browser then receive that file and continue to render
+8. Until the browser finished load, parse and execute all the `js`, finally user see some content
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+<small><em>Note: The browser rendering mechanism is much more complex than this.</em></small>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Now, let's take a look about **server side rendering** process.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+1. Users go to our site
+2. Our server receive a request then prepare/pre-populated/render initial `html` content or data (like user data or you fetch some data) on the server. After it finished, server send back the response, the document is problaly be like this:
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```html{16-37}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <title>React App</title>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <link rel="stylesheet" href="/static/css/bundle.9638be3a.css" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+    <div id="root">
+      <div class="App">
+        <div class="App-header">
+          <img
+            src="/static/media/react.9a28da9f.svg"
+            class="App-logo"
+            alt="logo"
+          />
+          <p>
+            Edit
+            <code>src/App.js</code>
+            and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </div>
+      </div>
+    </div>
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+    <script src="/static/js/bundle.01df4f0a.js"></script>
+  </body>
+</html>
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+3. Browser receive that document and parse it, but here's the difference, the user can already see the content, did you notice the response given by the server ? Yup, content already there, not just some skeleton/placeholder about our app. At least now our site viewable but still not interactive to the users.
+4. The process not stop there, browsers continue parse and see a `css` and `js` file and make a request to the server just like the process above. After it finished our `js/React` takes over and start execute where the app left off and then it become interactive to the users.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Let's recap, so, what is **server side rendering** ? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+I still didn't get it. Can you provide the difference between **Client Side Rendering** and **Server Side Rendering** ? On **client side rendering**, we are completely running React on the browser. The initial HTML rendered by the server just a placeholder (as you see above, just a `div` with an id of root) and the entire UI or content is rendered in the browser once all the scripts load.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+## Razzle
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+You problaly already know what **create-react-app**, a tool (built by developers at Facebook) that help us to start creating our React project without to woryy about configuration stuff. All we have to do is simply run the **create-react-app** command then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, add autoprefixes, and along with other features.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Now, **Razzle**, you have no idea about it. **Razzle** is just like create-react-app. Here's the difference, Razzle is a tool to create **server side rendering** (React by default) app. Let's quote what razzle is in their docs:
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+> Razzle is a tool that abstracts all complex configuration needed for SSR into a single dependency--giving us the awesome developer experience of **create-react-app**, but then leaving the rest of our app's architectural decisions about frameworks, routing, and data fetching up to us.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Whaaatttttt, that's amazing. But wait, there's more, we can customize **Babel** and **Webpack** razzle config, for example we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add little bit config to **webpack** for Server side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start extend razzle webpack configuration.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Razzle also come with plugins just like **gatsby** do. What does that mean ? For example we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add compression on production build ? There's a plugin for that. Need to inline svg like create-react-app did ? There's plugin for that. You can see all the available plugin [here](https://www.npmjs.com/search?q=razzle-plugin).
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+## The Code
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+Before jump to the code, we need to know the goals of the things that we build. Here's the goals of this app.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+1. Server side rendering React (Of course, it's Razzle)
+2. Add React Helmet for SEO
+3. Code splitting
+4. Remove unused CSS on Production build
+5. Add gzip and brotli compression on Production build
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Let's jump to the code. To start razzle project is same way like using create-react-app, but with razzle command.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```bash
+# Note: npx comes with npm 5.2+ and higher
+# Use this command to your command line tool
+# The razzle-boilerplate name is up to you
+# in this case I pick a name razzle-boilerplate
+npx create-razzle-app razzle-boilerplate
+```
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Then we're ready to develop Server side rendering React app. Let's take a look on project directory that razzle generated.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```text
+|-- public
+    |-- favicon.ico
+    |-- robots.txt
+|-- src
+    |-- App.css
+    |-- App.js
+    |-- App.test.js
+    |-- client.js <- entry point of our React app
+    |-- Home.css
+    |-- Home.js
+    |-- index.js <- entry point of our server
+    |-- react.svg
+    |-- server.js <- Our server (express.js) configuration
+|-- .gitignore
+|-- package.json
+|-- README.md
+|-- yarn.lock
+```
 
-Soufflé donut sweet I love fruitcake. Sesame snaps pastry gummi bears cheesecake. Cupcake cotton candy liquorice danish brownie ice cream candy canes cheesecake.
+Now navigate to our active project directory, we can start development server using scripts `yarn start` or `npm run start`. After it finished bundle our code, we can open [http://localhost:3000](http://localhost:3000/) on our browser to see our app.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+![Razzle starter page](/images/razzle-starter-page.jpg)
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Let's check if it's really server side rendering by viewing the page source on our browser.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+![Source code SSR](/images/open-source-ssr-page.jpg)
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+Well, as you can see, the code is there, not just a `div` with an id of root. But you notice something, why there's so much unused space ? Can we minify that ? Of course, we'll use `common-tags` library to minify our `html` response. Let's add it then.
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae eius error enim! Sequi atque rerum ipsam, maxime iure architecto temporibus, voluptate delectus magnam laboriosam officiis voluptatum ullam aspernatur odio animi.
+```bash
+# If you're using yarn
+yarn add common-tags
+
+# If you're using npm
+npm install --save common-tags
+```
+
+Now, open up our `server.js` again, and update our html template literals:
+
+```js{2,9}
+// server.js
+import { html, oneLineTrim } from 'common-tags';
+
+// Now update our response to use oneLineTrim
+if (context.url) {
+  res.redirect(context.url);
+} else {
+  res.status(200).send(
+    oneLineTrim(
+      html`
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta charset="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+            ${assets.client.css
+              ? `<link rel="stylesheet" href="${assets.client.css}">`
+              : ''}
+          </head>
+          <body>
+            <div id="root">${markup}</div>
+
+            ${process.env.NODE_ENV === 'production'
+              ? `<script src="${assets.client.js}" defer></script>`
+              : `<script src="${assets.client.js}" defer crossorigin></script>`}
+          </body>
+        </html>
+      `,
+    ),
+  );
+}
+```
+
+Now, if we're inspecting the source again, it will minify our HTML response like below:
+
+![Monified response](/images/minify-version.jpg)
+
+Ok, we already checked the first point, next add **React Helmet** to our Project.
+
+## Add React Helmet
+
+First we need to install React Helmet, then use it on our server and client. To install React Helmet run the following command:
+
+```bash
+# If you're using yarn
+yarn add react-helmet
+
+# If you're using npm
+npm install --save react-helmet
+```
+
+Now, open up our `server.js` file and add helmet on our server route handler:
+
+```js{2,21}
+// server.js
+import { Helmet } from 'react-helmet';
+
+// Then we use it on our route handler
+server
+  .disable('x-powered-by')
+  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .get('/*', (req, res) => {
+    const context = {};
+    const markup = renderToString(
+      <StaticRouter context={context} location={req.url}>
+        <App />
+      </StaticRouter>,
+    );
+    /**
+     * Add helmet here
+     * So that we can extract on our HTML template below
+     * Notice on HTML below that we extract helmet
+     * (title, meta, link and others) to string
+     */
+    const helmet = Helmet.renderStatic();
+
+    if (context.url) {
+      res.redirect(context.url);
+    } else {
+      // prettier-ignore
+      res.status(200).send(
+        oneLineTrim(
+          html`
+            <!DOCTYPE html>
+            <html lang="en" ${helmet.htmlAttributes.toString()}>
+              <head>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta charset="utf-8" />
+                ${helmet.title.toString()}
+                <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1"
+                />
+                ${helmet.meta.toString()} 
+                ${helmet.link.toString()} 
+                ${assets.client.css
+                  ? `<link rel="stylesheet" href="${assets.client.css}">`
+                  : ''}
+              </head>
+              <body ${helmet.bodyAttributes.toString()}>
+                <div id="root">${markup}</div>
+
+                ${process.env.NODE_ENV === 'production'
+                  ? `<script src="${assets.client.js}" defer></script>`
+                  : `<script src="${assets.client.js}" defer crossorigin></script>`}
+              </body>
+            </html>
+          `,
+        ),
+      );
+    }
+  });
+```
+
+Ok, after we use it on our Server. Let's use it on our React Component. For this example we'll update the `title` tag. Open `Home.js` file then add the following code:
+
+```jsx{2,7-9}
+// Home.js
+import { Helmet } from 'react-helmet';
+
+function Home() {
+  return (
+    <div className='Home'>
+      <Helmet>
+        <title>Welcome to Razzle Boilerplate</title>
+      </Helmet>
+      <div className='Home-header'>
+        <img src={logo} className='Home-logo' alt='logo' />
+        <h2>Welcome to Razzle</h2>
+      </div>
+      <p className='Home-intro'>
+        To get started, edit <code>src/App.js</code> or <code>src/Home.js</code>{' '}
+        and save to reload.
+      </p>
+      <ul className='Home-resources'>
+        <li>
+          <a href='https://github.com/jaredpalmer/razzle'>Docs</a>
+        </li>
+        <li>
+          <a href='https://github.com/jaredpalmer/razzle/issues'>Issues</a>
+        </li>
+        <li>
+          <a href='https://palmer.chat'>Community Slack</a>
+        </li>
+      </ul>
+    </div>
+  );
+}
+```
+
+And voila! The title is updated! You can read more about react helmet in [here](https://github.com/nfl/react-helmet).
+
+That's really easy, what about next, code splitting ? Yep, let's jump to the next then.
+
+## Code Splitting
+
+For code splitting we are going to use `@loadable/component`. Let's install it then.
+
+```bash
+# For server side rendering
+# @loadable/component required:
+# 1. @loadable/server
+# 2. @loadable/babel-plugin
+# 3. @loadable/webpack-plugin
+
+# If you're using yarn
+yarn add @loadable/component @loadable/server
+yarn add --dev @loadable/babel-plugin @loadable/webpack-plugin
+
+# If you're using npm
+npm install --save @loadable/component @loadable/server
+npm install --save-dev @loadable/babel-plugin @loadable/webpack-plugin
+```
+
+Now, create a `razzle.config.js` in the root of our project so that we can extend razzle **webpack** configuration then add **@loadable/component** config. Open up that file then add the following code:
+
+```js
+// razzle.config.js
+const path = require('path');
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
+const LoadableBabelPlugin = require('@loadable/babel-plugin');
+const babelPresetRazzle = require('razzle/babel');
+
+module.exports = {
+  modify: (config, { dev, target }) => {
+    const isDev = dev === true;
+    const isWeb = target === 'web';
+
+    const appConfig = Object.assign({}, config);
+
+    // Run client only
+    if (isWeb) {
+      const filename = path.resolve(__dirname, 'build');
+
+      appConfig.plugins.push(
+        new LoadableWebpackPlugin({
+          outputAsset: false,
+          writeToDisk: { filename },
+        }),
+      );
+
+      appConfig.output.filename = isDev
+        ? 'static/js/[name].js'
+        : 'static/js/[name].[chunkhash:8].js';
+
+      appConfig.optimization = Object.assign({}, appConfig.optimization, {
+        runtimeChunk: true,
+        splitChunks: {
+          cacheGroups: {
+            commons: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+            },
+          },
+          chunks: 'all',
+          name: isDev,
+        },
+      });
+    }
+    return appConfig;
+  },
+  modifyBabelOptions: () => ({
+    babelrc: false,
+    presets: [babelPresetRazzle],
+    plugins: [LoadableBabelPlugin],
+  }),
+};
+```
+
+Now, let's use it on our server. Open `server.js` file again and add the following code:
+
+```js{2,4,10-13,16,20}
+// server.js
+import path from 'path';
+
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
+
+server
+  .disable('x-powered-by')
+  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .get('/*', (req, res) => {
+    const extractor = new ChunkExtractor({
+      statsFile: path.resolve('build/loadable-stats.json'),
+      entrypoints: ['client'],
+    });
+    const context = {};
+    const markup = renderToString(
+      <ChunkExtractorManager extractor={extractor}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </ChunkExtractorManager>,
+    );
+    const helmet = Helmet.renderStatic();
+
+    if (context.url) {
+      res.redirect(context.url);
+    } else {
+      // prettier-ignore
+      res.status(200).send(
+        oneLineTrim(
+          html`
+            <!DOCTYPE html>
+            <html lang="en" ${helmet.htmlAttributes.toString()}>
+              <head>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta charset="utf-8" />
+                ${helmet.title.toString()}
+                <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1"
+                />
+                ${helmet.meta.toString()} 
+                ${helmet.link.toString()} 
+                ${extractor.getLinkTags()}
+                ${extractor.getStyleTags()}
+              </head>
+              <body ${helmet.bodyAttributes.toString()}>
+                <div id="root">${markup}</div>
+
+                ${extractor.getScriptTags()}
+              </body>
+            </html>
+          `,
+        ),
+      );
+    }
+  });
+```
+
+After we use it on server, also update on `client.js`, and add the following code:
+
+```js{2,5,12}
+// client.js
+import { loadableReady } from '@loadable/component';
+
+// Load all components needed before rendering
+loadableReady(() => {
+  hydrate(
+    <Router>
+      <App />
+    </Router>,
+    document.getElementById('root'),
+  );
+});
+```
+
+And now we're ready to use code splitting on our React app. Let's use code splitting to our React app. Open `App.js` file. Here, we are going to update how we import **Home** component.
+
+```js{2,7}
+// App.js
+import loadable from '@loadable/component';
+
+// Before using code splitting
+import Home from './Home';
+// After, and notice that we're using dynamic import syntax
+const Home = loadable(() => import('./Home'));
+```
+
+## Remove unused CSS
