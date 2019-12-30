@@ -201,7 +201,8 @@ export default function Layout({ children }) {
 
           .token.tag,
           .token.operator,
-          .token.keyword {
+          .token.keyword,
+          .token.rule {
             color: #00c6b7;
           }
 

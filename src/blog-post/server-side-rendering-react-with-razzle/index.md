@@ -511,3 +511,227 @@ const Home = loadable(() => import('./Home'));
 ```
 
 ## Remove unused CSS
+
+When we start developing our project, problaly we decided to use CSS Framework to speed up our development. At first it doesn't become problem, then at some point you realized that what css framework offers is to much, and you don't use it much. Maybe you just using the grid system, button or maybe just the utilities. And you've thinking, can I remove all that stuff that I don't use? Well guess what, you can! Here comes [PurgeCSS](https://www.purgecss.com/) a tool to remove unused CSS. The way PurgeCSS works is, for example, we're using **bootstrap** on our project, we only using class `.container`. Now, PurgeCSS will see that and will stripping all other css class that not being used, so in our final bundle css it will only have class `.container`.
+
+Ok, enough talking, let's see PurgeCSS in action. First we need to install some CSS Framework, i'll pick **bootstrap**. Let's install it:
+
+```bash
+# If you're using yarn
+yarn add bootstrap
+
+# If you're using npm
+npm install --save bootstrap
+```
+
+Open up `App.css` and we're gonna import the bootstrap.
+
+```css
+/* App.css */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+```
+
+And now use it on our `Home.js` component.
+
+```jsx{4,29}
+// Home.js
+function Home() {
+  return (
+    <div className='container'>
+      <Helmet>
+        <title>Welcome to Razzle Boilerplate</title>
+      </Helmet>
+      <div className='Home'>
+        <div className='Home-header'>
+          <img src={logo} className='Home-logo' alt='logo' />
+          <h2>Welcome to Razzle</h2>
+        </div>
+        <p className='Home-intro'>
+          To get started, edit <code>src/App.js</code> or{' '}
+          <code>src/Home.js</code> and save to reload.
+        </p>
+        <ul className='Home-resources'>
+          <li>
+            <a href='https://github.com/jaredpalmer/razzle'>Docs</a>
+          </li>
+          <li>
+            <a href='https://github.com/jaredpalmer/razzle/issues'>Issues</a>
+          </li>
+          <li>
+            <a href='https://palmer.chat'>Community Slack</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+Let's build it on Production mode. We can using `yarn build` or `npm run build` to build for Production. After it finished, let's serve our app using `yarn start:prod` or `npm run start:prod`. Ok, but why you ask ? Well, we gonna inspect how much bootstrap affect (size) in our Project.
+
+Open [http://localhost:3000](http://localhost:3000) again in our browser. Let's inspect it and we're gonna use **network tab** on chrome to see how much bootstrap cost.
+
+![CSS before PurgeCSS](/images/network-tab-before-purgecss.png)
+
+Now pay attention on `vendors` css file, it's our bootstrap file. The size is **144kb**, now you said, that small, well now think if our users is on slow network, that's alot to download. Beside is it to much because we only using class `.container`, so why download all of it?
+
+Luckily, PurgeCSS have plugin for razzle. Let's use it then:
+
+```bash
+# If you're using yarn
+yarn add --dev razzle-plugin-purgecss
+
+# If you're using npm
+npm install --save-dev razzle-plugin-purgecss
+```
+
+Wait a minute, how to use plugin on razzle ? Well same as when we're add `@loadable/component`, using `razzle.config.js`. Now open `razzle.plugin.js`, then add PurgeCSS as plugin.
+
+```js{3-11}
+// razzle.config.js
+module.exports = {
+  plugins: [
+    {
+      name: 'purgecss',
+      options: {
+        // This path options is required for PurgeCSS to analyzed all of our content
+        path: path.resolve(__dirname, 'src/**/*'),
+      }
+    }
+  ],
+  modify: modify: (config, { dev, target }) => {},
+}
+```
+
+Now let's build again for Production and inspect it.
+
+![CSS after PurgeCSS](/images/network-tab-after-purgecss.png)
+
+Now, pay attention again on our `vendors` css file. It only **3.9kb**! Holy molly cow, it reduce **97%** the size from original size. Wowww that's amazing right? now our css bundle is not bloated with unused code, also we help our user to download as small as possible file which will saving their data plan (less download, less data plan being used) when they visit out site (even tho they didn't know that).
+
+## Compression
+
+Here come the last part, why should we compress all our assets ? Here's why, quoted from [web.dev](https://web.dev/reduce-network-payloads-using-text-compression/).
+
+> Compressing files can significantly improve the performance of a webpage.
+
+Before adding compression to our project. Let's check how our project size overall.
+
+![Assets before compression](/images/before-compression.png)
+
+We're going to use **razzle-plugin-compression** to add compression. It provide static compression for `gzip` and `brotli`. Also we need `compression` and `express-static-gzip` to serve gzip and brotli on our server.
+
+```bash
+# If you're using yarn
+yarn add compression express-static-gzip
+yarn add --dev razzle-plugin-compression
+
+# If you're using npm
+npm install --save compression express-static-gzip
+npm install --save-dev razzle-plugin-compression
+```
+
+Open our `razzle.config.js` again to use compression plugin:
+
+```js
+// razzle.config.js
+module.exports = {
+  plugins: [
+    {
+      name: 'purgecss',
+      options: {
+        path: path.resolve(__dirname, 'src/**/*'),
+      },
+    },
+    {
+      name: 'compression',
+      options: {
+        brotli: true,
+        gzip: true,
+        compressionPlugin: {
+          filename: '[path].gz[query]',
+          algorithm: 'gzip',
+          test: /\.(js|css|html|svg)$/,
+          compressionOptions: { level: 9 },
+          minRatio: 0.8,
+        },
+        brotliPlugin: {
+          asset: '[path].br[query]',
+          test: /\.(js|css|html|svg)$/,
+          minRatio: 0.8,
+        },
+      },
+    },
+  ],
+  modify: (config, { dev, target }) => {},
+};
+```
+
+Now everytime we build for Production, it will generate gzip and brotli file. But this is not enough. We also need to set our server to serve gzip and brotli. Let's open our `server.js` file.
+
+```js{2,3,7-13}
+// server.js
+import compression from 'compression';
+import expressStaticGzip from 'express-static-gzip';
+
+server
+  .disable('x-powered-by')
+  .use(compression())
+  .use(
+    expressStaticGzip(process.env.RAZZLE_PUBLIC_DIR, {
+      enableBrotli: true,
+      orderPreference: ['br', 'gz'],
+    }),
+  )
+  .get('/*', (req, res) => {
+    const extractor = new ChunkExtractor({
+      statsFile: path.resolve('build/loadable-stats.json'),
+      entrypoints: ['client'],
+    });
+    const context = {};
+    const markup = renderToString(
+      <ChunkExtractorManager extractor={extractor}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </ChunkExtractorManager>,
+    );
+    const helmet = Helmet.renderStatic();
+
+    if (context.url) {
+      res.redirect(context.url);
+    } else {
+      res.status(200).send(
+        oneLineTrim(
+          htmlTemplate`
+            <!doctype html>
+            <html lang="en">
+            <head>
+              <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+              <meta charset="utf-8" />
+              ${helmet.title.toString()}
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              ${helmet.meta.toString()}
+              ${helmet.link.toString()}
+              ${extractor.getLinkTags()}
+              ${extractor.getStyleTags()}
+            </head>
+            <body ${helmet.bodyAttributes.toString()}>
+              <div id="root">${markup}</div>
+
+              ${extractor.getScriptTags()}
+            </body>
+            </html>`,
+        ),
+      );
+    }
+  });
+```
+
+And we're done. Let's check again how much we improve and saving delivering bundle size to users.
+
+![After assets get compression](/images/after-compression.png)
+
+Did you notice any diferrent ? Well, take a look at size. It improve so much, all the response size now much smaller than before. For example our `vendors js` file, before get compressed the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
+
+Again, we improve the perfomances and we help our user too, now our users will save so much their data plan everytime visit our site because we always send assets as small as possible.
