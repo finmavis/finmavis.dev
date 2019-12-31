@@ -4,7 +4,7 @@ title: 'Server side rendering React with Razzle'
 date: '2019-11-15'
 author: 'Fin Mavis'
 tags: ['JavaScript', 'React', 'Razzle', 'Server Side Rendering']
-description: 'Learn how to create server side rendering React app using Razzle.'
+description: 'Learn how to create server side rendering React app using Razzle with some practical best practices.'
 banner: './images/christopher-burns.jpg'
 bannerCreditName: 'Christopher Burns'
 bannerCreditLink: 'https://unsplash.com/photos/8KfCR12oeUM'
@@ -23,7 +23,8 @@ Here's the summary:
 1. Users go to our site
 2. Our server receive a request then response with initial `html` document. And the document might be like this:
 
-```html{15}
+```html{16}
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,10 +56,10 @@ Here's the summary:
 
 <small><em>Note: The browser rendering mechanism is much more complex than this.</em></small>
 
-Now, let's take a look about **server side rendering** process.
+Now, let's take a look about **server side rendering** process:
 
 1. Users go to our site
-2. Our server receive a request then prepare/pre-populated/render initial `html` content or data (like user data or you fetch some data) on the server. After it finished, server send back the response, the document is problaly be like this:
+2. Our server receive a request then **prepare/pre-populated/render** initial `html` content or data (like user data or you fetch some data) on the server. After it finished, server send back the response, the document is problaly be like this:
 
 ```html{16-37}
 <!DOCTYPE html>
@@ -105,7 +106,7 @@ Now, let's take a look about **server side rendering** process.
 </html>
 ```
 
-3. Browser receive that document and parse it, but here's the difference, the user can already see the content, did you notice the response given by the server ? Yup, content already there, not just some skeleton/placeholder about our app. At least now our site viewable but still not interactive to the users.
+3. Browser receive that document and parse it, but here's the difference, **the user can already see the content**, did you notice the response given by the server ? Yup, content already there, not just some skeleton/placeholder about our app. At least now our site viewable but still not interactive to the users.
 4. The process not stop there, browsers continue parse and see a `css` and `js` file and make a request to the server just like the process above. After it finished our `js/React` takes over and start execute where the app left off and then it become interactive to the users.
 
 Let's recap, so, what is **server side rendering** ? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
@@ -114,15 +115,17 @@ I still didn't get it. Can you provide the difference between **Client Side Rend
 
 ## Razzle
 
-You problaly already know what **create-react-app**, a tool (built by developers at Facebook) that help us to start creating our React project without to woryy about configuration stuff. All we have to do is simply run the **create-react-app** command then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, add autoprefixes, and along with other features.
+You problaly already know what **create-react-app**, a tool (built by developers at Facebook) that help us to start creating our React project without to woryy about configuration stuff. All we have to do is simply run the **create-react-app** command then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, autoprefixes, and along with other features.
 
-Now, **Razzle**, you have no idea about it. **Razzle** is just like create-react-app. Here's the difference, Razzle is a tool to create **server side rendering** (React by default) app. Let's quote what razzle is in their docs:
+Now, **Razzle**, you have no idea about it. **Razzle** is just like create-react-app. But here's the difference, Razzle is a tool to create **server side rendering** (React by default) app. Let's quote what razzle is in their docs:
 
 > Razzle is a tool that abstracts all complex configuration needed for SSR into a single dependency--giving us the awesome developer experience of **create-react-app**, but then leaving the rest of our app's architectural decisions about frameworks, routing, and data fetching up to us.
 
-Whaaatttttt, that's amazing. But wait, there's more, we can customize **Babel** and **Webpack** razzle config, for example we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add little bit config to **webpack** for Server side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start extend razzle webpack configuration.
+Whaaatttttt, that's amazing. But wait, there's more, we can customize **Babel** and **Webpack** razzle config, why do i mean by that ? For example we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add little bit confighuration to **webpack** for Server side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start extend razzle webpack configuration.
 
-Razzle also come with plugins just like **gatsby** do. What does that mean ? For example we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add compression on production build ? There's a plugin for that. Need to inline svg like create-react-app did ? There's plugin for that. You can see all the available plugin [here](https://www.npmjs.com/search?q=razzle-plugin).
+Razzle also come with plugins just like **gatsby** do. What does that mean ? For example we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add compression on production build ? There's a plugin for that. Need to inline svg like create-react-app did ? There's plugin for that. Didn't find the plugin you looking for ? You can build one!
+
+<small>Note: You can see all the available plugin [here](https://www.npmjs.com/search?q=razzle-plugin)</small>.
 
 ## The Code
 
@@ -166,7 +169,7 @@ Then we're ready to develop Server side rendering React app. Let's take a look o
 |-- yarn.lock
 ```
 
-Now navigate to our active project directory, we can start development server using scripts `yarn start` or `npm run start`. After it finished bundle our code, we can open [http://localhost:3000](http://localhost:3000/) on our browser to see our app.
+Now navigate to our active project directory, we can start development server using scripts `yarn start` or `npm run start`. After it finished bundle our code, we can open [http://localhost:3000](http://localhost:3000/) on our browser to see our app. Here's what it look like:
 
 ![Razzle starter page](/images/razzle-starter-page.jpg)
 
@@ -174,7 +177,9 @@ Let's check if it's really server side rendering by viewing the page source on o
 
 ![Source code SSR](/images/open-source-ssr-page.jpg)
 
-Well, as you can see, the code is there, not just a `div` with an id of root. But you notice something, why there's so much unused space ? Can we minify that ? Of course, we'll use `common-tags` library to minify our `html` response. Let's add it then.
+Well, as you can see, the code is there, not just a `div` with an id of root.
+
+But you notice something, why there's so much unused space ? Can we minify that ? Of course, we'll use `common-tags` library to minify our `html` response. Let's add it then.
 
 ```bash
 # If you're using yarn
@@ -184,7 +189,7 @@ yarn add common-tags
 npm install --save common-tags
 ```
 
-Now, open up our `server.js` again, and update our html template literals:
+Now, open up our `server.js` again, and update our html template literals to use `common-tags`:
 
 ```js{2,9}
 // server.js
@@ -224,7 +229,7 @@ if (context.url) {
 }
 ```
 
-Now, if we're inspecting the source again, it will minify our HTML response like below:
+Now, if we're inspecting the page source again, it will minify our HTML response like below:
 
 ![Monified response](/images/minify-version.jpg)
 
@@ -242,7 +247,7 @@ yarn add react-helmet
 npm install --save react-helmet
 ```
 
-Now, open up our `server.js` file and add helmet on our server route handler:
+Now, open up our `server.js` file and add react helmet on our server route handler:
 
 ```js{2,21}
 // server.js
@@ -305,9 +310,9 @@ server
   });
 ```
 
-Ok, after we use it on our Server. Let's use it on our React Component. For this example we'll update the `title` tag. Open `Home.js` file then add the following code:
+Ok, after we use it on our Server. Let's use it on our React Component. For this example we'll update the `title` and `meta description` tag. Open `Home.js` file then add the following code:
 
-```jsx{2,7-9}
+```jsx{2,7-10}
 // Home.js
 import { Helmet } from 'react-helmet';
 
@@ -316,6 +321,7 @@ function Home() {
     <div className='Home'>
       <Helmet>
         <title>Welcome to Razzle Boilerplate</title>
+        <meta name='description' content='Web site created using create-razzle-app'>
       </Helmet>
       <div className='Home-header'>
         <img src={logo} className='Home-logo' alt='logo' />
@@ -481,13 +487,18 @@ server
   });
 ```
 
-After we use it on server, also update on `client.js`, and add the following code:
+Here you notice that our code have `extractor`, but what is it ? **Extractor** is used to collect chunks server-side and it expose an API to get them as script tags or script elements. You can see full list API [here](https://loadable-components.com/docs/api-loadable-server/).
 
-```js{2,5,12}
+Let's continue, after we use it on server, also update on `client.js`, and add the following code:
+
+```js{2,8,15}
 // client.js
 import { loadableReady } from '@loadable/component';
 
-// Load all components needed before rendering
+/**
+ * Wait for all loadable components to be loaded before rendering.
+ * Beacuse Loadable components loads all our scripts asynchronously.
+ */
 loadableReady(() => {
   hydrate(
     <Router>
@@ -512,7 +523,9 @@ const Home = loadable(() => import('./Home'));
 
 ## Remove unused CSS
 
-When we start developing our project, problaly we decided to use CSS Framework to speed up our development. At first it doesn't become problem, then at some point you realized that what css framework offers is to much, and you don't use it much. Maybe you just using the grid system, button or maybe just the utilities. And you've thinking, can I remove all that stuff that I don't use? Well guess what, you can! Here comes [PurgeCSS](https://www.purgecss.com/) a tool to remove unused CSS. The way PurgeCSS works is, for example, we're using **bootstrap** on our project, we only using class `.container`. Now, PurgeCSS will see that and will stripping all other css class that not being used, so in our final bundle css it will only have class `.container`.
+When we start developing our project, problaly we decided to use CSS Framework to speed up our development. At first it doesn't become problem, then at some point you realized that what css framework offers is to much, and you don't use it much. Maybe you just using the grid system, button or maybe just the utilities. And you've been thinking, can I remove all that stuff that I don't use?
+
+Well guess what, you can! Here comes [PurgeCSS](https://www.purgecss.com/), a tool to remove unused CSS. The way PurgeCSS works is, for example, we're using **bootstrap** on our project, we only using class `.container`. Now, PurgeCSS will see that and will stripping all other css class that not being used, so in our final bundle css it will only have class `.container`.
 
 Ok, enough talking, let's see PurgeCSS in action. First we need to install some CSS Framework, i'll pick **bootstrap**. Let's install it:
 
@@ -596,24 +609,26 @@ module.exports = {
       options: {
         // This path options is required for PurgeCSS to analyzed all of our content
         path: path.resolve(__dirname, 'src/**/*'),
-      }
-    }
+      },
+    },
   ],
-  modify: modify: (config, { dev, target }) => {},
-}
+  modify: (config, { dev, target }) => {},
+};
 ```
 
 Now let's build again for Production and inspect it.
 
 ![CSS after PurgeCSS](/images/network-tab-after-purgecss.png)
 
-Now, pay attention again on our `vendors` css file. It only **3.9kb**! Holy molly cow, it reduce **97%** the size from original size. Wowww that's amazing right? now our css bundle is not bloated with unused code, also we help our user to download as small as possible file which will saving their data plan (less download, less data plan being used) when they visit out site (even tho they didn't know that).
+Now, pay attention again on our `vendors` css file. It only **3.9kb**! Holy molly cow, it reduce **97%** the size from original size. Wowww that's amazing! Now our css bundle is not bloated with unused code, also we help our user to download as small as possible file which will saving their data plan (less download, less data plan being used) when they visit out site (even tho they didn't know that).
 
 ## Compression
 
 Here come the last part, why should we compress all our assets ? Here's why, quoted from [web.dev](https://web.dev/reduce-network-payloads-using-text-compression/).
 
 > Compressing files can significantly improve the performance of a webpage.
+
+Why ? Because with compression, all of our assets file size will be much smaller! Remember that we have to send to user as small as possible.
 
 Before adding compression to our project. Let's check how our project size overall.
 
@@ -633,7 +648,7 @@ npm install --save-dev razzle-plugin-compression
 
 Open our `razzle.config.js` again to use compression plugin:
 
-```js
+```js{10-27}
 // razzle.config.js
 module.exports = {
   plugins: [
@@ -732,6 +747,10 @@ And we're done. Let's check again how much we improve and saving delivering bund
 
 ![After assets get compression](/images/after-compression.png)
 
-Did you notice any diferrent ? Well, take a look at size. It improve so much, all the response size now much smaller than before. For example our `vendors js` file, before get compressed the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
+Did you notice any diferrent ? Well, take a look at size. It improve so much, all the response size now much smaller than before. For example our `vendors js` file, before it get compressed, the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
 
-Again, we improve the perfomances and we help our user too, now our users will save so much their data plan everytime visit our site because we always send assets as small as possible.
+Again, we improve the perfomances and we help our user too, now our users will save so much their data plan everytime visit our site because we always send our assets as small as possible.
+
+Now, we reach the end of the tutorial. In my opinion **Razzle** really help us to set up Server side rendering React app with ease. It also give us freedom to customize our app like customize the **webpack** or **babel** configuration to do whatever we want!
+
+So, what do you think about **Razzle**?
