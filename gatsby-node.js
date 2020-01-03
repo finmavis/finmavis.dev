@@ -5,6 +5,9 @@
  */
 const path = require('path');
 
+/**
+ * Disable generating source maps on Production
+ */
 exports.onCreateWebpackConfig = ({ getConfig, stage, actions }) => {
   if (getConfig().mode === 'production' && stage === 'build-javascript') {
     actions.setWebpackConfig({
