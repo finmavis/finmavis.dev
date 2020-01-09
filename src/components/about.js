@@ -8,7 +8,7 @@ import Container from './container';
 import EmailIcon from '../shared/assets/svg/email.inline.svg';
 import LocationIcon from '../shared/assets/svg/location.inline.svg';
 
-import { SOCIAL_LINK } from '../shared/constants/social-link-about.constant';
+import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
 
 export default function About() {
   const data = useStaticQuery(graphql`
@@ -205,7 +205,7 @@ export default function About() {
                     }
                   `}
                 >
-                  {item.content}
+                  {item.icon} {item.label}
                 </a>
               </div>
             ))}

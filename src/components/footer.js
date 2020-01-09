@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import Container from './container';
 
-import { SOCIAL_LINK } from '../shared/constants/social-link-footer.constant';
+import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
 
 const SocialLink = styled.a`
   background: none;
@@ -77,7 +77,7 @@ export default function Footer() {
               rel='noopener noreferrer'
               aria-label={item.ariaLabel}
             >
-              {item.content}
+              {item.icon}
             </SocialLink>
           ))}
         </div>
