@@ -38,15 +38,11 @@ First, we need to create our Project. Create a new folder, and i'll pick a folde
 
 We can now install ParcelJS, along with our other dependencies. Run the following to install Parcel:
 
-If you're using `yarn`
-
 ```bash
+# If you're using yarn
 yarn add --dev parcel-bundler
-```
 
-If you're using `npm`
-
-```bash
+# If you're using npm
 npm install --save-dev parcel-bundler
 ```
 
@@ -109,21 +105,15 @@ Open `package.json` and add new scripts for starting our parcel:
 
 With these commands we can start our development mode using `yarn start` or `npm run start` and have it open in the browser automatically, and we can using `yarn build` or `npm run build` to build our app for production.
 
-Ok, understood. But, what if i want to use `async await` ? First, we need to install another package.
-
-If you're using `yarn`
+Ok, understood. But, what if i want to use `async await`? First, we need to install another package.
 
 ```bash
+# If you're using yarn
 yarn add @babel/runtime
-
 yarn add --dev @babel/core @babel/plugin-transform-runtime
-```
 
-If you're using `npm`
-
-```bash
+# If you're using npm
 npm install --save @babel/runtime
-
 npm install --save-dev @babel/core @babel/plugin-transform-runtime
 ```
 
@@ -233,15 +223,11 @@ print();
 
 What about `SASS/SCSS` ? First we need to install `sass`:
 
-if you're using `yarn`:
-
 ```bash
+# If you're using yarn
 yarn add --dev sass
-```
 
-If you're using `npm`:
-
-```bash
+# If you're using npm
 npm install --save-dev sass
 ```
 
@@ -292,15 +278,11 @@ And for vendor prefixes, `postcss-preset-env` by default includes `autoprefixer`
 
 Let's get our hand dirty then.
 
-If you're using `yarn`
-
 ```bash
+# If you're using yarn
 yarn add --dev postcss-flexbugs-fixes postcss-preset-env
-```
 
-If you're using `npm`
-
-```bash
+# If you're using npm
 npm install --save-dev postcss-flexbugs-fixes postcss-preset-env
 ```
 
@@ -361,15 +343,11 @@ What about other features ? You can check [here](https://github.com/csstools/pos
 
 One thing you will notice that every time we start using our `build` scripts, it will generate our compiled code into `dist` folder. The old compiled code still there. Let's clean that up every time we compiled our code. We are going to use `parcel-plugin-clean-dist`.
 
-If you're using `yarn`
-
 ```bash
+# If you're using yarn
 yarn add --dev parcel-plugin-clean-dist
-```
 
-If you're using `npm`
-
-```bash
+# If you're using npm
 npm install --save-dev parcel-plugin-clean-dist
 ```
 
@@ -379,19 +357,14 @@ And that's it. Every time we build for Production it will automatically delete o
 
 Ok, so far we understand fundamentally how to use ParcelJS. What about we want to use TypeScript for our development ? With ParcelJS it is piece a cake. All we have to do is update all our `.js` file into `.ts`. After that update our script file on HTML into `index.ts`. Also since `.babelrc` is no longer needed when we using TypeScript, we can delete that file. And then we can cleanup our dependencies, because when we using TypeScript the only needed dependencies is `typescript`. Let's clean up our dependencies.
 
-If you're using `yarn`
-
 ```bash
 # note: only do this if you're using TypeScript
 # note: If you're still using Vanilla JS, don't follow these instruction
+
+# If you're using yarn
 yarn remove @babel/core @babel/plugin-transform-runtime @babel/runtime
-```
 
-If you're using `npm`
-
-```bash
-# note: only do this if you're using TypeScript
-# note: If you're still using Vanilla JS, don't follow these instruction
+# If you're using npm
 npm uninstall @babel/core @babel/plugin-transform-runtime @babel/runtime
 ```
 

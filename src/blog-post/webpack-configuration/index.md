@@ -131,29 +131,40 @@ Now come the fun part, where we are going to using webpack configuration to use 
 const path = require('path');
 
 module.exports = {
-  // Define webpack mode
-  // Docs: https://webpack.js.org/configuration/mode/
+  /**
+   * Define webpack mode
+   * Which webpack will set NODE_ENV to 'development'
+   * Docs: https://webpack.js.org/configuration/mode/
+   */
   mode: 'development',
-  // Here, we tell webpack where entry point of our code
-  // If you only have single entry point you can also do it like below
-  // entry: './src/index.js'
-  // Docs: https://webpack.js.org/configuration/entry-context/
+  /**
+   * Here, we tell webpack where entry point of our code
+   * If you only have single entry point you can also do it like below
+   * entry: './src/index.js'
+   * Docs: https://webpack.js.org/configuration/entry-context/
+   */
   entry: {
     main: './src/index.js',
   },
-  // Tell webpack where it should output our
-  // bundles, assets and anything else
-  // Docs: https://webpack.js.org/configuration/output/
+  /**
+   * Tell webpack where it should output our
+   * bundles, assets and anything else
+   * Docs: https://webpack.js.org/configuration/output/
+   */
   output: {
-    // Here you problaly wondering why we navigate to current folder then navigate back?
-    // Because we don't want our generated code inside config folder
-    // That's why we have to navigate back to the root directory of our project
+    /**
+     * Here you problaly wondering why we navigate to current folder then navigate back?
+     * Because we don't want our generated code inside config folder
+     * That's why we have to navigate back to the root directory of our project
+     */
     path: path.join(__dirname, '../build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
   },
-  // This line is our development server that get picked up by webpack-dev-server
-  // Docs: https://webpack.js.org/configuration/dev-server/
+  /**
+   * This devServer option is our development server that get picked up by webpack-dev-server
+   * Docs: https://webpack.js.org/configuration/dev-server/
+   */
   devServer: {
     // Serves everything from our build folder which is our output folder
     contentBase: path.join(__dirname, '../build'),
@@ -164,24 +175,31 @@ module.exports = {
     // This will shows a full-screen overlay in the browser when there are compiler errors
     overlay: true,
   },
-  // Generate source-maps to make it easier to track down errors and warnings
-  // In this example we're using cheap-module-eval-source-map (recommend by webpack)
-  // Docs: https://webpack.js.org/configuration/devtool/
+  /**
+   * Generate source-maps to make it easier to track down errors and warnings
+   * In this example we're using cheap-module-eval-source-map (recommend by webpack)
+   * Docs: https://webpack.js.org/configuration/devtool/
+   */
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
-      // Here we are kinda tell webpack if it come accross js file
-      // Please use babel-loader
+      /**
+       * Here we are kinda tell webpack if it come accross js file
+       * Please use babel-loader
+       */
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            // Here where we put our Babel config
-            // We can also create .babelrc or babel.config.js in the root of our project directory
-            // to put our babel config instead in here,
-            // but in this example, we put our config here
+            /**
+             * Here where we put our Babel config
+             * We can also create .babelrc or babel.config.js in the root of our project directory
+             * to put our babel config instead in here,
+             * but in this example, we put our config here
+             * Docs: https://babeljs.io/docs/en/config-files
+             */
             presets: [
               [
                 '@babel/preset-env',
@@ -261,7 +279,7 @@ By now, we can already start our development server. Let's update our `package.j
 },
 ```
 
-Now we can start our development server using `yarn start` or `npm run start`.
+Now we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
 
 Add async await
 
@@ -277,28 +295,10 @@ npm install --save-dev @babel/plugin-transform-runtime
 
 Edit the babel config
 
-```js
+```js{22}
 // config/webpack.config.js
-const path = require('path');
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
-  mode: 'development',
-  entry: {
-    main: './src/index.js',
-  },
-  output: {
-    path: path.join(__dirname, '../build'),
-    filename: '[name].bundle.js',
-  },
-  devServer: {
-    contentBase: path.join(__dirname, '../build'),
-    compress: true,
-    port: 3000,
-    overlay: true,
-  },
-  devtool: 'cheap-module-eval-source-map',
+  // other configs
   module: {
     rules: [
       {
@@ -323,16 +323,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-    }),
-  ],
 };
 ```
 
-Other features like optional-chaining and nullish-coalescing-operator
+Other features like `optional-chaining` and `nullish-coalescing-operator`
 
 ```bash
 # If you're using yarn
@@ -342,28 +336,10 @@ yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-n
 npm install --save-dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
 ```
 
-```js
+```js{24-25}
 // config/webpack.config.js
-const path = require('path');
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
-  mode: 'development',
-  entry: {
-    main: './src/index.js',
-  },
-  output: {
-    path: path.join(__dirname, '../build'),
-    filename: '[name].bundle.js',
-  },
-  devServer: {
-    contentBase: path.join(__dirname, '../build'),
-    compress: true,
-    port: 3000,
-    overlay: true,
-  },
-  devtool: 'cheap-module-eval-source-map',
+  // other configs
   module: {
     rules: [
       {
@@ -392,11 +368,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-    }),
-  ],
 };
 ```
+
+## Add Stylesheet (CSS, SASS)
