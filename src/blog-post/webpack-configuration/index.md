@@ -281,7 +281,35 @@ By now, we can already start our development server. Let's update our `package.j
 
 Now we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
 
-Add async await
+You probably wondering, can we use `async await` instead in our `index.js`, of course we can. Let's update our index.js to use `async await`:
+
+```js
+// src/index.js
+const myName = 'John Doe';
+
+function greet(name) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Hello ${name}!`);
+    }, 1000);
+  });
+}
+
+// I know this is dumb
+// Just for demo purpose
+async function print() {
+  const response = await greet(myName);
+  console.log(response);
+}
+
+print();
+```
+
+Oh no, when we start again our development server, we get these error:
+
+![Error regenerator runtime](/images/error-async-await.jpg)
+
+If you read the error carefully, **webpack** cannot find module `regenerator-runtime/runtime`, because to use `async await` we need 2 packages, first `@babel/runtime` and then `@babel/plugin-transform-runtime`. Let's install it to our project:
 
 ```bash
 # If you're using yarn
@@ -293,7 +321,7 @@ npm install --save @babel/runtime
 npm install --save-dev @babel/plugin-transform-runtime
 ```
 
-Edit the babel config
+Once it done, let's use it to our Babel config on `webpack.config.js`:
 
 ```js{22}
 // config/webpack.config.js
@@ -326,7 +354,9 @@ module.exports = {
 };
 ```
 
-Other features like `optional-chaining` and `nullish-coalescing-operator`
+Now the error is gone, and we can start using `async await` on our project. Yeayyy!
+
+What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above.
 
 ```bash
 # If you're using yarn
@@ -371,4 +401,33 @@ module.exports = {
 };
 ```
 
-## Add Stylesheet (CSS, SASS)
+What if we want to use `dynamic import`, can we do that? Yes we can! Since **Babel** version **7.4.0**, `dynamic import` support enabled by default, so we don't have to install `@babel/plugin-proposal-dynamic-import`, but if our Babel version below that version, we have to add that plugin to our project.
+
+Let's use `dynamic import` on our project:
+
+```js
+// src/greet.js
+export function greet(name) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Hello ${name}!`);
+    }, 1000);
+  });
+}
+
+// src/index.js
+const myName = 'John Doe';
+
+async function print() {
+  // Here we are using dynamic import
+  const { greet } = await import('./greet');
+  const response = await greet(myName);
+  console.log(response);
+}
+
+print();
+```
+
+Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next part, **Stylesheet**.
+
+## Stylesheet (CSS, SASS)
