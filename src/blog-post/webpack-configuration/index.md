@@ -431,3 +431,223 @@ print();
 Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next part, **Stylesheet**.
 
 ## Stylesheet (CSS, SASS)
+
+- Basic css setup
+
+```bash
+# If you're using yarn
+yarn add --dev style-loader css-loader
+
+# If you're using npm
+npm install --save-dev style-loader css-loader
+```
+
+```js
+// config/webpack.config.js
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other module rules
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+- Basic SASS/SCSS setup
+
+```bash
+# If you're using yarn
+yarn add --dev node-sass sass-loader resolve-url-loader
+
+# If you're using npm
+npm install --save-dev node-sass sass-loader resolve-url-loader
+```
+
+```js
+// config/webpack.config.js
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other module rules
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+              sourceMap: false,
+            },
+          },
+          'resolve-url-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+};
+```
+
+- Modules CSS and SASS/SCSS setup
+
+```js
+// config/webpack.config.js
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other module rules
+      {
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:base64:5]',
+              },
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        exclude: /\.module\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+              sourceMap: false,
+            },
+          },
+          'resolve-url-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.module\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:base64:5]',
+              },
+              sourceMap: false,
+            },
+          },
+          'resolve-url-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+};
+```
+
+Image and other file
+
+```bash
+yarn add --dev url-loader file-loader
+
+npm install --save-dev url-loader file-loader
+```
+
+```js
+// config/webpack.config.js
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other module rules
+      {
+        test: /\.(png|jpe?g|gif|svg|bmp)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[contenthash:8].[ext]',
+              limit: 8192,
+              outputPath: 'assets',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets',
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
