@@ -356,7 +356,7 @@ module.exports = {
 
 Now the error is gone, and we can start using `async await` on our project. Yeayyy!
 
-What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above.
+What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above. Note: Since **Babel 7.8.0**, `optional-chaining` and `nullish-coalescing-operator` enabled by default, so if your Babel version is **7.8.0**, you don't have to do this.
 
 ```bash
 # If you're using yarn
@@ -432,7 +432,7 @@ Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next 
 
 ## Stylesheet (CSS, SASS)
 
-- Basic css setup
+In order to start using CSS in our project, the step is same with how we configure JavaScripts. First, we need to install loader then use it on our webpack configuration. For css, there are 2 packages that need to be installed, `style-loader` and `css-loader`. Let's install it then:
 
 ```bash
 # If you're using yarn
@@ -441,6 +441,8 @@ yarn add --dev style-loader css-loader
 # If you're using npm
 npm install --save-dev style-loader css-loader
 ```
+
+One it done, let's use it on our config file:
 
 ```js
 // config/webpack.config.js
@@ -452,12 +454,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          /**
+           * style-loader will inject css into the DOM with <style> tag
+           */
           'style-loader',
           {
             loader: 'css-loader',
             options: {
+              // Enable url functions handling in css
               url: true,
+              // Enables @import at-rules handling
               import: true,
+              // Disable css modules
               modules: false,
             },
           },
@@ -468,7 +476,7 @@ module.exports = {
 };
 ```
 
-- Basic SASS/SCSS setup
+Right now, we can start using `css` in our project. This is still limited to `css` file only though, if we want to use `sass` or `scss` we also need to set it up. Let's add sass or scss to our config:
 
 ```bash
 # If you're using yarn
@@ -511,10 +519,14 @@ module.exports = {
               modules: false,
             },
           },
+          /**
+           * resolve-url-loader is needed for sass to correctly resolve relative url path
+           */
           'resolve-url-loader',
           {
             loader: 'sass-loader',
             options: {
+              // sourceMap required by resolve-url-loader
               sourceMap: true,
             },
           },
@@ -525,9 +537,15 @@ module.exports = {
 };
 ```
 
-- Modules CSS and SASS/SCSS setup
+What about **CSS modules**? Can we also use it alongside with pure css and sass? Yes, we can!
 
-```js
+Did you notice on `css-loader` options above, we disabled modules options. If we enabled that options, it will enabled css modules in our project.
+
+The idea to use css modules alongside with pure css is we're gonna
+
+Let's setup css modules on our project:
+
+```js{9,22-37,40,60-82}
 // config/webpack.config.js
 module.exports = {
   // other configs
@@ -559,7 +577,7 @@ module.exports = {
               url: true,
               import: true,
               modules: {
-                localIdentName: '[name]__[local]--[contenthash:base64:5]',
+                localIdentName: '[name]__[local]--[contenthash:base64:8]',
               },
             },
           },
@@ -597,7 +615,7 @@ module.exports = {
               url: true,
               import: true,
               modules: {
-                localIdentName: '[name]__[local]--[contenthash:base64:5]',
+                localIdentName: '[name]__[local]--[contenthash:base64:8]',
               },
             },
           },
