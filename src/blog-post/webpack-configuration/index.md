@@ -104,7 +104,7 @@ npm install --save-dev @babel/core @babel/preset-env babel-loader
 npm install --save core-js
 ```
 
-Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/). Note that `browserlist` not only used by **Babel**, but it also used by other tools like **autoprefixer**.
+Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/). Note that **browserlist** not only used by **Babel**, but it also used by other tools like **autoprefixer**.
 
 Let's add the list of browser that we want to support then in our `package.json`:
 
@@ -124,7 +124,9 @@ Let's add the list of browser that we want to support then in our `package.json`
 ],
 ```
 
-Now come the fun part, where we are going to using webpack configuration to use **development server** and **Babel** that just we installed. Open up our `config/webpack.config.js` and add code below:
+Now comes the fun part, where we will use the webpack configuration to use the development server and Babel that we just installed.
+
+Open up our `config/webpack.config.js` and add code below:
 
 ```js
 // config/webpack.config.js
@@ -218,7 +220,7 @@ module.exports = {
 };
 ```
 
-Fuhhhh, that's alot. What's next? Our HTML entry point (of course, because this is web project). Let's add some content to our html template:
+Fuhhhh, that's alot. What's next? Our HTML entry point (of course, because this is web project). Let's add some content to our HTML template:
 
 ```html
 <!-- src/index.html -->
@@ -239,7 +241,9 @@ Fuhhhh, that's alot. What's next? Our HTML entry point (of course, because this 
 
 You problaly ask, how to include our HTML template to our bundle?
 
-Well, to do that, we are going to use `html-webpack-plugin`. This plugin will include our html and inject our js bundle automatically into our html using `<script>` tag. Let's install it:
+Well, to do that, we are going to use `html-webpack-plugin`. This plugin will include our HTML and inject our JS bundle automatically into our HTML using `<script>` tag.
+
+Let's install it:
 
 ```bash
 # If you're using yarn
@@ -281,7 +285,7 @@ By now, we can already start our development server. Let's update our `package.j
 
 Now we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
 
-You probably wondering, can we use `async await` instead in our `index.js`, of course we can. Let's update our index.js to use `async await`:
+You probably wondering, can we use `async await` in our code, of course we can. Let's update our `index.js` to use `async await`:
 
 ```js
 // src/index.js
@@ -356,7 +360,9 @@ module.exports = {
 
 Now the error is gone, and we can start using `async await` on our project. Yeayyy!
 
-What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above. Note: Since **Babel 7.8.0**, `optional-chaining` and `nullish-coalescing-operator` enabled by default, so if your Babel version is **7.8.0**, you don't have to do this.
+What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above.
+
+<small>Note: Since **Babel 7.8.0**, `optional-chaining` and `nullish-coalescing-operator` enabled by default, so if our Babel version is **7.8.0** and above, we don't have to add the plugin manually.</small>
 
 ```bash
 # If you're using yarn
@@ -432,7 +438,9 @@ Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next 
 
 ## Stylesheet (CSS, SASS)
 
-In order to start using CSS in our project, the step is same with how we configure JavaScripts. First, we need to install loader then use it on our webpack configuration. For css, there are 2 packages that need to be installed, `style-loader` and `css-loader`. Let's install it then:
+In order to use **CSS** in our project, the step is the same with how we configure **JavaScripts**. First, we need a loader, then use the loader in our webpack configuration. There are 2 packages needed so we can use css in our project, `style-loader` and `css-loader`.
+
+Let's install it:
 
 ```bash
 # If you're using yarn
@@ -442,7 +450,7 @@ yarn add --dev style-loader css-loader
 npm install --save-dev style-loader css-loader
 ```
 
-One it done, let's use it on our config file:
+Once it done, let's use it on our config file:
 
 ```js
 // config/webpack.config.js
@@ -476,7 +484,43 @@ module.exports = {
 };
 ```
 
-Right now, we can start using `css` in our project. This is still limited to `css` file only though, if we want to use `sass` or `scss` we also need to set it up. Let's add sass or scss to our config:
+Now, we can start using **CSS** in our project. For example, let's create `css` file:
+
+```css
+/* src/main.css */
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* Set font to 1rem = 10px */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: lightseagreen;
+  margin: 0;
+  padding: 0;
+}
+```
+
+And dont't forget to import the style:
+
+```js
+// src/index.js
+import './main.css';
+```
+
+Now, if we take a look at our compiled HTML in browser, it will attached `<style>` tag in our DOM, and it might be look like this:
+
+![CSS in the DOM example](/images/css-example.jpg)
+
+This still limited to **CSS** file only though, if we want to use **SASS** or **SCSS**, we also need to set it up.
+
+Let's install all required packages in order to use **SASS** in our project:
 
 ```bash
 # If you're using yarn
@@ -486,7 +530,7 @@ yarn add --dev node-sass sass-loader resolve-url-loader
 npm install --save-dev node-sass sass-loader resolve-url-loader
 ```
 
-```js
+```js{21-43}
 // config/webpack.config.js
 module.exports = {
   // other configs
@@ -519,9 +563,7 @@ module.exports = {
               modules: false,
             },
           },
-          /**
-           * resolve-url-loader is needed for sass to correctly resolve relative url path
-           */
+          // resolve-url-loader is needed for sass to correctly resolve relative url path
           'resolve-url-loader',
           {
             loader: 'sass-loader',
@@ -536,6 +578,8 @@ module.exports = {
   },
 };
 ```
+
+And done! We can start using **SASS** or **SCSS** on our project.
 
 What about **CSS modules**? Can we also use it alongside with pure css and sass? Yes, we can!
 
@@ -577,7 +621,7 @@ module.exports = {
               url: true,
               import: true,
               modules: {
-                localIdentName: '[name]__[local]--[contenthash:base64:8]',
+                localIdentName: '[name]__[local]--[contenthash:8]',
               },
             },
           },
@@ -615,7 +659,7 @@ module.exports = {
               url: true,
               import: true,
               modules: {
-                localIdentName: '[name]__[local]--[contenthash:base64:8]',
+                localIdentName: '[name]__[local]--[contenthash:8]',
               },
             },
           },
@@ -649,7 +693,7 @@ module.exports = {
     rules: [
       // other module rules
       {
-        test: /\.(png|jpe?g|gif|svg|bmp)$/i,
+        test: /\.(png|jpe?g|gif|svg|bmp|webp)$/i,
         use: [
           {
             loader: 'url-loader',
