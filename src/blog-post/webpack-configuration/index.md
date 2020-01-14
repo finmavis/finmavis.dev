@@ -581,15 +581,13 @@ module.exports = {
 
 And done! We can start using **SASS** or **SCSS** on our project.
 
-What about **CSS modules**? Can we also use it alongside with pure css and sass? Yes, we can!
+You problaly already know, **CSS** use case on development not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
 
-Did you notice on `css-loader` options above, we disabled modules options. If we enabled that options, it will enabled css modules in our project.
+Did you aware that we disabled `modules` options on `css-loader` above? What happen if we enabled it? Well of course, it will process our **CSS** into **CSS Modules**.
 
-The idea to use css modules alongside with pure css is we're gonna
+Let's setup CSS Modules on our project:
 
-Let's setup css modules on our project:
-
-```js{9,22-37,40,60-82}
+```js{9,23-38,41,61-84}
 // config/webpack.config.js
 module.exports = {
   // other configs
@@ -621,6 +619,7 @@ module.exports = {
               url: true,
               import: true,
               modules: {
+                // Convention name of generated CSS Modules classname
                 localIdentName: '[name]__[local]--[contenthash:8]',
               },
             },
@@ -659,6 +658,7 @@ module.exports = {
               url: true,
               import: true,
               modules: {
+                // Convention name of generated CSS Modules classname
                 localIdentName: '[name]__[local]--[contenthash:8]',
               },
             },
@@ -676,6 +676,31 @@ module.exports = {
   },
 };
 ```
+
+Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file. Let's try that:
+
+```css
+/* index.module.css */
+.h1 {
+  color: orangered;
+  font-size: 5rem;
+}
+```
+
+And don't forget to import it on our JS file:
+
+```js{3,5-6}
+// src/index.js
+import './main.css';
+import styles from './index.module.css';
+
+const h1 = document.querySelector('h1');
+h1.classList.add(styles.h1);
+```
+
+Now, it will add class to our `H1` element, and it will look like this:
+
+![CSS Modules Example](/images/css-module-example.jpg)
 
 Image and other file
 
