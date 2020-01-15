@@ -691,8 +691,8 @@ And don't forget to import it on our JS file:
 
 ```js{3,5-6}
 // src/index.js
-import './main.css';
-import styles from './index.module.css';
+import './main.css'; // -> webpack still process this as normal CSS
+import styles from './index.module.css'; // -> This will get processed as CSS Modules
 
 const h1 = document.querySelector('h1');
 h1.classList.add(styles.h1);
@@ -701,6 +701,192 @@ h1.classList.add(styles.h1);
 Now, it will add class to our `H1` element, and it will look like this:
 
 ![CSS Modules Example](/images/css-module-example.jpg)
+
+## CSS Future Syntax and Autoprefix
+
+Wouldn't it be fun when we are writing CSS, we can use CSS future syntax today just like how we develop our web app with latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), W3C plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can use it today.
+
+Introduce **postcss-preset-env**. What is it? Basically, it’s like **Babel** for CSS. It allows us to write CSS future syntax and transpiles that code to CSS which is widely supported by most browsers. Now, with help of **postcss-preset-env**, we can start using nesting rules in CSS today!
+
+**postcss-preset-env** also enabled autoprefix by default, so as we writing our CSS, we don't have to worry about manually add vendor prefix. Awesome right?
+
+Now, let's add to our project:
+
+```bash
+# If you're using yarn
+yarn add --dev postcss-loader postcss-preset-env
+
+# If you're using npm
+npm install --save-dev postcss-loader postcss-preset-env
+```
+
+```js
+// config/webpack.config.js
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other module rules
+      {
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-preset-env')({
+                  stage: 2,
+                  features: {
+                    'custom-media': true,
+                    'nesting-rules': true,
+                    'prefers-color-scheme': true,
+                  },
+                  autoprefixer: {
+                    flexbox: 'no-2009',
+                    grid: 'autoplace',
+                  },
+                }),
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-preset-env')({
+                  stage: 2,
+                  features: {
+                    'custom-media': true,
+                    'nesting-rules': true,
+                    'prefers-color-scheme': true,
+                  },
+                  autoprefixer: {
+                    flexbox: 'no-2009',
+                    grid: 'autoplace',
+                  },
+                }),
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        exclude: /\.module\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-preset-env')({
+                  stage: 2,
+                  features: {
+                    'custom-media': true,
+                    'nesting-rules': true,
+                    'prefers-color-scheme': true,
+                  },
+                  autoprefixer: {
+                    flexbox: 'no-2009',
+                    grid: 'autoplace',
+                  },
+                }),
+              ]
+            }
+          }
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-preset-env')({
+                  stage: 2,
+                  features: {
+                    'custom-media': true,
+                    'nesting-rules': true,
+                    'prefers-color-scheme': true,
+                  },
+                  autoprefixer: {
+                    flexbox: 'no-2009',
+                    grid: 'autoplace',
+                  },
+                }),
+              ]
+            }
+          }
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
 
 Image and other file
 
