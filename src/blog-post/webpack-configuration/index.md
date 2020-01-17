@@ -46,7 +46,7 @@ yarn add --dev webpack webpack-cli webpack-dev-server
 npm install --save-dev webpack webpack-cli webpack-dev-server
 ```
 
-At this point, we can already use **webpack**, because starting **webpack** version 4, it doesn't require any configuration. Still didn't believe ? Let's test it and fill our `index.js` with code below:
+At this point, we can already use **webpack**, because starting **webpack** version 4, it doesn't require any configuration. Let's test it and fill our `index.js` with code below:
 
 ```js
 // src/index.js
@@ -72,7 +72,7 @@ Now open up our `package.json`, and add scripts to use **webpack**:
 },
 ```
 
-Now we can use that scripts on our terminal.
+Now we can use that scripts on our terminal:
 
 ```bash
 # If you're using yarn
@@ -82,11 +82,13 @@ yarn compile
 npm run compile
 ```
 
-With this scripts **webpack** will automatically take our script at `src/index.js` as the entry point, and will generate `dist/main.js` as the output code. Awesome right?
+With this scripts, **webpack** will automatically take our script at `src/index.js` as the entry point, and it will generate `dist/main.js` as the output code. Awesome right?
 
-But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use css or sass/scss, automatically add vendor prefix for our css, and optimize our code for production. But how ?
+But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how ?
 
-That's where **webpack configuration** come in handy! Let's use it, first, we're gonna setup development server and then setup our project to use latest JS features (ES6 and beyond).
+That's where **webpack configuration** come in handy! Let's use that!
+
+First, we're gonna setup development server and then setup our project to use latest JS features (ES6 and beyond).
 
 ## ES6 and Beyond
 
@@ -104,9 +106,11 @@ npm install --save-dev @babel/core @babel/preset-env babel-loader
 npm install --save core-js
 ```
 
-Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/). Note that **browserlist** not only used by **Babel**, but it also used by other tools like **autoprefixer**.
+Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/).
 
-Let's add the list of browser that we want to support then in our `package.json`:
+<small>Note that **browserlist** not only used by **Babel**, it also used by other tools like **autoprefixer**.</small>
+
+Let's add the list of browser that we want to support in our `package.json`:
 
 ```json{9-13}
 // package.json
@@ -124,7 +128,7 @@ Let's add the list of browser that we want to support then in our `package.json`
 ],
 ```
 
-Now comes the fun part, where we will use the webpack configuration to use the development server and Babel that we just installed.
+Now comes the fun part, where we will use the **webpack configuration** to use the development server and **Babel** that we just installed.
 
 Open up our `config/webpack.config.js` and add code below:
 
@@ -188,6 +192,7 @@ module.exports = {
       /**
        * Here we are kinda tell webpack if it come accross js file
        * Please use babel-loader
+       * Docs: https://github.com/babel/babel-loader
        */
       {
         test: /\.js$/,
@@ -195,28 +200,40 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
+            // Enabled cache for faster recompilation
+            cacheDirectory: true,
             /**
-             * Here where we put our Babel config
-             * We can also create .babelrc or babel.config.js in the root of our project directory
-             * to put our babel config instead in here,
-             * but in this example, we put our config here
+             * Here we tell babel where to find babel config file
+             * Note that we can also put our babel config (presets and plugins) here
+             * Since Babel 7, using .babelrc filename not recommended
+             * Here we are using the new recommended filename
+             * using babel.config.js filename
              * Docs: https://babeljs.io/docs/en/config-files
              */
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  useBuiltIns: 'usage',
-                  debug: false,
-                  corejs: 3,
-                },
-              ],
-            ],
+            configFile: path.join(__dirname, 'babel.config.js'),
           },
         },
       },
     ],
   },
+};
+```
+
+Now, let's create a new file with name `babel.config.js` inside our config folder to put our babel configuration:
+
+```js
+// config/babel.config.js
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        useBuiltIns: 'usage',
+        corejs: 3,
+        debug: false,
+      },
+    ],
+  ],
 };
 ```
 
@@ -285,7 +302,7 @@ By now, we can already start our development server. Let's update our `package.j
 
 Now we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
 
-You probably wondering, can we use `async await` in our code, of course we can. Let's update our `index.js` to use `async await`:
+You probably wondering, can we use `async await` in our code? Of course, we can. Let's update our `index.js` to use `async await`:
 
 ```js
 // src/index.js
@@ -325,36 +342,22 @@ npm install --save @babel/runtime
 npm install --save-dev @babel/plugin-transform-runtime
 ```
 
-Once it done, let's use it to our Babel config on `webpack.config.js`:
+Once it done, let's use it to our Babel config file:
 
-```js{22}
-// config/webpack.config.js
+```js{13}
+// config/babel.config.js
 module.exports = {
-  // other configs
-  module: {
-    rules: [
+  presets: [
+    [
+      '@babel/preset-env',
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  useBuiltIns: 'usage',
-                  debug: false,
-                  corejs: 3,
-                },
-              ],
-            ],
-            plugins: ['@babel/plugin-transform-runtime'],
-          },
-        },
+        useBuiltIns: 'usage',
+        corejs: 3,
+        debug: false,
       },
     ],
-  },
+  ],
+  plugins: ['@babel/plugin-transform-runtime'],
 };
 ```
 
@@ -372,38 +375,24 @@ yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-n
 npm install --save-dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
 ```
 
-```js{24-25}
-// config/webpack.config.js
+```js{15-16}
+// config/babel.config.js
 module.exports = {
-  // other configs
-  module: {
-    rules: [
+  presets: [
+    [
+      '@babel/preset-env',
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  useBuiltIns: 'usage',
-                  debug: false,
-                  corejs: 3,
-                },
-              ],
-            ],
-            plugins: [
-              '@babel/plugin-transform-runtime',
-              '@babel/plugin-proposal-optional-chaining',
-              '@babel/plugin-proposal-nullish-coalescing-operator',
-            ],
-          },
-        },
+        useBuiltIns: 'usage',
+        corejs: 3,
+        debug: false,
       },
     ],
-  },
+  ],
+  plugins: [
+    '@babel/plugin-transform-runtime',
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-nullish-coalescing-operator',
+  ],
 };
 ```
 
@@ -436,7 +425,7 @@ print();
 
 Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next part, **Stylesheet**.
 
-## Stylesheet (CSS, SASS)
+## Stylesheet (CSS, SASS and CSS Modules)
 
 In order to use **CSS** in our project, the step is the same with how we configure **JavaScripts**. First, we need a loader, then use the loader in our webpack configuration. There are 2 packages needed so we can use css in our project, `style-loader` and `css-loader`.
 
@@ -484,7 +473,7 @@ module.exports = {
 };
 ```
 
-Now, we can start using **CSS** in our project. For example, let's create `css` file:
+Now, we can start using **CSS** in our project. For example, let's create `css` file inside our **src** folder:
 
 ```css
 /* src/main.css */
@@ -518,7 +507,7 @@ Now, if we take a look at our compiled HTML in browser, it will attached `<style
 
 ![CSS in the DOM example](/images/css-example.jpg)
 
-This still limited to **CSS** file only though, if we want to use **SASS** or **SCSS**, we also need to set it up.
+This still limited to **CSS** file only though, if we want to use CSS Pre-Processor like **SASS**, we also need to set it up.
 
 Let's install all required packages in order to use **SASS** in our project:
 
@@ -579,9 +568,9 @@ module.exports = {
 };
 ```
 
-And done! We can start using **SASS** or **SCSS** on our project.
+And done! We can start using **SASS** on our project.
 
-You problaly already know, **CSS** use case on development not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
+You problaly already know, **CSS** use case not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
 
 Did you aware that we disabled `modules` options on `css-loader` above? What happen if we enabled it? Well of course, it will process our **CSS** into **CSS Modules**.
 
@@ -704,11 +693,11 @@ Now, it will add class to our `H1` element, and it will look like this:
 
 ## CSS Future Syntax and Autoprefix
 
-Wouldn't it be fun when we are writing CSS, we can use CSS future syntax today just like how we develop our web app with latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), W3C plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can use it today.
+Wouldn't it be fun when we are writing CSS, we can use CSS future syntax today just like how we develop our web app with latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using CSS Pre-Processor like **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), **W3C** plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can use it today.
 
 Introduce **postcss-preset-env**. What is it? Basically, it’s like **Babel** for CSS. It allows us to write CSS future syntax and transpiles that code to CSS which is widely supported by most browsers. Now, with help of **postcss-preset-env**, we can start using nesting rules in CSS today!
 
-**postcss-preset-env** also enabled autoprefix by default, so as we writing our CSS, we don't have to worry about manually add vendor prefix. Awesome right?
+**postcss-preset-env** also enabled **autoprefix** by default, so as we writing our CSS, we don't have to worry about manually add vendor prefix. Awesome right?
 
 Now, let's add to our project:
 
@@ -720,7 +709,9 @@ yarn add --dev postcss-loader postcss-preset-env
 npm install --save-dev postcss-loader postcss-preset-env
 ```
 
-```js
+Also, let's update our webpack config:
+
+```js{20-37,54-62,78-86,110-118}
 // config/webpack.config.js
 module.exports = {
   // other configs
@@ -744,20 +735,18 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
-                require('postcss-preset-env')({
-                  stage: 2,
-                  features: {
-                    'custom-media': true,
-                    'nesting-rules': true,
-                    'prefers-color-scheme': true,
-                  },
-                  autoprefixer: {
-                    flexbox: 'no-2009',
-                    grid: 'autoplace',
-                  },
-                }),
-              ],
+              /**
+               * Note: You can also put your postcss config here
+               * Instead of make a new file just like we do here
+               * Docs: https://github.com/postcss/postcss-loader#config
+               */
+              config: {
+                /**
+                 * Tell postcss-loader where to find our postcss config
+                 * __dirname mean that point to current directory (which is our config folder)
+                 */
+                path: __dirname,
+              },
             },
           },
         ],
@@ -780,20 +769,9 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
-                require('postcss-preset-env')({
-                  stage: 2,
-                  features: {
-                    'custom-media': true,
-                    'nesting-rules': true,
-                    'prefers-color-scheme': true,
-                  },
-                  autoprefixer: {
-                    flexbox: 'no-2009',
-                    grid: 'autoplace',
-                  },
-                }),
-              ],
+              config: {
+                path: __dirname,
+              },
             },
           },
         ],
@@ -815,22 +793,11 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
-                require('postcss-preset-env')({
-                  stage: 2,
-                  features: {
-                    'custom-media': true,
-                    'nesting-rules': true,
-                    'prefers-color-scheme': true,
-                  },
-                  autoprefixer: {
-                    flexbox: 'no-2009',
-                    grid: 'autoplace',
-                  },
-                }),
-              ]
-            }
-          }
+              config: {
+                path: __dirname,
+              },
+            },
+          },
           'resolve-url-loader',
           {
             loader: 'sass-loader',
@@ -858,22 +825,11 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
-                require('postcss-preset-env')({
-                  stage: 2,
-                  features: {
-                    'custom-media': true,
-                    'nesting-rules': true,
-                    'prefers-color-scheme': true,
-                  },
-                  autoprefixer: {
-                    flexbox: 'no-2009',
-                    grid: 'autoplace',
-                  },
-                }),
-              ]
-            }
-          }
+              config: {
+                path: __dirname,
+              },
+            },
+          },
           'resolve-url-loader',
           {
             loader: 'sass-loader',
@@ -887,6 +843,46 @@ module.exports = {
   },
 };
 ```
+
+We have already tell `postcss-loader` where to look for the config file, let's create that **postcss** config file inside our config folder:
+
+<small>Note: For convention name of **postcss** config file, you can read more in [here](https://github.com/michael-ciniawsky/postcss-load-config#usage). In this guide we'll using `postcss.config.js` format.</small>
+
+```js
+// config/postcss.config.js
+module.exports = {
+  plugins: [
+    /**
+     * Docs: https://github.com/csstools/postcss-preset-env
+     */
+    require('postcss-preset-env')({
+      // Enabled Stage 2 features and add polyfill if necessary
+      stage: 2,
+      /**
+       * Enabled this list of features no matter what stage are
+       * You can see the list of all features id below:
+       * https://github.com/csstools/postcss-preset-env/blob/master/src/lib/plugins-by-id.js#L36
+       */
+      features: {
+        // Enabled nesting rules features
+        'nesting-rules': true,
+        // Enbaled prefers-color-scheme features
+        // To detect dark/light mode
+        'prefers-color-scheme-query': true,
+      },
+      // This will get passed to autoprefixer
+      autoprefixer: {
+        // This will add flexbox prefixes only final and IE 10 versions of specification
+        flexbox: 'no-2009',
+        // This will enable autoprefixer grid translations and include autoplacement support
+        grid: 'autoplace',
+      },
+    }),
+  ],
+};
+```
+
+Now, as we write our **CSS**, it will automatically add vendor prefixes, also we can start using future syntax CSS today.
 
 Image and other file
 
