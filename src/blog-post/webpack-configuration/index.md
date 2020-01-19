@@ -60,7 +60,9 @@ function greet(name) {
   });
 }
 
-greet(myName).then(response => console.log(response));
+greet(myName).then(response => {
+  console.log(response);
+});
 ```
 
 Now open up our `package.json`, and add scripts to use **webpack**:
@@ -108,7 +110,7 @@ npm install --save core-js
 
 Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/).
 
-<small>Note that **browserlist** not only used by **Babel**, it also used by other tools like **autoprefixer**.</small>
+<small>Note: **browserlist** not only used by **Babel**, it also used by other tools like **autoprefixer**.</small>
 
 Let's add the list of browser that we want to support in our `package.json`:
 
@@ -669,7 +671,7 @@ module.exports = {
 Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file. Let's try that:
 
 ```css
-/* index.module.css */
+/* src/index.module.css */
 .h1 {
   color: orangered;
   font-size: 5rem;
@@ -846,7 +848,7 @@ module.exports = {
 
 We have already tell `postcss-loader` where to look for the config file, let's create that **postcss** config file inside our config folder:
 
-<small>Note: For convention name of **postcss** config file, you can read more in [here](https://github.com/michael-ciniawsky/postcss-load-config#usage). In this guide we'll using `postcss.config.js` format.</small>
+<small>Note: For convention name of **PostCSS** config file, you can read more in [here](https://github.com/michael-ciniawsky/postcss-load-config#usage). In this guide we'll using `postcss.config.js` format.</small>
 
 ```js
 // config/postcss.config.js
@@ -882,9 +884,51 @@ module.exports = {
 };
 ```
 
-Now, as we write our **CSS**, it will automatically add vendor prefixes, also we can start using future syntax CSS today.
+Now, as we write our **CSS**, it will automatically add vendor prefixes, also we can start using future syntax CSS today!
 
-Image and other file
+There are known issues with Flexbox, you can read more [here](https://github.com/philipwalton/flexbugs). Because Flexbox now support on most browsers, we will most likely use Flexbox in our project. As we develop our project using Flexbox, we didn't want something isn't working as we'd expect because of the Flexbox issues. Luckily, there is a fixes for that using [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes).
+
+Let's also add that fixes to our project:
+
+```bash
+# If you're using yarn
+yarn add --dev postcss-flexbugs-fixes
+
+# If you're using npm
+npm install --save-dev postcss-flexbugs-fixes
+```
+
+Then let's use it on our **postcss config**:
+
+```js{8}
+// config/postcss.config.js
+module.exports = {
+  plugins: [
+    /**
+     * Fixes flexbox issues
+     * Docs: https://github.com/luisrudge/postcss-flexbugs-fixes
+     */
+    require('postcss-flexbugs-fixes'),
+    require('postcss-preset-env')({
+      stage: 2,
+      features: {
+        'nesting-rules': true,
+        'prefers-color-scheme-query': true,
+      },
+      autoprefixer: {
+        flexbox: 'no-2009',
+        grid: 'autoplace',
+      },
+    }),
+  ],
+};
+```
+
+## Image and other files
+
+Our webpack project, not only limited to JavaScript and CSS. It also can handle much more than that. For example, webpack can also handle assets like image and fonts.
+
+But how? The idea is the same with how we configure and used JavaScript. Let's include images and fonts support to our project:
 
 ```bash
 yarn add --dev url-loader file-loader
@@ -906,12 +950,31 @@ module.exports = {
             loader: 'url-loader',
             options: {
               name: '[name].[contenthash:8].[ext]',
+              // If the size is below 8kb
+              // It will inlined using Base64 URIs
               limit: 8192,
+              // The output folder our images
+              // In this case we pick a name assets (or you can change to other name like static)
+              // In this case the ourput will be "build/assets"
               outputPath: 'assets',
             },
           },
         ],
       },
+    ],
+  },
+};
+```
+
+By now, we can start using image in our JavaScript and CSS files. Let's also add for fonts!
+
+```js
+// config/webpack.config.js
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other module rules
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         use: [
