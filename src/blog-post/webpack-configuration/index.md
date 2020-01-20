@@ -991,3 +991,36 @@ module.exports = {
   },
 };
 ```
+
+## Production
+
+To build our project for production, we need another configuration and scripts, because what we used previously is only for development. You might ask, why?
+
+- Update scripts
+
+```json
+"scripts": {
+  "start": "webpack-dev-server --open --config=config/webpack.dev.js",
+  "build": "webpack --config=config/webpack.prod.js"
+},
+```
+
+- Change filename to webpack.dev.js
+- Copy dev to webpack.prod.js
+- Change mode to production
+- Delete devServer and devtool option
+- Add optimization option
+- Change style-loader to minicssextractplugin
+
+```bash
+# If you're using yarn
+yarn add --dev mini-css-extract-plugin
+
+# If you're using npm
+npm install --save-dev mini-css-extract-plugin
+```
+
+- Add terserjsplugin
+- Add optimize-css-assets-webpack-plugin
+- Compress assets
+- Cleanup before build
