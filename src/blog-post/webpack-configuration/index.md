@@ -994,7 +994,26 @@ module.exports = {
 
 ## Production
 
-To build our project for production, we need another configuration and scripts, because what we used previously is only for development. You might ask, why?
+To build our project for production, we need another config and scripts, because what we used previously is only for development. You might ask, why? Perhaps, you're already aware, that what we did previously, just so we can using webpack for development, or in other word, just make it **works** so we can start developing our project without optimizing our code (JS, CSS) and assets.
+
+For production, it slightly different. The goals is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more on fast load times references, you can read more on [web.dev](https://web.dev/fast).
+
+Because there are some difference between development and production, it is recommend to separate our webpack config, one for development and one for production. Now, because our `webpack.config.js` is so far only for development, let's update that name to `webpack.dev.js`. Let's also create a new webpack config file with the name `webpack.prod.js` for production inside our config folder. Now, our project folder would look like below:
+
+```text
+|-- config
+    |-- babel.config.js
+    |-- postcss.config.js
+    |-- webpack.config.js -> webpack.dev.js
+    |-- webpack.prod.js
+|-- src
+    |-- greet.js
+    |-- index.html
+    |-- index.js
+    |-- index.module.css
+    |-- main.css
+|-- package.json
+```
 
 - Update scripts
 
@@ -1020,7 +1039,7 @@ yarn add --dev mini-css-extract-plugin
 npm install --save-dev mini-css-extract-plugin
 ```
 
-- Add terserjsplugin
-- Add optimize-css-assets-webpack-plugin
+- Minify JS terserjsplugin
+- Minify CSS optimize-css-assets-webpack-plugin
 - Compress assets
 - Cleanup before build
