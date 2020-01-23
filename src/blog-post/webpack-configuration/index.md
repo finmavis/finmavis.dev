@@ -1004,7 +1004,7 @@ Because there are some difference between development and production, it is reco
 |-- config
     |-- babel.config.js
     |-- postcss.config.js
-    |-- webpack.config.js -> webpack.dev.js
+    |-- webpack.config.js --> webpack.dev.js
     |-- webpack.prod.js
 |-- src
     |-- greet.js
@@ -1015,19 +1015,220 @@ Because there are some difference between development and production, it is reco
 |-- package.json
 ```
 
-- Update scripts
+Let's also update our scripts on our `package.json`. First update our development scripts because we just changed the filename. Second, add scripts for production build.
 
 ```json
+// package.json
 "scripts": {
   "start": "webpack-dev-server --open --config=config/webpack.dev.js",
   "build": "webpack --config=config/webpack.prod.js"
 },
 ```
 
-- Change filename to webpack.dev.js
-- Copy dev to webpack.prod.js
-- Change mode to production
-- Delete devServer and devtool option
+Now, what should we do with our `webpack.prod.js`? Let's fill in the same as our `webpack.dev.js`. After we copy paste, update the `mode` to **production**, then delete some options related to development only like `devServer`. We'll also disable generate source maps in production, so we'll delete `devtool` options too. But, If you wish to generate source maps, you can keep devtool options or update the value like `source-map`. You can read more [here](https://webpack.js.org/configuration/devtool/).
+
+Now our `webpack.prod.js` would look like below:
+
+```js
+// config/webpack.prod.js
+const path = require('path');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  mode: 'production',
+  entry: {
+    main: './src/index.js',
+  },
+  output: {
+    path: path.join(__dirname, '../build'),
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].chunk.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            configFile: path.join(__dirname, 'babel.config.js'),
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        exclude: /\.module\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|bmp)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[contenthash:8].[ext]',
+              limit: 8192,
+              outputPath: 'assets',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets',
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+  ],
+};
+```
+
+By now, we can start using our `build` scripts to generate our app for production and webpack will put them in the `/build` folder for us.
+
+In general it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have plugin specifically fot that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
+
+```bash
+# If you're using yarn
+yarn add --dev clean-webpack-plugin
+
+# If you're using npm
+npm install --save-dev clean-webpack-plugin
+```
+
+Then also update our webpack config in development and production:
+
+```js{6,12}
+// config/webpack.dev.js
+// config/webpack.prod.js
+const path = require('path');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+  ],
+};
+```
+
+For a better caching, let's use hash on our output **filename** and **chunkFilename** for production:
+
+```js{6-7}
+// config/webpack.prod.js
+module.exports = {
+  // other configs
+  output: {
+    path: path.join(__dirname, '../build'),
+    filename: '[name].[chunkhash:8].bundle.js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
+  },
+  module: {},
+};
+```
+
 - Add optimization option
 - Change style-loader to minicssextractplugin
 
