@@ -1229,8 +1229,9 @@ module.exports = {
 };
 ```
 
-- Add optimization option
-- Change style-loader to minicssextractplugin
+You realize that every time we build for production, there's no css file, it's beacuse we still use **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
+
+Now, let's install it and update our webpack production config to use **MiniCssExtractPlugin** instead of **style-loader**:
 
 ```bash
 # If you're using yarn
@@ -1240,6 +1241,113 @@ yarn add --dev mini-css-extract-plugin
 npm install --save-dev mini-css-extract-plugin
 ```
 
+```js{2,13,36,53,74,98-101}
+// config/webpack.prod.js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  // other configs
+  module: {
+    rules: [
+      // other rules config
+      {
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        exclude: /\.module\.(sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: false,
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.module\.(sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              modules: {
+                localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    // other plugins
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash:8].bundle.css',
+      chunkFilename: '[name].[contenthash:8].chunk.css',
+    }),
+  ],
+};
+```
+
+- Add optimization option
 - Minify JS terserjsplugin
 - Minify CSS optimize-css-assets-webpack-plugin
 - Compress assets
