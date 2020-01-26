@@ -1096,6 +1096,15 @@ module.exports = {
               },
             },
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
+            },
+          },
         ],
       },
       {
@@ -1109,6 +1118,15 @@ module.exports = {
               url: true,
               import: true,
               modules: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
             },
           },
           'resolve-url-loader',
@@ -1131,6 +1149,15 @@ module.exports = {
               import: true,
               modules: {
                 localIdentName: '[name]__[local]--[contenthash:8]',
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
               },
             },
           },
@@ -1288,6 +1315,15 @@ module.exports = {
               },
             },
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
+            },
+          },
         ],
       },
       {
@@ -1301,6 +1337,15 @@ module.exports = {
               url: true,
               import: true,
               modules: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
             },
           },
           'resolve-url-loader',
@@ -1326,6 +1371,15 @@ module.exports = {
               },
             },
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              config: {
+                path: __dirname,
+              },
+            },
+          },
           'resolve-url-loader',
           {
             loader: 'sass-loader',
@@ -1347,7 +1401,67 @@ module.exports = {
 };
 ```
 
-- Add optimization option
+If we take a look at our generated html in `/build`, it doesn't get minified. Let's add minify option to our html-webpack-plugin to minify for production:
+
+```js{10-19}
+// config/webpack.prod.js
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+  ],
+};
+```
+
+By default, webpack come with **optimization** option, Let's use it in our project:
+
+```js
+// webpack.prod.js
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [],
+  optimization: {
+    minimize: true,
+    /**
+     * Keep the runtime chunk separated to enable long term caching
+     * Reference: https://twitter.com/wSokra/status/969679223278505985
+     */
+    runtimeChunk: {
+      name: entrypoint => `runtime-${entrypoint.name}`,
+    },
+    /**
+     * Split third-party libraries into vendors chunk
+     * Docs: https://webpack.js.org/plugins/split-chunks-plugin/
+     */
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+};
+```
+
 - Minify JS terserjsplugin
 - Minify CSS optimize-css-assets-webpack-plugin
 - Compress assets
