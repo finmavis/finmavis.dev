@@ -1462,7 +1462,126 @@ module.exports = {
 };
 ```
 
-- Minify JS terserjsplugin
-- Minify CSS optimize-css-assets-webpack-plugin
+- Minify JS using TerserJSPlugin
+
+```bash
+# If you're using yarn
+yarn add --dev terser-webpack-plugin
+
+# If you're using npm
+npm install --save-dev terser-webpack-plugin
+```
+
+```js
+// config/webpack.prod.js
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            comparisons: false,
+            ecma: 5,
+            inline: 2,
+          },
+          mangle: {
+            // work around the Safari 10 loop iterator bug
+            // https://bugs.webkit.org/show_bug.cgi?id=171041
+            safari10: true,
+          },
+          output: {
+            // Turned on because emoji and regex is not minified properly using default
+            ascii_only: true,
+            // Remove all comment
+            comments: false,
+            ecma: 5,
+          },
+        },
+      }),
+    ],
+  },
+};
+```
+
+Minify CSS
+
+```bash
+# If you're using yarn
+yarn add --dev optimize-css-assets-webpack-plugin postcss-safe-parser
+
+# If you're using npm
+npm install --save-dev optimize-css-assets-webpack-plugin postcss-safe-parser
+```
+
+```js
+// config/webpack.prod.js
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const safePostCssParser = require('postcss-safe-parser');
+
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      // other minimizer plugin
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: safePostCssParser,
+          map: false,
+        },
+        cssProcessorPluginOptions: {
+          preset: ['default', { minifyFontValues: { removeQuotes: false } }],
+        },
+      }),
+    ],
+  },
+};
+```
+
 - Compress assets
-- Cleanup before build
+
+```bash
+# If you're using yarn
+yarn add --dev compression-webpack-plugin brotli-webpack-plugin
+
+# If you're using npm
+npm install --save-dev compression-webpack-plugin brotli-webpack-plugin
+```
+
+```js
+// config/webpack.prod.js
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
+
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [
+    // other plugins
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      compressionOptions: { level: 9 },
+      filename: '[path].gz[query]',
+      minRatio: 0.8,
+      test: /\.(js|css|html|svg)$/,
+    }),
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      minRatio: 0.8,
+      test: /\.(js|css|html|svg)$/,
+    }),
+  ],
+  optimization: {},
+};
+```
