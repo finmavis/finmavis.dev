@@ -1268,7 +1268,7 @@ yarn add --dev mini-css-extract-plugin
 npm install --save-dev mini-css-extract-plugin
 ```
 
-```js{2,13,36,53,74,98-101}
+```js{2,13,36,62,92,125-128}
 // config/webpack.prod.js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -1437,6 +1437,11 @@ module.exports = {
   module: {},
   plugins: [],
   optimization: {
+    /**
+     * Minimize the bundle using the TerserPlugin (by default)
+     * If we need to customize the default minimizer we can use minimizer option
+     * which we will do later
+     */
     minimize: true,
     /**
      * Keep the runtime chunk separated to enable long term caching
