@@ -17,6 +17,18 @@ export default function Hero() {
         position: relative;
       `}
     >
+      <div
+        css={css`
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          background-color: var(--bg-color);
+          clip-path: polygon(100% 95%, 0% 100%, 100% 100%);
+          display: block;
+        `}
+      ></div>
       <Container>
         <h1>
           Hello, I’m Aris Rinardi{' '}
