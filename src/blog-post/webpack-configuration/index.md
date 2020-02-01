@@ -1256,7 +1256,7 @@ module.exports = {
 };
 ```
 
-You realize that every time we build for production, there's no css file, it's beacuse we still use **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
+You realize that every time we build for production, there's no css file, it's because we still use **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
 
 Now, let's install it and update our webpack production config to use **MiniCssExtractPlugin** instead of **style-loader**:
 
@@ -1401,9 +1401,13 @@ module.exports = {
 };
 ```
 
-If we take a look at our generated html in `/build`, it doesn't get minified. Let's add minify option to our html-webpack-plugin to minify for production:
+Now, every time we run scripts `yarn build` or `npm run build`, it will also create CSS file for us.
 
-```js{10-19}
+If we take a look at our generated HTML in `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by using **html-minifier-terser**.
+
+Let's add minify option to our **html-webpack-plugin** to minify for production:
+
+```js{14-23}
 // config/webpack.prod.js
 module.exports = {
   // other configs
@@ -1413,6 +1417,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
+      /**
+       * You can see all the option here:
+       * https://github.com/DanielRuf/html-minifier-terser
+       */
       minify: {
         collapseWhitespace: true,
         removeComments: true,
@@ -1428,7 +1436,11 @@ module.exports = {
 };
 ```
 
-By default, webpack come with **optimization** option, Let's use it in our project:
+Now, let's take a looke at our JS file. You noticed that our JS file already get minified. But, we do nothing with webpack to optimize our code. How come? Well, it's because by default, when webpack run on **production** mode, it will automatically minimize our JS code using [TerserPlugin](https://github.com/webpack-contrib/terser-webpack-plugin).
+
+Webpack also come with optimization option to split our bundle. For example, we want to split runtime code and third-party libraries into a separate chunk as they are less likely to change than our local source code.
+
+Let's split our bundle into separate chunk to make our main bundle smaller:
 
 ```js
 // webpack.prod.js
@@ -1439,8 +1451,6 @@ module.exports = {
   optimization: {
     /**
      * Minimize the bundle using the TerserPlugin (by default)
-     * If we need to customize the default minimizer we can use minimizer option
-     * which we will do later
      */
     minimize: true,
     /**
@@ -1451,7 +1461,7 @@ module.exports = {
       name: entrypoint => `runtime-${entrypoint.name}`,
     },
     /**
-     * Split third-party libraries into vendors chunk
+     * Split third-party libraries into vendors chunk to enable long term caching
      * Docs: https://webpack.js.org/plugins/split-chunks-plugin/
      */
     splitChunks: {
@@ -1467,7 +1477,9 @@ module.exports = {
 };
 ```
 
-- Minify JS using TerserJSPlugin
+Now everytime we build, it will separate and generate **runtime** and **vendor** chunk from our main bundle code.
+
+We already know, that webpack will automatically minimize our JS using Terser, but, what if we want to customize the options that get passed to terser? To do that, all we have to do is to add **terser-webpack-plugin** to our project:
 
 ```bash
 # If you're using yarn
@@ -1488,6 +1500,11 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
+      /**
+       * Minify our JS code using TerserPlugin
+       * Docs: https://github.com/webpack-contrib/terser-webpack-plugin
+       * Default Options: https://github.com/terser/terser
+       */
       new TerserPlugin({
         terserOptions: {
           parse: {
@@ -1499,7 +1516,7 @@ module.exports = {
             inline: 2,
           },
           mangle: {
-            // work around the Safari 10 loop iterator bug
+            // Work around the Safari 10 loop iterator bug
             // https://bugs.webkit.org/show_bug.cgi?id=171041
             safari10: true,
           },
@@ -1540,13 +1557,29 @@ module.exports = {
     minimize: true,
     minimizer: [
       // other minimizer plugin
+      /**
+       * Minify our CSS
+       * Docs: https://github.com/NMFR/optimize-css-assets-webpack-plugin
+       */
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           parser: safePostCssParser,
           map: false,
         },
         cssProcessorPluginOptions: {
-          preset: ['default', { minifyFontValues: { removeQuotes: false } }],
+          // You can see all the preset option here:
+          // https://github.com/cssnano/cssnano/tree/master/packages/cssnano-preset-default
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true,
+              },
+              minifyFontValues: {
+                removeQuotes: false,
+              },
+            },
+          ],
         },
       }),
     ],
