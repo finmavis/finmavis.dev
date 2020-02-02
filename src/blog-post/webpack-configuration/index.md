@@ -1501,7 +1501,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       /**
-       * Minify our JS code using TerserPlugin
+       * Minify our JS code
        * Docs: https://github.com/webpack-contrib/terser-webpack-plugin
        * Default Options: https://github.com/terser/terser
        */
@@ -1534,7 +1534,7 @@ module.exports = {
 };
 ```
 
-Minify CSS
+We already seen how to minimize out HTML and JS. What about our CSS? So far, our CSS still doesn't get minimize. To minimize our CSS, we need another webpack plugin, it's **optimize-css-assets-webpack-plugin**, which is by default using **cssnano** to minimize our CSS.
 
 ```bash
 # If you're using yarn
