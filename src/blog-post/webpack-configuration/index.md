@@ -1249,8 +1249,8 @@ module.exports = {
   // other configs
   output: {
     path: path.join(__dirname, '../build'),
-    filename: '[name].[chunkhash:8].bundle.js',
-    chunkFilename: '[name].[chunkhash:8].chunk.js',
+    filename: '[name].[contenthash:8].bundle.js',
+    chunkFilename: '[name].[contenthash:8].chunk.js',
   },
   module: {},
 };
@@ -1534,7 +1534,9 @@ module.exports = {
 };
 ```
 
-We already seen how to minimize out HTML and JS. What about our CSS? So far, our CSS still doesn't get minimize. To minimize our CSS, we need another webpack plugin, it's **optimize-css-assets-webpack-plugin**, which is by default using **cssnano** to minimize our CSS.
+We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, add directly **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, it's **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too. You might ask, what's the difference and which one is better? To be honest, I don't really know much about it.
+
+we need another webpack plugin, it's **optimize-css-assets-webpack-plugin**, which is by default using **cssnano** to minimize our CSS.
 
 ```bash
 # If you're using yarn
