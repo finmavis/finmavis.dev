@@ -88,7 +88,7 @@ With this scripts, **webpack** will automatically take our script at `src/index.
 
 But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how ?
 
-That's where **webpack configuration** come in handy! Let's use that!
+That's where **webpack configuration** come in handy! Let's use it in our project!
 
 First, we're gonna setup development server and then setup our project to use latest JS features (ES6 and beyond).
 
@@ -747,7 +747,7 @@ module.exports = {
                  * Tell postcss-loader where to find our postcss config
                  * __dirname mean that point to current directory (which is our config folder)
                  */
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -772,7 +772,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -796,7 +796,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -828,7 +828,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -950,9 +950,9 @@ module.exports = {
             loader: 'url-loader',
             options: {
               name: '[name].[contenthash:8].[ext]',
-              // If the size is below 8kb
+              // If the size is below 4kb
               // It will inlined using Base64 URIs
-              limit: 8192,
+              limit: 4096,
               // The output folder our images
               // In this case we pick a name assets (or you can change to other name like static)
               // In this case the ourput will be "build/assets"
@@ -1076,7 +1076,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1101,7 +1101,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1125,7 +1125,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1157,7 +1157,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1177,7 +1177,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               name: '[name].[contenthash:8].[ext]',
-              limit: 8192,
+              limit: 4096,
               outputPath: 'assets',
             },
           },
@@ -1295,7 +1295,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1320,7 +1320,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1344,7 +1344,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1376,7 +1376,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: __dirname,
+                path: path.resolve(__dirname),
               },
             },
           },
@@ -1463,15 +1463,10 @@ module.exports = {
     /**
      * Split third-party libraries into vendors chunk to enable long term caching
      * Docs: https://webpack.js.org/plugins/split-chunks-plugin/
+     * Reference: https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
      */
     splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
+      chunks: 'all',
     },
   },
 };
@@ -1534,9 +1529,11 @@ module.exports = {
 };
 ```
 
-We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, add directly **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, it's **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too. You might ask, what's the difference and which one is better? To be honest, I don't really know much about it.
+We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, add directly **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too.
 
-we need another webpack plugin, it's **optimize-css-assets-webpack-plugin**, which is by default using **cssnano** to minimize our CSS.
+You might ask, what's the difference and which one is better? To be honest, I don't really know much about it. I can't say much in this subject, but, if you're someone who knows about this, could you explain it to me or maybe give some references that I can read so I'll update this blog post.
+
+For now, let's put that aside, in this guide we'll using **optimize-css-assets-webpack-plugin**. Let's add it to our project:
 
 ```bash
 # If you're using yarn
