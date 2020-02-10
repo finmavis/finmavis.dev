@@ -1206,6 +1206,8 @@ module.exports = {
 };
 ```
 
+## Cleanup every build
+
 By now, we can start using our `build` scripts to generate our app for production and webpack will put them in the `/build` folder for us.
 
 In general it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have plugin specifically fot that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
@@ -1255,6 +1257,8 @@ module.exports = {
   module: {},
 };
 ```
+
+## Extract CSS into file
 
 You realize that every time we build for production, there's no css file, it's because we still use **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
 
@@ -1403,6 +1407,8 @@ module.exports = {
 
 Now, every time we run scripts `yarn build` or `npm run build`, it will also create CSS file for us.
 
+## Minify HTML
+
 If we take a look at our generated HTML in `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by using **html-minifier-terser**.
 
 Let's add minify option to our **html-webpack-plugin** to minify for production:
@@ -1436,7 +1442,9 @@ module.exports = {
 };
 ```
 
-Now, let's take a looke at our JS file. You noticed that our JS file already get minified. But, we do nothing with webpack to optimize our code. How come? Well, it's because by default, when webpack run on **production** mode, it will automatically minimize our JS code using [TerserPlugin](https://github.com/webpack-contrib/terser-webpack-plugin).
+## Minify JS and Code Splitting
+
+Now, let's take a look at our JS file. You noticed that our JS file already get minified. But, we do nothing with webpack to optimize our code. How come? Well, it's because by default, when webpack run on **production** mode, it will automatically minimize our JS code using [TerserPlugin](https://github.com/webpack-contrib/terser-webpack-plugin).
 
 Webpack also come with optimization option to split our bundle. For example, we want to split runtime code and third-party libraries into a separate chunk as they are less likely to change than our local source code.
 
@@ -1464,6 +1472,7 @@ module.exports = {
      * Split third-party libraries into vendors chunk to enable long term caching
      * Docs: https://webpack.js.org/plugins/split-chunks-plugin/
      * Reference: https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+     * Reference: https://twitter.com/wSokra/status/969633336732905474
      */
     splitChunks: {
       chunks: 'all',
@@ -1473,6 +1482,8 @@ module.exports = {
 ```
 
 Now everytime we build, it will separate and generate **runtime** and **vendor** chunk from our main bundle code.
+
+## Minify JS with custom options
 
 We already know, that webpack will automatically minimize our JS using Terser, but, what if we want to customize the options that get passed to terser? To do that, all we have to do is to add **terser-webpack-plugin** to our project:
 
@@ -1496,7 +1507,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       /**
-       * Minify our JS code
+       * Minify our JS code using Terser with custom options
        * Docs: https://github.com/webpack-contrib/terser-webpack-plugin
        * Default Options: https://github.com/terser/terser
        */
@@ -1528,6 +1539,8 @@ module.exports = {
   },
 };
 ```
+
+## Minify CSS
 
 We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, add directly **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too.
 
@@ -1566,8 +1579,10 @@ module.exports = {
           map: false,
         },
         cssProcessorPluginOptions: {
-          // You can see all the preset option here:
-          // https://github.com/cssnano/cssnano/tree/master/packages/cssnano-preset-default
+          /**
+           * You can see all the preset option here:
+           * https://github.com/cssnano/cssnano/tree/master/packages/cssnano-preset-default
+           */
           preset: [
             'default',
             {
@@ -1586,17 +1601,63 @@ module.exports = {
 };
 ```
 
-- Compress assets
+## Compression
+
+One of important thing before delivering our assets (HTML, CSS, JS and etc) to users, we need to compress it first. By compressing our assets alone, we can significantly reduce the total size of our assets, which leads to smaller network payloads when users visit our site or in other words, the smaller the assets, the faster to download. Faster download means a faster page load.
+
+Some say, we don't need to do compression by ourselves. Many hosting platforms, CDNs, and Web Server like nginx or Apache could provide compression dynamically as they get requested by the browser for us. But, in this guide, we will do compression while we build our project for production.
+
+To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generate **gzip** compression. But, since Node.js **v11.7.0** support **brotli** compression by default, this plugin could also generate **brotli** for us. Let's add it to our project:
 
 ```bash
 # If you're using yarn
-yarn add --dev compression-webpack-plugin brotli-webpack-plugin
+yarn add --dev compression-webpack-plugin
 
 # If you're using npm
-npm install --save-dev compression-webpack-plugin brotli-webpack-plugin
+npm install --save-dev compression-webpack-plugin
 ```
 
+Then don't forget to use it in our webpack production config to generate **gzip** and **brotli** compression:
+
 ```js
+// config/webpack.prod.js
+const CompressionPlugin = require('compression-webpack-plugin');
+
+module.exports = {
+  // other configs
+  module: {},
+  plugins: [
+    // other plugins
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      compressionOptions: { level: 9 },
+      filename: '[path].gz[query]',
+      minRatio: 0.8,
+      test: /\.(js|css|html|svg)$/,
+    }),
+    new CompressionPlugin({
+      algorithm: 'brotliCompress',
+      compressionOptions: { level: 11 },
+      filename: '[path].br[query]',
+      minRatio: 0.8,
+      test: /\.(js|css|html|svg)$/,
+    }),
+  ],
+  optimization: {},
+};
+```
+
+As side note, if you're running Node.js below **v11.7.0**, you need **brotli-webpack-plugin** to generate **brotli** compression.
+
+```bash
+# If you're using yarn
+yarn add --dev brotli-webpack-plugin
+
+# If you're using npm
+npm install --save-dev brotli-webpack-plugin
+```
+
+```js{3,17-21}
 // config/webpack.prod.js
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
