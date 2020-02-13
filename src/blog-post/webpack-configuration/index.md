@@ -13,11 +13,11 @@ bannerCreditLink: 'https://unsplash.com/photos/mDinBvq1Sfg'
 
 Hello World!
 
-This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. In this guide, not only for development, but we'll also cover configure **webpack** for Production, because for Production, it is a best practices to optimize all our code and assets.
+This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. In this guide, not only for development, but we'll also cover how to configure **webpack** for Production, because for Production, it is a best practices to optimizing all our code and assets.
 
 ## Getting Started
 
-First, we need to create our webpack project. Create a new folder, and i'll pick a folder name **webpack-boilerplate**. Inside that folder initialize our project with `npm init` or `yarn init`. Once we done, inside our project directory will have `package.json`.
+First, we need to create our webpack project. Let's create a new folder, and I'll pick a folder name **webpack-boilerplate**. Inside that folder, initialize our project with `npm init` or `yarn init`. Once we done, inside our project directory will have `package.json`.
 
 After that, we need to create a **config** and **src** folder. Inside a **config** folder, create `webpack.config.js` file. Inside **src** folder create two file, `index.html` and `index.js`, it is entry point of our web application project.
 
@@ -34,7 +34,7 @@ Now, our project structure would be like below:
 
 ## Install Webpack
 
-First of all, we need to install **webpack**. But, we need to install 3 packages for webpack to works. First `webpack`, the main or core functionalities webpack. Second `webpack-cli`, so we can use webpack from our command line, and third is `webpack-dev-server`, it's a server for development that provides us with a simple web server and the ability to use live reloading.
+There are 3 packages that we need to install for the **webpack** to work. First, `webpack`, the main or core functionality of webpack. Second, Second `webpack-cli`, so we can use webpack from our command line, and third is `webpack-dev-server`, it's a development server that provides us with a simple web server and the ability to use live reloading.
 
 Let's install 3 of those:
 
@@ -46,12 +46,10 @@ yarn add --dev webpack webpack-cli webpack-dev-server
 npm install --save-dev webpack webpack-cli webpack-dev-server
 ```
 
-At this point, we can already use **webpack**, because starting **webpack** version 4, it doesn't require any configuration. Let's test it and fill our `index.js` with code below:
+At this point, we can already use **webpack**, because starting **webpack** version 4, it doesn't require any configuration. Let's test it and fill our `src/index.js` with code below:
 
 ```js
 // src/index.js
-const myName = 'John Doe';
-
 function greet(name) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -60,7 +58,7 @@ function greet(name) {
   });
 }
 
-greet(myName).then(response => {
+greet('John Doe').then(response => {
   console.log(response);
 });
 ```
@@ -69,9 +67,12 @@ Now open up our `package.json`, and add scripts to use **webpack**:
 
 ```json
 // package.json
-"scripts": {
-  "compile": "webpack"
-},
+{
+  // other items
+  "scripts": {
+    "compile": "webpack"
+  }
+}
 ```
 
 Now we can use that scripts on our terminal:
@@ -86,7 +87,7 @@ npm run compile
 
 With this scripts, **webpack** will automatically take our script at `src/index.js` as the entry point, and it will generate `dist/main.js` as the output code. Awesome right?
 
-But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how ?
+But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how?
 
 That's where **webpack configuration** come in handy! Let's use it in our project!
 
@@ -114,20 +115,19 @@ Before we add configuration to use **Babel**, first, we need to define what brow
 
 Let's add the list of browser that we want to support in our `package.json`:
 
-```json{9-13}
+```json{11}
 // package.json
 // In this example we are using this browserlist
 // Which support 91% global coverage
 // You can check here: https://browserl.ist/
 // Docs: https://github.com/browserslist/browserslist
-"scripts": {
-  "compile": "webpack"
-},
-"browserslist": [
-  ">0.2%",
-  "not dead",
-  "not op_mini all"
-],
+{
+  // other items
+  "scripts": {
+    "compile": "webpack"
+  },
+  "browserslist": [">0.2%", "not dead", "not op_mini all"]
+}
 ```
 
 Now comes the fun part, where we will use the **webpack configuration** to use the development server and **Babel** that we just installed.
@@ -292,14 +292,17 @@ module.exports = {
 
 By now, we can already start our development server. Let's update our `package.json` scripts.
 
-```json{6}
+```json{8}
 // package.json
-"scripts": {
-  // Before (You can delete this compile scripts)
-  "compile": "webpack",
-  // After
-  "start": "webpack-dev-server --open --config=config/webpack.config.js"
-},
+{
+  // other items
+  "scripts": {
+    // Before (You can delete this compile scripts)
+    "compile": "webpack",
+    // After
+    "start": "webpack-dev-server --open --config=config/webpack.config.js"
+  }
+}
 ```
 
 Now we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
@@ -308,8 +311,6 @@ You probably wondering, can we use `async await` in our code? Of course, we can.
 
 ```js
 // src/index.js
-const myName = 'John Doe';
-
 function greet(name) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -321,7 +322,7 @@ function greet(name) {
 // I know this is dumb
 // Just for demo purpose
 async function print() {
-  const response = await greet(myName);
+  const response = await greet('John Doe');
   console.log(response);
 }
 
@@ -377,19 +378,10 @@ yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-n
 npm install --save-dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
 ```
 
-```js{15-16}
+```js{6-7}
 // config/babel.config.js
 module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        useBuiltIns: 'usage',
-        corejs: 3,
-        debug: false,
-      },
-    ],
-  ],
+  presets: [],
   plugins: [
     '@babel/plugin-transform-runtime',
     '@babel/plugin-proposal-optional-chaining',
@@ -413,12 +405,10 @@ export function greet(name) {
 }
 
 // src/index.js
-const myName = 'John Doe';
-
 async function print() {
   // Here we are using dynamic import
   const { greet } = await import('./greet');
-  const response = await greet(myName);
+  const response = await greet('John Doe');
   console.log(response);
 }
 
@@ -578,7 +568,7 @@ Did you aware that we disabled `modules` options on `css-loader` above? What hap
 
 Let's setup CSS Modules on our project:
 
-```js{9,23-38,41,61-84}
+```js{9,22-38,41,61-84}
 // config/webpack.config.js
 module.exports = {
   // other configs
@@ -668,7 +658,7 @@ module.exports = {
 };
 ```
 
-Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file. Let's try that:
+Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file. Let's try it:
 
 ```css
 /* src/index.module.css */
