@@ -19,9 +19,9 @@ This is my first ever article, and we're gonna learn how to configure **webpack*
 
 First, we need to create our webpack project. Let's create a new folder, and I'll pick a folder name **webpack-boilerplate**. Inside that folder, initialize our project with `npm init` or `yarn init`. Once we done, inside our project directory will have `package.json`.
 
-After that, we need to create a **config** and **src** folder. Inside a **config** folder, create `webpack.config.js` file. Inside **src** folder create two file, `index.html` and `index.js`, it is entry point of our web application project.
+After that, we need to create a **config** and **src** folder. Inside a **config** folder, create `webpack.config.js` file. Inside **src** folder create two file, `index.html` and `index.js`, it is entry point of our project.
 
-Now, our project structure would be like below:
+Now, the structure of our project will look like below:
 
 ```text
 |-- config
@@ -34,7 +34,7 @@ Now, our project structure would be like below:
 
 ## Install Webpack
 
-There are 3 packages that we need to install for the **webpack** to work. First, `webpack`, the main or core functionality of webpack. Second, Second `webpack-cli`, so we can use webpack from our command line, and third is `webpack-dev-server`, it's a development server that provides us with a simple web server and the ability to use live reloading.
+There are 3 packages that we need to install for the **webpack** to work. First, `webpack`, the main or core functionality of webpack. Second, `webpack-cli`, so we can use webpack from our command line, and the third is `webpack-dev-server`, it's a development server that provides us with a simple web server and the ability to use live reloading.
 
 Let's install 3 of those:
 
@@ -59,11 +59,11 @@ function greet(name) {
 }
 
 greet('John Doe').then(response => {
-  console.log(response);
+  console.log(response); // -> "Hello John Doe!"
 });
 ```
 
-Now open up our `package.json`, and add scripts to use **webpack**:
+Now open up our `package.json`, and add a scripts to run **webpack**:
 
 ```json
 // package.json
@@ -75,7 +75,7 @@ Now open up our `package.json`, and add scripts to use **webpack**:
 }
 ```
 
-Now we can use that scripts on our terminal:
+Let's run it on our terminal:
 
 ```bash
 # If you're using yarn
@@ -161,7 +161,7 @@ module.exports = {
    */
   output: {
     /**
-     * Here you problaly wondering why we navigate to current folder then navigate back?
+     * Here you probably wondering why we navigate to current folder then navigate back?
      * Because we don't want our generated code inside config folder
      * That's why we have to navigate back to the root directory of our project
      */
@@ -221,7 +221,7 @@ module.exports = {
 };
 ```
 
-Now, let's create a new file with name `babel.config.js` inside our config folder to put our babel configuration:
+Now, let's create a new file named `babel.config.js` inside our config folder to put our babel configuration:
 
 ```js
 // config/babel.config.js
@@ -258,7 +258,7 @@ Fuhhhh, that's alot. What's next? Our HTML entry point (of course, because this 
 </html>
 ```
 
-You problaly ask, how to include our HTML template to our bundle?
+You probably ask, how to include our HTML template to our bundle?
 
 Well, to do that, we are going to use `html-webpack-plugin`. This plugin will include our HTML and inject our JS bundle automatically into our HTML using `<script>` tag.
 
@@ -290,7 +290,7 @@ module.exports = {
 };
 ```
 
-By now, we can already start our development server. Let's update our `package.json` scripts.
+Let's also update our scripts to start development server using `webpack-dev-server`:
 
 ```json{8}
 // package.json
@@ -305,7 +305,7 @@ By now, we can already start our development server. Let's update our `package.j
 }
 ```
 
-Now we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
+Now, we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
 
 You probably wondering, can we use `async await` in our code? Of course, we can. Let's update our `index.js` to use `async await`:
 
@@ -333,7 +333,9 @@ Oh no, when we start again our development server, we get these error:
 
 ![Error regenerator runtime](/images/error-async-await.jpg)
 
-If you read the error carefully, **webpack** cannot find module `regenerator-runtime/runtime`, because to use `async await` we need 2 packages, first `@babel/runtime` and then `@babel/plugin-transform-runtime`. Let's install it to our project:
+If you read the error carefully, **webpack** cannot find module `regenerator-runtime/runtime`, it's because to use `async await` we need 2 packages, first `@babel/runtime` and then `@babel/plugin-transform-runtime`.
+
+Let's add it to our project:
 
 ```bash
 # If you're using yarn
@@ -345,7 +347,7 @@ npm install --save @babel/runtime
 npm install --save-dev @babel/plugin-transform-runtime
 ```
 
-Once it done, let's use it to our Babel config file:
+Once it done, let's use it to our **Babel** config file:
 
 ```js{13}
 // config/babel.config.js
@@ -364,7 +366,7 @@ module.exports = {
 };
 ```
 
-Now the error is gone, and we can start using `async await` on our project. Yeayyy!
+If we start our development server again, now the error is gone, and we can start using `async await` on our project. Yeayyy!
 
 What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above.
 
@@ -377,6 +379,8 @@ yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-n
 # If you're using npm
 npm install --save-dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
 ```
+
+Then don't forget to add it to our **Babel** config:
 
 ```js{6-7}
 // config/babel.config.js
@@ -392,7 +396,7 @@ module.exports = {
 
 What if we want to use `dynamic import`, can we do that? Yes we can! Since **Babel** version **7.4.0**, `dynamic import` support enabled by default, so we don't have to install `@babel/plugin-proposal-dynamic-import`, but if our Babel version below that version, we have to add that plugin to our project.
 
-Let's use `dynamic import` on our project:
+Let's split our greet function into separate files, then we will use `dynamic import` in our `index.js` file:
 
 ```js
 // src/greet.js
@@ -562,7 +566,7 @@ module.exports = {
 
 And done! We can start using **SASS** on our project.
 
-You problaly already know, **CSS** use case not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
+You probably already know, **CSS** use case not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
 
 Did you aware that we disabled `modules` options on `css-loader` above? What happen if we enabled it? Well of course, it will process our **CSS** into **CSS Modules**.
 
@@ -836,7 +840,7 @@ module.exports = {
 };
 ```
 
-We have already tell `postcss-loader` where to look for the config file, let's create that **postcss** config file inside our config folder:
+We have already tell `postcss-loader` where to look for the config file, let's create a **postcss** config file inside our config folder:
 
 <small>Note: For convention name of **PostCSS** config file, you can read more in [here](https://github.com/michael-ciniawsky/postcss-load-config#usage). In this guide we'll using `postcss.config.js` format.</small>
 
