@@ -13,7 +13,11 @@ bannerCreditLink: 'https://unsplash.com/photos/mDinBvq1Sfg'
 
 Hello World!
 
-This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. In this guide, not only for development, but we'll also cover how to configure **webpack** for Production, because for Production, it is a best practices to optimizing all our code and assets.
+This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. This guide, we not only cover using webpack for development, but we'll also cover how to configure **webpack** for Production, because for Production, it is a best practices to optimizing all our code and assets.
+
+## TL;DR
+
+You can see the full configuration and code in this [repo](https://github.com/finmavis/webpack-4-boilerplate).
 
 ## Getting Started
 
@@ -165,7 +169,7 @@ module.exports = {
      * Because we don't want our generated code inside config folder
      * That's why we have to navigate back to the root directory of our project
      */
-    path: path.join(__dirname, '../build'),
+    path: path.resolve(__dirname, '../build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
   },
@@ -175,7 +179,7 @@ module.exports = {
    */
   devServer: {
     // Serves everything from our build folder which is our output folder
-    contentBase: path.join(__dirname, '../build'),
+    contentBase: path.resolve(__dirname, '../build'),
     // Enable gzip compression
     compress: true,
     // Which port we want to use, in this case we use port 3000
@@ -212,7 +216,7 @@ module.exports = {
              * using babel.config.js filename
              * Docs: https://babeljs.io/docs/en/config-files
              */
-            configFile: path.join(__dirname, 'babel.config.js'),
+            configFile: path.resolve(__dirname, 'babel.config.js'),
           },
         },
       },
@@ -329,7 +333,7 @@ async function print() {
 print();
 ```
 
-Oh no, when we start again our development server, we get these error:
+Oh no, when we start our development server again, we get these error:
 
 ![Error regenerator runtime](/images/error-async-await.jpg)
 
@@ -425,7 +429,7 @@ Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next 
 
 In order to use **CSS** in our project, the step is the same with how we configure **JavaScripts**. First, we need a loader, then use the loader in our webpack configuration. There are 2 packages needed so we can use css in our project, `style-loader` and `css-loader`.
 
-Let's install it:
+Let's add it:
 
 ```bash
 # If you're using yarn
@@ -469,7 +473,7 @@ module.exports = {
 };
 ```
 
-Now, we can start using **CSS** in our project. For example, let's create `css` file inside our **src** folder:
+Now, we can start using **CSS** in our project. For example, let's create `css` file inside our **src** folder named `main.css`:
 
 ```css
 /* src/main.css */
@@ -662,7 +666,9 @@ module.exports = {
 };
 ```
 
-Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file. Let's try it:
+Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file.
+
+Let's try create CSS Modules files named `index.module.css` and fill with code below:
 
 ```css
 /* src/index.module.css */
@@ -689,7 +695,7 @@ Now, it will add class to our `H1` element, and it will look like this:
 
 ## CSS Future Syntax and Autoprefix
 
-Wouldn't it be fun when we are writing CSS, we can use CSS future syntax today just like how we develop our web app with latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using CSS Pre-Processor like **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), **W3C** plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can use it today.
+Wouldn't it be fun when we are writing CSS, we can use CSS future syntax today just like how we develop our web app with latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using CSS Pre-Processor like **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), **W3C** plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can't use it today.
 
 Introduce **postcss-preset-env**. What is it? Basically, it’s like **Babel** for CSS. It allows us to write CSS future syntax and transpiles that code to CSS which is widely supported by most browsers. Now, with help of **postcss-preset-env**, we can start using nesting rules in CSS today!
 
@@ -840,9 +846,9 @@ module.exports = {
 };
 ```
 
-We have already tell `postcss-loader` where to look for the config file, let's create a **postcss** config file inside our config folder:
+We have already told `postcss-loader` where to look for the config file, let's create a **postcss** config file in our config folder named `postcss.config.js`:
 
-<small>Note: For convention name of **PostCSS** config file, you can read more in [here](https://github.com/michael-ciniawsky/postcss-load-config#usage). In this guide we'll using `postcss.config.js` format.</small>
+<small>Note: For convention name of **PostCSS** config file, you can read more in [here](https://github.com/michael-ciniawsky/postcss-load-config#usage).</small>
 
 ```js
 // config/postcss.config.js
@@ -878,7 +884,7 @@ module.exports = {
 };
 ```
 
-Now, as we write our **CSS**, it will automatically add vendor prefixes, also we can start using future syntax CSS today!
+Now, as we write our **CSS**, it will automatically add vendor prefixes, also we can start using CSS future syntax today!
 
 There are known issues with Flexbox, you can read more [here](https://github.com/philipwalton/flexbugs). Because Flexbox now support on most browsers, we will most likely use Flexbox in our project. As we develop our project using Flexbox, we didn't want something isn't working as we'd expect because of the Flexbox issues. Luckily, there is a fixes for that using [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes).
 
@@ -922,7 +928,7 @@ module.exports = {
 
 Our webpack project, not only limited to JavaScript and CSS. It also can handle much more than that. For example, webpack can also handle assets like image and fonts.
 
-But how? The idea is the same with how we configure and used JavaScript. Let's include images and fonts support to our project:
+But, how? The idea is the same with how we configure and used JavaScript. Let's include images and fonts support to our project:
 
 ```bash
 yarn add --dev url-loader file-loader
@@ -949,7 +955,7 @@ module.exports = {
               limit: 4096,
               // The output folder our images
               // In this case we pick a name assets (or you can change to other name like static)
-              // In this case the ourput will be "build/assets"
+              // In this case the output will be "build/assets"
               outputPath: 'assets',
             },
           },
@@ -990,7 +996,7 @@ module.exports = {
 
 To build our project for production, we need another config and scripts, because what we used previously is only for development. You might ask, why? Perhaps, you're already aware, that what we did previously, just so we can using webpack for development, or in other word, just make it **works** so we can start developing our project without optimizing our code (JS, CSS) and assets.
 
-For production, it slightly different. The goals is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more on fast load times references, you can read more on [web.dev](https://web.dev/fast).
+For production, it slightly different. The goals is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more on fast load times topic, you can read more on [web.dev](https://web.dev/fast).
 
 Because there are some difference between development and production, it is recommend to separate our webpack config, one for development and one for production. Now, because our `webpack.config.js` is so far only for development, let's update that name to `webpack.dev.js`. Let's also create a new webpack config file with the name `webpack.prod.js` for production inside our config folder. Now, our project folder would look like below:
 
@@ -1035,7 +1041,7 @@ module.exports = {
     main: './src/index.js',
   },
   output: {
-    path: path.join(__dirname, '../build'),
+    path: path.resolve(__dirname, '../build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
   },
@@ -1048,7 +1054,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            configFile: path.join(__dirname, 'babel.config.js'),
+            configFile: path.resolve(__dirname, 'babel.config.js'),
           },
         },
       },
@@ -1200,9 +1206,9 @@ module.exports = {
 };
 ```
 
-## Cleanup every build
-
 By now, we can start using our `build` scripts to generate our app for production and webpack will put them in the `/build` folder for us.
+
+## Cleanup every build
 
 In general it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have plugin specifically fot that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
 
@@ -1244,7 +1250,7 @@ For a better caching, let's use hash on our output **filename** and **chunkFilen
 module.exports = {
   // other configs
   output: {
-    path: path.join(__dirname, '../build'),
+    path: path.resolve(__dirname, '../build'),
     filename: '[name].[contenthash:8].bundle.js',
     chunkFilename: '[name].[contenthash:8].chunk.js',
   },
@@ -1403,7 +1409,7 @@ Now, every time we run scripts `yarn build` or `npm run build`, it will also cre
 
 ## Minify HTML
 
-If we take a look at our generated HTML in `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by using **html-minifier-terser**.
+If we take a look at our generated HTML in `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by default using **html-minifier-terser**.
 
 Let's add minify option to our **html-webpack-plugin** to minify for production:
 
@@ -1601,7 +1607,7 @@ One of important thing before delivering our assets (HTML, CSS, JS and etc) to u
 
 Some say, we don't need to do compression by ourselves. Many hosting platforms, CDNs, and Web Server like nginx or Apache could provide compression dynamically as they get requested by the browser for us. But, in this guide, we will do compression while we build our project for production.
 
-To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generate **gzip** compression. But, since Node.js **v11.7.0** support **brotli** compression by default, this plugin could also generate **brotli** for us. Let's add it to our project:
+To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generate **gzip** compression. But, since Node.js **v11.7.0**, it support **brotli** compression by default, this plugin could also generate **brotli** for us. Let's add it to our project:
 
 ```bash
 # If you're using yarn
@@ -1677,3 +1683,7 @@ module.exports = {
   optimization: {},
 };
 ```
+
+Now, all we have to do is to configure our server to serve brotli compression with fallback to gzip if users browser doesn't support brotli compression. But, because our focus is only in webpack, we will just leave it as it is.
+
+Well, that's really long guide, and now, we reach the end of the guide. I hope you find this guide useful and can start using it for your development. It might take a little time, but learning how this tool works will pay off.
