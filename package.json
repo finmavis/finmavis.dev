@@ -4,6 +4,9 @@
   "description": "A Personal site Fin Mavis",
   "version": "0.1.0",
   "author": "Fin Mavis <fin.mavis@yahoo.com>",
+  "engines" : { 
+    "node" : ">=12.16.1"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.23",
@@ -47,7 +50,10 @@
     "prettier": "^1.18.2"
   },
   "keywords": [
-    "gatsby"
+    "Aris Rinardi",
+    "Fin Mavis",
+    "Web Developer",
+    "Frontend Developer"
   ],
   "license": "MIT",
   "scripts": {
@@ -64,10 +70,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/finmavis/personal-site"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/finmavis/personal-site/issues"
   },
   "husky": {
     "hooks": {

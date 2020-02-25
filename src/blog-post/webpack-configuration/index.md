@@ -3,8 +3,6 @@ path: '/blog/webpack-configuration-step-by-step'
 title: 'Webpack Configuration step by step - Development to Production'
 date: '2019-10-15'
 author: 'Fin Mavis'
-tags:
-  ['JavaScript', 'Webpack', 'BabelJS', 'SASS', 'SCSS', 'Autoprefix', 'Bundler']
 description: 'Learn how to configure webpack from Development to Production with some practical best pratices and optimization.'
 banner: './images/adi-goldstein.jpg'
 bannerCreditName: 'Adi Goldstein'
@@ -13,11 +11,11 @@ bannerCreditLink: 'https://unsplash.com/photos/mDinBvq1Sfg'
 
 Hello World!
 
-This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. This guide, we not only cover using webpack for development, but we'll also cover how to configure **webpack** for Production, because for Production, it is a best practices to optimizing all our code and assets.
+This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. This guide, we not only cover configure webpack for development, but we'll also cover how to configure **webpack** for Production, because for Production, it is a best practices to optimizing all our code and assets.
 
 ## TL;DR
 
-You can see the full configuration and code in this [repo](https://github.com/finmavis/webpack-4-boilerplate).
+You can see the full config and code in this [repo](https://github.com/finmavis/webpack-4-boilerplate).
 
 ## Getting Started
 
@@ -67,7 +65,7 @@ greet('John Doe').then(response => {
 });
 ```
 
-Now open up our `package.json`, and add a scripts to run **webpack**:
+Now open up our `package.json`, and add a scripts to run the **webpack**:
 
 ```json
 // package.json
@@ -93,9 +91,7 @@ With this scripts, **webpack** will automatically take our script at `src/index.
 
 But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how?
 
-That's where **webpack configuration** come in handy! Let's use it in our project!
-
-First, we're gonna setup development server and then setup our project to use latest JS features (ES6 and beyond).
+That's where **webpack configuration** come in handy! Let's use it in our project to setup development server and then setup our project to use the latest JS features (ES6 and beyond).
 
 ## ES6 and Beyond
 
@@ -115,15 +111,12 @@ npm install --save core-js
 
 Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/).
 
-<small>Note: **browserlist** not only used by **Babel**, it also used by other tools like **autoprefixer**.</small>
-
 Let's add the list of browser that we want to support in our `package.json`:
 
-```json{11}
+```json{10}
 // package.json
 // In this example we are using this browserlist
 // Which support 91% global coverage
-// You can check here: https://browserl.ist/
 // Docs: https://github.com/browserslist/browserslist
 {
   // other items
@@ -142,6 +135,8 @@ Open up our `config/webpack.config.js` and add code below:
 // config/webpack.config.js
 const path = require('path');
 
+const ROOT_DIRECTORY = process.cwd();
+
 module.exports = {
   /**
    * Define webpack mode
@@ -152,24 +147,20 @@ module.exports = {
   /**
    * Here, we tell webpack where entry point of our code
    * If you only have single entry point you can also do it like below
-   * entry: './src/index.js'
+   * entry: path.resolve(ROOT_DIRECTORY, 'src/index.js'),
    * Docs: https://webpack.js.org/configuration/entry-context/
    */
   entry: {
-    main: './src/index.js',
+    main: path.resolve(ROOT_DIRECTORY, 'src/index.js'),
   },
   /**
-   * Tell webpack where it should output our
-   * bundles, assets and anything else
+   * Tell webpack where it should output
+   * our bundles, assets and anything else
+   * In this example it will be inside /build folder
    * Docs: https://webpack.js.org/configuration/output/
    */
   output: {
-    /**
-     * Here you probably wondering why we navigate to current folder then navigate back?
-     * Because we don't want our generated code inside config folder
-     * That's why we have to navigate back to the root directory of our project
-     */
-    path: path.resolve(__dirname, '../build'),
+    path: path.resolve(ROOT_DIRECTORY, 'build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
   },
@@ -179,7 +170,7 @@ module.exports = {
    */
   devServer: {
     // Serves everything from our build folder which is our output folder
-    contentBase: path.resolve(__dirname, '../build'),
+    contentBase: path.resolve(ROOT_DIRECTORY, 'build'),
     // Enable gzip compression
     compress: true,
     // Which port we want to use, in this case we use port 3000
@@ -216,7 +207,7 @@ module.exports = {
              * using babel.config.js filename
              * Docs: https://babeljs.io/docs/en/config-files
              */
-            configFile: path.resolve(__dirname, 'babel.config.js'),
+            configFile: path.resolve(ROOT_DIRECTORY, 'config/babel.config.js'),
           },
         },
       },
@@ -287,7 +278,7 @@ module.exports = {
   module: {},
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
       filename: 'index.html',
     }),
   ],
@@ -337,7 +328,7 @@ Oh no, when we start our development server again, we get these error:
 
 ![Error regenerator runtime](/images/error-async-await.jpg)
 
-If you read the error carefully, **webpack** cannot find module `regenerator-runtime/runtime`, it's because to use `async await` we need 2 packages, first `@babel/runtime` and then `@babel/plugin-transform-runtime`.
+If you read the error carefully, **webpack** cannot find module `regenerator-runtime/runtime`, it's because to use `async await`, we need 2 packages, `@babel/runtime` and `@babel/plugin-transform-runtime`.
 
 Let's add it to our project:
 
@@ -668,7 +659,7 @@ module.exports = {
 
 Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file.
 
-Let's try create CSS Modules files named `index.module.css` and fill with code below:
+Let's try create CSS Modules files named `index.module.css` and fill with the code below:
 
 ```css
 /* src/index.module.css */
@@ -701,7 +692,7 @@ Introduce **postcss-preset-env**. What is it? Basically, it’s like **Babel** f
 
 **postcss-preset-env** also enabled **autoprefix** by default, so as we writing our CSS, we don't have to worry about manually add vendor prefix. Awesome right?
 
-Now, let's add to our project:
+Now, let's add it to our project:
 
 ```bash
 # If you're using yarn
@@ -713,7 +704,7 @@ npm install --save-dev postcss-loader postcss-preset-env
 
 Also, let's update our webpack config:
 
-```js{20-37,54-62,78-86,110-118}
+```js{20-36,53-61,77-85,109-117}
 // config/webpack.config.js
 module.exports = {
   // other configs
@@ -745,9 +736,8 @@ module.exports = {
               config: {
                 /**
                  * Tell postcss-loader where to find our postcss config
-                 * __dirname mean that point to current directory (which is our config folder)
                  */
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -772,7 +762,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -796,7 +786,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -828,7 +818,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -884,7 +874,7 @@ module.exports = {
 };
 ```
 
-Now, as we write our **CSS**, it will automatically add vendor prefixes, also we can start using CSS future syntax today!
+Now, as we write our **CSS**, we can start using CSS future syntax today and it also will automatically add vendor prefixes for us!
 
 There are known issues with Flexbox, you can read more [here](https://github.com/philipwalton/flexbugs). Because Flexbox now support on most browsers, we will most likely use Flexbox in our project. As we develop our project using Flexbox, we didn't want something isn't working as we'd expect because of the Flexbox issues. Luckily, there is a fixes for that using [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes).
 
@@ -955,7 +945,7 @@ module.exports = {
               limit: 4096,
               // The output folder our images
               // In this case we pick a name assets (or you can change to other name like static)
-              // In this case the output will be "build/assets"
+              // In this case the output will be "/build/assets"
               outputPath: 'assets',
             },
           },
@@ -966,7 +956,9 @@ module.exports = {
 };
 ```
 
-By now, we can start using image in our JavaScript and CSS files. Let's also add for fonts!
+By now, we can start using image in our JavaScript and CSS files.
+
+Let's also add for fonts!
 
 ```js
 // config/webpack.config.js
@@ -996,9 +988,11 @@ module.exports = {
 
 To build our project for production, we need another config and scripts, because what we used previously is only for development. You might ask, why? Perhaps, you're already aware, that what we did previously, just so we can using webpack for development, or in other word, just make it **works** so we can start developing our project without optimizing our code (JS, CSS) and assets.
 
-For production, it slightly different. The goals is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more on fast load times topic, you can read more on [web.dev](https://web.dev/fast).
+For production, it slightly different. The goals is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more on optimizing your site, you can read more on [web.dev](https://web.dev/fast).
 
-Because there are some difference between development and production, it is recommend to separate our webpack config, one for development and one for production. Now, because our `webpack.config.js` is so far only for development, let's update that name to `webpack.dev.js`. Let's also create a new webpack config file with the name `webpack.prod.js` for production inside our config folder. Now, our project folder would look like below:
+Because there are some difference between development and production, it is recommend to separate our webpack config, one for development and one for production. Now, because our `webpack.config.js` is so far only for development, let's update the name to `webpack.dev.js`. Let's also create a new webpack config file named `webpack.prod.js` for production inside our **config** folder.
+
+Now, our project structure would look like below:
 
 ```text
 |-- config
@@ -1015,17 +1009,19 @@ Because there are some difference between development and production, it is reco
 |-- package.json
 ```
 
-Let's also update our scripts on our `package.json`. First update our development scripts because we just changed the filename. Second, add scripts for production build.
+Because we just changed the filename of our webpack config, let's update our scripts in our `package.json`, then, also add a scripts for production build.
 
 ```json
 // package.json
-"scripts": {
-  "start": "webpack-dev-server --open --config=config/webpack.dev.js",
-  "build": "webpack --config=config/webpack.prod.js"
-},
+{
+  "scripts": {
+    "start": "webpack-dev-server --open --config=config/webpack.dev.js",
+    "build": "webpack --config=config/webpack.prod.js"
+  }
+}
 ```
 
-Now, what should we do with our `webpack.prod.js`? Let's fill in the same as our `webpack.dev.js`. After we copy paste, update the `mode` to **production**, then delete some options related to development only like `devServer`. We'll also disable generate source maps in production, so we'll delete `devtool` options too. But, If you wish to generate source maps, you can keep devtool options or update the value like `source-map`. You can read more [here](https://webpack.js.org/configuration/devtool/).
+Now, what should we do with our `webpack.prod.js`? Let's fill in the same as our `webpack.dev.js`. After we copy paste, update the `mode` to **production**, then delete some options related to development only like `devServer`. We'll also disable generate source maps in production, so we'll delete `devtool` options too. But, If you wish to generate source maps, you can keep devtool options or update the value like `source-map`. You can read more [here](https://webpack.js.org/configuration/devtool/) about devtool.
 
 Now our `webpack.prod.js` would look like below:
 
@@ -1035,13 +1031,15 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const ROOT_DIRECTORY = process.cwd();
+
 module.exports = {
   mode: 'production',
   entry: {
-    main: './src/index.js',
+    main: path.resolve(ROOT_DIRECTORY, 'src/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, '../build'),
+    path: path.resolve(ROOT_DIRECTORY, 'build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
   },
@@ -1054,7 +1052,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            configFile: path.resolve(__dirname, 'babel.config.js'),
+            configFile: path.resolve(ROOT_DIRECTORY, 'config/babel.config.js'),
           },
         },
       },
@@ -1076,7 +1074,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1101,7 +1099,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1125,7 +1123,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1157,7 +1155,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1199,7 +1197,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
       filename: 'index.html',
     }),
   ],
@@ -1210,7 +1208,7 @@ By now, we can start using our `build` scripts to generate our app for productio
 
 ## Cleanup every build
 
-In general it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have plugin specifically fot that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
+In general it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have plugin specifically for that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
 
 ```bash
 # If you're using yarn
@@ -1236,7 +1234,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
       filename: 'index.html',
     }),
   ],
@@ -1250,7 +1248,7 @@ For a better caching, let's use hash on our output **filename** and **chunkFilen
 module.exports = {
   // other configs
   output: {
-    path: path.resolve(__dirname, '../build'),
+    path: path.resolve(ROOT_DIRECTORY, 'build'),
     filename: '[name].[contenthash:8].bundle.js',
     chunkFilename: '[name].[contenthash:8].chunk.js',
   },
@@ -1299,7 +1297,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1324,7 +1322,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1348,7 +1346,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1380,7 +1378,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               config: {
-                path: path.resolve(__dirname),
+                path: path.resolve(ROOT_DIRECTORY, 'config'),
               },
             },
           },
@@ -1411,7 +1409,7 @@ Now, every time we run scripts `yarn build` or `npm run build`, it will also cre
 
 If we take a look at our generated HTML in `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by default using **html-minifier-terser**.
 
-Let's add minify option to our **html-webpack-plugin** to minify for production:
+Let's add minify option to our **html-webpack-plugin** for production:
 
 ```js{14-23}
 // config/webpack.prod.js
@@ -1421,7 +1419,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
       filename: 'index.html',
       /**
        * You can see all the option here:
@@ -1542,7 +1540,7 @@ module.exports = {
 
 ## Minify CSS
 
-We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, add directly **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too.
+We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, directly add **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too.
 
 You might ask, what's the difference and which one is better? To be honest, I don't really know much about it. I can't say much in this subject, but, if you're someone who knows about this, could you explain it to me or maybe give some references that I can read so I'll update this blog post.
 
@@ -1607,7 +1605,7 @@ One of important thing before delivering our assets (HTML, CSS, JS and etc) to u
 
 Some say, we don't need to do compression by ourselves. Many hosting platforms, CDNs, and Web Server like nginx or Apache could provide compression dynamically as they get requested by the browser for us. But, in this guide, we will do compression while we build our project for production.
 
-To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generate **gzip** compression. But, since Node.js **v11.7.0**, it support **brotli** compression by default, this plugin could also generate **brotli** for us. Let's add it to our project:
+To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generate **gzip** compression. But, since Node.js **v11.7.0** support **brotli** compression, this plugin could also generate **brotli** for us. Let's add it to our project:
 
 ```bash
 # If you're using yarn

@@ -3,32 +3,17 @@ path: '/blog/development-using-parceljs'
 title: 'Development using ParcelJS'
 date: '2019-11-25'
 author: 'Fin Mavis'
-tags:
-  [
-    'JavaScript',
-    'ParcelJS',
-    'Bundler',
-    'Parcel',
-    'ES6',
-    'TypeScript',
-    'SASS',
-    'SCSS',
-    'Autoprefix',
-    'postcss-preset-env',
-    'React',
-    'Preact',
-    'Vue',
-    'Svelte',
-  ]
 description: 'Learn step by step how to config and use ParcelJS for JavaScript development.'
 banner: './images/kira-auf-der-heide-IPx7J1n_xUc-unsplash.jpg'
 bannerCreditName: 'Kira auf der Heide'
 bannerCreditLink: 'https://unsplash.com/photos/IPx7J1n_xUc'
 ---
 
+Previously, we are using webpack for our develoment. There are many build tools besides webpack, and one of them is ParcelJS.
+
 ## What is ParcelJS ?
 
-According to the tag line on their home page, [Parcel](https://parceljs.org/) is a "Blazing fast, zero-configuration web application bundler". But in my opinion Parcel is a bundler that amazingly super simple to use, it's like magic. But, what do i mean by Magic ? Because Parcel will bundle all of our code like HTML, CSS, SASS, JavaScript, TypeScript without the complex of configuration stuff, so we can focus more on developing our apps instead of configure it.
+According to the tag line on their home page, [Parcel](https://parceljs.org/) is a "Blazing fast, zero-configuration web application bundler". But in my opinion Parcel is a bundler that amazingly super simple to use, it's like magic. What do i mean by Magic? Well, it's because Parcel will bundle all of our code like HTML, CSS, SASS, JavaScript, TypeScript without the complex of configuration stuff, so we can focus more on developing our apps instead of configure it.
 
 ## Getting Started
 
@@ -50,7 +35,9 @@ Once we done, we can move on to adding some basic code to get our app started.
 
 ## The Code
 
-Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If we link our main JavaScript file in the HTML using a relative path, Parcel will also process it for us, and replace the reference with a URL to the output file. So, let's create our HTML and JavaScript file. Create a `src` folder inside our project directory and create two file inside that directory, `index.html` and `index.js`. And our Project structure look like below:
+Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If we link our main JavaScript file in the HTML using a relative path, Parcel will also process it for us, and replace the reference with a URL to the output file.
+
+So, let's create our HTML and JavaScript file. Create a `src` folder inside our project directory and create two file inside that directory, `index.html` and `index.js`. And our Project structure look like below:
 
 ```text
 |-- src
@@ -84,23 +71,27 @@ And then add the following to `index.js`:
 
 ```js
 // index.js
-function HelloWorld() {
+function greet(name) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve('Hello World'), 1000);
+    setTimeout(() => resolve(`Hello ${name}!`), 1000);
   });
 }
 
-HelloWorld().then(value => console.log(value));
+greet('John Doe').then(value => {
+  console.log(value); // -> "Hello John Doe!"
+});
 ```
 
 Open `package.json` and add new scripts for starting our parcel:
 
 ```json
 // package.json
-"scripts": {
-  "start": "parcel ./src/index.html --open",
-  "build": "parcel build ./src/index.html"
-},
+{
+  "scripts": {
+    "start": "parcel ./src/index.html --open",
+    "build": "parcel build ./src/index.html"
+  }
+}
 ```
 
 With these commands we can start our development mode using `yarn start` or `npm run start` and have it open in the browser automatically, and we can using `yarn build` or `npm run build` to build our app for production.
@@ -132,50 +123,48 @@ In this case we will use this configuration:
 
 ```json
 // package.json
-"browserslist": [
-  ">0.2%",
-  "not dead",
-  "not op_mini all"
-],
+{
+  "browserslist": [">0.2%", "not dead", "not op_mini all"]
+}
 ```
 
 Now update our index.js to using `async await`:
 
 ```js
 // index.js
-function HelloWorld() {
+function greet(name) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve('Hello World'), 1000);
+    setTimeout(() => resolve(`Hello ${name}!`), 1000);
   });
 }
 
 async function print() {
-  const result = await HelloWorld();
-  console.log(result);
+  const result = await greet('John Doe');
+  console.log(result); // -> "Hello John Doe!"
 }
 
 print();
 ```
 
-Oh wait, that's really easy, what about `dynamic import` for `code splitting` ? We can do that too. Let's update our code, extract `HelloWorld` function to it's own file then import it from `index.js`
+Oh wait, that's really easy, what about `dynamic import` for `code splitting`? We can do that too. Let's update our code, extract `greet` function to it's own file then import it from `index.js`
 
 ```js
 // index.js
 async function print() {
   /**
-   * Notice that in here we are using dynamic import hello-world.js
+   * Notice that in here we are using dynamic import greet.js
    */
-  const { HelloWorld } = await import('./hello-world');
-  const result = await HelloWorld();
-  console.log(result);
+  const { greet } = await import('./greet');
+  const result = await greet('John Doe');
+  console.log(result); // -> "Hello John Doe!"
 }
 
 print();
 
-// hello-world.js
-export function HelloWorld() {
+// greet.js
+export function greet(name) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve('Hello World'), 1000);
+    setTimeout(() => resolve(`Hello ${name}!`), 1000);
   });
 }
 ```
@@ -213,9 +202,9 @@ There are two ways to adding style to the project. First we directly include in 
 import './style.css'; // Or we can import it on our JavaScript File
 
 async function print() {
-  const { HelloWorld } = await import('./hello-world');
-  const result = await HelloWorld();
-  console.log(result);
+  const { greet } = await import('./greet');
+  const result = await greet('John Doe');
+  console.log(result); // -> "Hello John Doe!"
 }
 
 print();
@@ -260,23 +249,17 @@ Then just like above, we can include directly on HTML or import from our JavaScr
 import './style.scss'; // Or we can import it on our JavaScript File
 
 async function print() {
-  const { HelloWorld } = await import('./hello-world');
-  const result = await HelloWorld();
-  console.log(result);
+  const { greet } = await import('./greet');
+  const result = await greet('John Doe');
+  console.log(result); // -> "Hello John Doe!"
 }
 
 print();
 ```
 
-That's really nice, what if we want to write `css` without to worry about vendor prefixes or want to use CSS modern and future syntax ? We can also add that to our project using `postcss-preset-env`.
+That's really nice, what if we want to write `css` without to worry about vendor prefixes or want to use CSS modern and future syntax ? We can also add that to our project using `postcss-preset-env` just like how we do it on webpack guide.
 
-But, What is it ? What is `postcss-preset-env` ? Basically, it’s like `Babel` for CSS. It allows us to write CSS using modern and future syntax and transpiles that code to CSS which is widely supported by most browsers.
-
-For example, we want to use `Nesting Rules` in our `css`, but if we take look at [cssdb](https://cssdb.org/), it still on Stage 1, so basically we can't use it. But with the help of `postcss-preset-env` we can start using it. Yeaaaayyy!!!
-
-And for vendor prefixes, `postcss-preset-env` by default includes `autoprefixer` with `autoprefixer` options.
-
-Let's get our hand dirty then.
+Let's add it to our project:
 
 ```bash
 # If you're using yarn
