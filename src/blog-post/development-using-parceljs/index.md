@@ -13,7 +13,7 @@ Previously, we are using webpack for our develoment. There are many build tools 
 
 ## What is ParcelJS ?
 
-According to the tag line on their home page, [Parcel](https://parceljs.org/) is a "Blazing fast, zero-configuration web application bundler". But in my opinion Parcel is a bundler that amazingly super simple to use, it's like magic. What do i mean by Magic? Well, it's because Parcel will bundle all of our code like HTML, CSS, SASS, JavaScript, TypeScript without the complex of configuration stuff, so we can focus more on developing our apps instead of configure it.
+According to the tag line on their home page, [Parcel](https://parceljs.org/) is a **"Blazing fast, zero-configuration web application bundler"**. But in my opinion Parcel is a bundler that amazingly super simple to use, it's like magic. What do i mean by Magic? Well, it's because Parcel will bundle all of our code like HTML, CSS, SASS, JavaScript, TypeScript without the complex of configuration stuff, so we can focus more on developing our apps instead of configure it.
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ First, we need to create our Project. Create a new folder, and i'll pick a folde
 
 ## Install ParcelJS
 
-We can now install ParcelJS, along with our other dependencies. Run the following to install Parcel:
+We can now install ParcelJS, along with other dependencies. Run the following to install Parcel:
 
 ```bash
 # If you're using yarn
@@ -35,9 +35,9 @@ Once we done, we can move on to adding some basic code to get our app started.
 
 ## The Code
 
-Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If we link our main JavaScript file in the HTML using a relative path, Parcel will also process it for us, and replace the reference with a URL to the output file.
+Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If we link our main JavaScript file in the HTML using a relative path, Parcel will process it for us, and replace the reference with a URL to the output file.
 
-So, let's create our HTML and JavaScript file. Create a `src` folder inside our project directory and create two file inside that directory, `index.html` and `index.js`. And our Project structure look like below:
+So, let's create our HTML and JS file. Create a `src` folder inside our project directory and create 2 files inside that directory, `index.html` and `index.js`, and our project structure will look like below:
 
 ```text
 |-- src
@@ -96,7 +96,9 @@ Open `package.json` and add new scripts for starting our parcel:
 
 With these commands we can start our development mode using `yarn start` or `npm run start` and have it open in the browser automatically, and we can using `yarn build` or `npm run build` to build our app for production.
 
-Ok, understood. But, what if i want to use `async await`? First, we need to install another package.
+## Async Await
+
+If you read the webpack guide, you know that to make `async await` works, we need `@babel/runtime` and `@babel/plugin-transform-runtime`.
 
 ```bash
 # If you're using yarn
@@ -121,16 +123,20 @@ And then, we need to set browserlist that we want to support in `package.json`. 
 
 In this case we will use this configuration:
 
-```json
+```json{7}
 // package.json
 {
+  "scripts": {
+    "start": "parcel ./src/index.html --open",
+    "build": "parcel build ./src/index.html"
+  },
   "browserslist": [">0.2%", "not dead", "not op_mini all"]
 }
 ```
 
 Now update our index.js to using `async await`:
 
-```js
+```js{8-15}
 // index.js
 function greet(name) {
   return new Promise((resolve, reject) => {
@@ -148,7 +154,14 @@ print();
 
 Oh wait, that's really easy, what about `dynamic import` for `code splitting`? We can do that too. Let's update our code, extract `greet` function to it's own file then import it from `index.js`
 
-```js
+```js{13}
+// greet.js
+export function greet(name) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(`Hello ${name}!`), 1000);
+  });
+}
+
 // index.js
 async function print() {
   /**
@@ -160,13 +173,6 @@ async function print() {
 }
 
 print();
-
-// greet.js
-export function greet(name) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(`Hello ${name}!`), 1000);
-  });
-}
 ```
 
 Dang! ParcelJS is so easy to use! What about others feature like `Optional Chaining`, `Nullish Coalescing Operator` or `Proposal Class Properties` ? We can do it too by installing all `babel plugins` that we need. You can check [Here](https://github.com/babel/babel/tree/master/packages) to see all the `babel plugins`.
