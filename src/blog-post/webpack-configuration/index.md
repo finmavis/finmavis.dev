@@ -365,8 +365,6 @@ If we start our development server again, now the error is gone, and we can star
 
 What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above.
 
-<small>Note: Since **Babel 7.8.0**, `optional-chaining` and `nullish-coalescing-operator` enabled by default, so if our Babel version is **7.8.0** and above, we don't have to add the plugin manually.</small>
-
 ```bash
 # If you're using yarn
 yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
@@ -374,6 +372,8 @@ yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-n
 # If you're using npm
 npm install --save-dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
 ```
+
+<small>Note: Since **Babel 7.8.0**, `optional-chaining` and `nullish-coalescing-operator` enabled by default, so if our Babel version is **7.8.0** and above, we don't have to install and add the plugin manually.</small>
 
 Then don't forget to add it to our **Babel** config:
 
@@ -389,7 +389,7 @@ module.exports = {
 };
 ```
 
-What if we want to use `dynamic import`, can we do that? Yes we can! Since **Babel** version **7.4.0**, `dynamic import` support enabled by default, so we don't have to install `@babel/plugin-proposal-dynamic-import`, but if our Babel version below that version, we have to add that plugin to our project.
+What if we want to use `dynamic import`, can we do that? Yes we can! Since **Babel** version **7.4.0**, `dynamic import` support enabled by default, so we don't have to install `@babel/plugin-proposal-dynamic-import`, but if our Babel version below that version, we have to add that plugin manually to our project.
 
 Let's split our greet function into separate files, then we will use `dynamic import` in our `index.js` file:
 
