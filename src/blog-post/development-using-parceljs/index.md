@@ -100,6 +100,8 @@ With these commands we can start our development mode using `yarn start` or `npm
 
 If you read the webpack guide, you know that to make `async await` works, we need `@babel/runtime` and `@babel/plugin-transform-runtime`.
 
+Let's add it to our project:
+
 ```bash
 # If you're using yarn
 yarn add @babel/runtime
