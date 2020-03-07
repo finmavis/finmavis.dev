@@ -33,6 +33,8 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
       <SEO
         title={markdownRemark.frontmatter.title}
         description={markdownRemark.frontmatter.description}
+        isBlogPost
+        image={markdownRemark.frontmatter.banner.childImageSharp.fluid.src}
       />
       <Container
         css={css`

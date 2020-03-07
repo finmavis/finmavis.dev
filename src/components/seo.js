@@ -3,17 +3,13 @@
  *  Gatsby's useStaticQuery React hook
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
- *
- * TODO:
- * Add siteUrl
  */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, title, isBlogPost }) {
+function SEO({ description, lang, title, isBlogPost, image }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -22,6 +18,8 @@ function SEO({ description, lang, meta, title, isBlogPost }) {
             title
             description
             author
+            canonicalUrl
+            image
           }
         }
       }
@@ -29,70 +27,44 @@ function SEO({ description, lang, meta, title, isBlogPost }) {
   );
 
   const metaDescription = description || site.siteMetadata.description;
+  const metaImage = image || site.siteMetadata.image;
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        /**
-         * General Tags
-         * TODO: Add meta name image
-         */
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        /**
-         * OpenGraph tags
-         * TODO:
-         * Add meta og:url
-         * Add meta og:image
-         * Update og:type to article only if on blog post page
-         */
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        /**
-         * Twitter Card tags
-         * TODO: Add meta twitter:image
-         */
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <Helmet>
+      {/* General Tags */}
+      <html lang={lang} />
+      <title>{title}</title>
+      <meta name='description' content={metaDescription} />
+      <meta
+        name='image'
+        content={`${site.siteMetadata.canonicalUrl}${metaImage}`}
+      />
+
+      {/* OpenGraph tags */}
+      <meta property='og:url' content={site.siteMetadata.canonicalUrl} />
+      <meta property='og:type' content={isBlogPost ? 'article' : 'website'} />
+      <meta property='og:title' content={title} />
+      <meta property='og:description' content={metaDescription} />
+      <meta
+        property='og:image'
+        content={`${site.siteMetadata.canonicalUrl}${metaImage}`}
+      />
+
+      {/* Twitter Card tags */}
+      <meta name='twitter:card' content='summary_large_image' />
+      <meta name='twitter:creator' content='@finmavis' />
+      <meta name='twitter:title' content={title} />
+      <meta name='twitter:description' content={metaDescription} />
+      <meta
+        name='twitter:image'
+        content={`${site.siteMetadata.canonicalUrl}${metaImage}`}
+      />
+    </Helmet>
   );
 }
 
 SEO.defaultProps = {
   lang: `en`,
-  meta: [],
   description: ``,
   isBlogPost: false,
 };
@@ -100,7 +72,6 @@ SEO.defaultProps = {
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   isBlogPost: PropTypes.bool,
 };

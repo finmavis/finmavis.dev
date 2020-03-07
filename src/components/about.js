@@ -60,10 +60,10 @@ export default function About() {
           >
             <h2>About Me</h2>
             <p>
-              I’m Aris Rinardi, also known as Fin Mavis. I’m a self-taught
-              Frontend Developer based in Jakarta. I’m really interested in
-              technology &amp; solving technical problems. You can know more
-              about me by reading my{' '}
+              I’m Aris Rinardi, also known as Fin Mavis. I’m a Frontend
+              Developer based in Jakarta. I’m really interested in technology
+              &amp; solving technical problems. You can know more about me by
+              reading my{' '}
               <Link
                 aria-label='Go to blog page'
                 to='/blog/'

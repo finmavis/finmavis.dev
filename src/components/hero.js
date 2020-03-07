@@ -44,8 +44,7 @@ export default function Hero() {
               }
             `}
           >
-            Also known as Fin Mavis, a self-taught Frontend Developer based in
-            Jakarta
+            Also known as Fin Mavis, a Frontend Developer based in Jakarta
           </span>
         </h1>
       </Container>
