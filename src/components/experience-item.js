@@ -19,7 +19,7 @@ export default function ExperienceItem({ company, year, position }) {
         css={css`
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          align-items: flex-start;
           text-transform: uppercase;
           margin-bottom: 0.25rem;
         `}
@@ -31,7 +31,17 @@ export default function ExperienceItem({ company, year, position }) {
         >
           {company}
         </h4>
-        <span>{year}</span>
+        <span
+          css={css`
+            text-align: right;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: 1.25;
+            padding-left: 0.35rem;
+          `}
+        >
+          {year}
+        </span>
       </div>
       {position}
     </div>

@@ -44,7 +44,17 @@ export default function CourseItem({ title, data }) {
               justify-content: space-between;
             `}
           >
-            {item.name} <span>{item.year}</span>
+            {item.name}{' '}
+            <span
+              css={css`
+                text-align: right;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                padding-left: 0.35rem;
+              `}
+            >
+              {item.year}
+            </span>
           </p>
         ))}
       </div>
