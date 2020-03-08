@@ -9,8 +9,9 @@ import EmailIcon from '../shared/assets/svg/email.inline.svg';
 import LocationIcon from '../shared/assets/svg/location.inline.svg';
 
 import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
+import SEO from './seo';
 
-export default function About() {
+export default function About({ location }) {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "profile.jpg" }) {

@@ -8,7 +8,7 @@ import Layout from '../components/layout';
 import Container from '../components/container';
 import HeadingSection from '../components/heading-section';
 
-export default function Blog({ data, pageContext }) {
+export default function Blog({ data, pageContext, location }) {
   const { allMarkdownRemark } = data;
   const { currentPage, numberOfPages } = pageContext;
   const isFirst = currentPage === 1;
@@ -18,7 +18,7 @@ export default function Blog({ data, pageContext }) {
 
   return (
     <Layout>
-      <SEO title='Blog' />
+      <SEO title='Blog' pathname={location.pathname} />
       <section
         css={css`
           padding-top: 3.5rem;

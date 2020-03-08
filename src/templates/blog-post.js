@@ -35,6 +35,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
         description={markdownRemark.frontmatter.description}
         isBlogPost
         image={markdownRemark.frontmatter.banner.childImageSharp.fluid.src}
+        pathname={markdownRemark.frontmatter.path}
       />
       <Container
         css={css`

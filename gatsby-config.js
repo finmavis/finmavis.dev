@@ -1,11 +1,18 @@
+const ACTIVE_ENV = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV;
+require('dotenv').config({
+  path: `.env.${ACTIVE_ENV}`,
+});
+
+const config = require('./config');
+
 module.exports = {
   siteMetadata: {
-    title: 'Fin Mavis',
-    description:
-      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
-    author: 'Fin Mavis',
-    canonicalUrl: 'https://finmavis.dev',
-    image: '/images/opengraph.jpg',
+    title: config.title,
+    description: config.description,
+    author: config.author,
+    canonicalUrl: config.canonicalUrl,
+    siteUrl: config.siteUrl,
+    ogImage: config.ogImage,
   },
   plugins: [
     'gatsby-plugin-react-helmet',

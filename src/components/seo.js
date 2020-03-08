@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, title, isBlogPost, image }) {
+function SEO({ description, lang, title, isBlogPost, image, pathname }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,7 +19,8 @@ function SEO({ description, lang, title, isBlogPost, image }) {
             description
             author
             canonicalUrl
-            image
+            siteUrl
+            ogImage
           }
         }
       }
@@ -27,46 +28,43 @@ function SEO({ description, lang, title, isBlogPost, image }) {
   );
 
   const metaDescription = description || site.siteMetadata.description;
-  const metaImage = image || site.siteMetadata.image;
+  const metaImagePath = image || site.siteMetadata.ogImage;
+  const metaImage = `${site.siteMetadata.siteUrl}${metaImagePath}`;
+  const metaUrl = `${site.siteMetadata.siteUrl}${pathname ? pathname : '/'}`;
 
   return (
     <Helmet>
       {/* General Tags */}
       <html lang={lang} />
       <title>{title}</title>
+      <link rel='canonical' href={site.siteMetadata.canonicalUrl} />
       <meta name='description' content={metaDescription} />
-      <meta
-        name='image'
-        content={`${site.siteMetadata.canonicalUrl}${metaImage}`}
-      />
+      <meta name='image' content={metaImage} />
 
       {/* OpenGraph tags */}
-      <meta property='og:url' content={site.siteMetadata.canonicalUrl} />
+      <meta property='og:url' content={metaUrl} />
       <meta property='og:type' content={isBlogPost ? 'article' : 'website'} />
       <meta property='og:title' content={title} />
       <meta property='og:description' content={metaDescription} />
-      <meta
-        property='og:image'
-        content={`${site.siteMetadata.canonicalUrl}${metaImage}`}
-      />
+      <meta property='og:image' content={metaImage} />
 
       {/* Twitter Card tags */}
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:creator' content='@finmavis' />
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={metaDescription} />
-      <meta
-        name='twitter:image'
-        content={`${site.siteMetadata.canonicalUrl}${metaImage}`}
-      />
+      <meta name='twitter:image' content={metaImage} />
     </Helmet>
   );
 }
 
 SEO.defaultProps = {
-  lang: `en`,
   description: ``,
+  lang: `en`,
+  title: ``,
   isBlogPost: false,
+  image: ``,
+  pathname: ``,
 };
 
 SEO.propTypes = {
@@ -74,6 +72,8 @@ SEO.propTypes = {
   lang: PropTypes.string,
   title: PropTypes.string.isRequired,
   isBlogPost: PropTypes.bool,
+  image: PropTypes.string,
+  pathname: PropTypes.string,
 };
 
 export default SEO;
