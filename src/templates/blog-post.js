@@ -17,7 +17,7 @@ import TwitterRoundedIcon from '../shared/assets/svg/twitter-rounded.inline.svg'
 import LinkedinRoundedIcon from '../shared/assets/svg/linkedin-rounded.inline.svg';
 
 export default function BlogPost({ data, pageContext, location, navigate }) {
-  const { markdownRemark, file } = data;
+  const { site, markdownRemark, file } = data;
   const { previous, next } = pageContext;
 
   const onGoBack = () => {
@@ -158,17 +158,17 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                 `}
               >
                 <FacebookShareButton
-                  url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
+                  url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
                 >
                   <FacebookRoundedIcon />
                 </FacebookShareButton>
                 <TwitterShareButton
-                  url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
+                  url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
                 >
                   <TwitterRoundedIcon />
                 </TwitterShareButton>
                 <LinkedinShareButton
-                  url={`https://locahost:8000${markdownRemark.frontmatter.path}`}
+                  url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
                 >
                   <LinkedinRoundedIcon />
                 </LinkedinShareButton>
@@ -269,6 +269,11 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
 
 export const query = graphql`
   query($path: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       timeToRead
       frontmatter {
