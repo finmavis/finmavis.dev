@@ -17,15 +17,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
-    {
-      resolve: 'gatsby-plugin-use-dark-mode',
-      options: {
-        classNameDark: 'dark-mode',
-        classNameLight: 'light-mode',
-        storageKey: 'darkMode',
-        minify: true,
-      },
-    },
+    'gatsby-plugin-use-dark-mode',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -106,6 +98,7 @@ module.exports = {
         background_color: '#216d8e',
         theme_color: '#216d8e',
         display: 'standalone',
+        description: 'The personal website of Fin Mavis',
         icon: 'static/android-chrome-512x512.png', // This path is relative to the root of the site.
       },
     },

@@ -38,7 +38,7 @@ export default function Layout({ children }) {
             padding-bottom: 4rem;
           }
 
-          @media (prefers-color-scheme: light) {
+          body.light-mode {
             --color-primary: var(--charcoal);
             --color-secondary: var(--ash);
             --bg-color: var(--white);
@@ -53,33 +53,7 @@ export default function Layout({ children }) {
             --bg-blog-list: var(--mine-white);
           }
 
-          .light-mode {
-            --color-primary: var(--charcoal);
-            --color-secondary: var(--ash);
-            --bg-color: var(--white);
-            --bg-hero: linear-gradient(
-              to top,
-              rgba(241, 241, 241, 0.81),
-              var(--bone) 58%
-            );
-            --bg-current-work: var(--white);
-            --bg-footer: var(--concrete);
-            --bg-experience: var(--bone);
-            --bg-blog-list: var(--mine-white);
-          }
-
-          @media (prefers-color-scheme: dark) {
-            --color-primary: var(--ivory);
-            --color-secondary: var(--ash);
-            --bg-color: var(--night);
-            --bg-hero: linear-gradient(to bottom, #2b2a2a 65%, #393939 106%);
-            --bg-current-work: var(--ship-gray);
-            --bg-footer: linear-gradient(to top, #2b2a2a 106%, #3c3c3e 65%);
-            --bg-experience: var(--mine-shaft);
-            --bg-blog-list: var(--mine-shaft);
-          }
-
-          .dark-mode {
+          body.dark-mode {
             --color-primary: var(--ivory);
             --color-secondary: var(--ash);
             --bg-color: var(--night);
