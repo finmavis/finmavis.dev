@@ -18,7 +18,11 @@ export default function Blog({ data, pageContext, location }) {
 
   return (
     <Layout>
-      <SEO title='Blog' pathname={location.pathname} />
+      <SEO
+        title='Fin Mavis personal notes'
+        description={`Come take a look Fin Mavis's personal notes. Maybe you will find something useful and learn from it.`}
+        pathname={location.pathname}
+      />
       <section
         css={css`
           padding-top: 3.5rem;

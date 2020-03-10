@@ -135,6 +135,13 @@ Open up our `config/webpack.config.js` and add code below:
 // config/webpack.config.js
 const path = require('path');
 
+/**
+ * process.cwd will return a path to our active project directory
+ * For example on windows will look like:
+ * c:\Users\username\project\webpack-boilerplate
+ * On Mac:
+ * /Users/username/project/webpack-boilerplate
+ */
 const ROOT_DIRECTORY = process.cwd();
 
 module.exports = {
