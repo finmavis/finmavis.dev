@@ -41,6 +41,8 @@ export default function ToggleSwitch(props) {
             height: 0;
             width: 0;
             visibility: hidden;
+            user-select: none;
+            position: absolute;
 
             &:checked + label {
               background: transparent;
@@ -58,7 +60,7 @@ export default function ToggleSwitch(props) {
           htmlFor='toggle-switch-dark-mode'
           css={css`
             cursor: pointer;
-            text-indent: -9999px;
+            text-indent: -10rem;
             width: 2.5rem;
             height: 0.95rem;
             background: transparent;
@@ -66,6 +68,7 @@ export default function ToggleSwitch(props) {
             border-radius: 5rem;
             position: relative;
             border: 1px solid var(--ash);
+            overflow: hidden;
 
             &:after {
               content: '';
