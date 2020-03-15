@@ -1,11 +1,23 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from './container';
 
 import FinIcon from '../shared/assets/svg/fin.inline.svg';
 
 export default function Hero() {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          name
+          author
+        }
+      }
+    }
+  `);
+
   return (
     <section
       css={css`
@@ -31,7 +43,7 @@ export default function Hero() {
       ></div>
       <Container>
         <h1>
-          Hello, I’m Aris Rinardi{' '}
+          Hello, I’m {data.site.siteMetadata.name}{' '}
           <span
             css={css`
               display: block;
@@ -44,7 +56,8 @@ export default function Hero() {
               }
             `}
           >
-            Also known as Fin Mavis, a Frontend Developer based in Jakarta
+            Also known as {data.site.siteMetadata.author}, a Software Engineer
+            based in Jakarta
           </span>
         </h1>
       </Container>
@@ -82,6 +95,10 @@ export default function Hero() {
           @media (max-width: 467px) {
             bottom: 3.7rem;
           }
+
+          @media (max-width: 382px) {
+            bottom: 4rem;
+          }
         `}
       >
         <FinIcon
@@ -97,7 +114,7 @@ export default function Hero() {
               height: 14rem;
             }
 
-            @media (max-width: 320px) {
+            @media (max-width: 382px) {
               height: 12rem;
             }
           `}

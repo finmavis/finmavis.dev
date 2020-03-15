@@ -9,7 +9,8 @@ module.exports = {
   siteMetadata: {
     title: config.title,
     description: config.description,
-    author: config.author,
+    name: config.name,
+    author: config.nickname,
     canonicalUrl: config.canonicalUrl,
     siteUrl: config.siteUrl,
     ogImage: config.ogImage,
@@ -92,19 +93,17 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Fin Mavis',
-        short_name: 'Fin Mavis',
+        name: config.author,
+        short_name: config.author,
         start_url: '/',
-        background_color: '#216d8e',
-        theme_color: '#216d8e',
+        background_color: config.themeColor,
+        theme_color: config.themeColor,
         display: 'standalone',
-        description: 'The personal website of Fin Mavis',
-        icon: 'static/android-chrome-512x512.png', // This path is relative to the root of the site.
+        description: config.description,
+        icon: config.manifestImage, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
+    'gatsby-plugin-offline',
     'gatsby-plugin-sitemap',
   ],
 };

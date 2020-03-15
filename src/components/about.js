@@ -9,11 +9,16 @@ import EmailIcon from '../shared/assets/svg/email.inline.svg';
 import LocationIcon from '../shared/assets/svg/location.inline.svg';
 
 import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
-import SEO from './seo';
 
 export default function About({ location }) {
   const data = useStaticQuery(graphql`
     query {
+      site {
+        siteMetadata {
+          name
+          author
+        }
+      }
       file(relativePath: { eq: "profile.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 300) {
@@ -61,10 +66,15 @@ export default function About({ location }) {
           >
             <h2>About Me</h2>
             <p>
-              I’m Aris Rinardi, also known as Fin Mavis. I’m a Frontend
-              Developer based in Jakarta. I’m really interested in technology
-              &amp; solving technical problems. You can know more about me by
-              reading my{' '}
+              Hi! My name is {data.site.siteMetadata.name}, also known as{' '}
+              {data.site.siteMetadata.author}. I’m a professional software
+              engineer based in Jakarta, with very strong preferences and
+              proficiencies in web development.
+            </p>
+            <p>
+              I’m really interested in technology, conscientious &amp;
+              relentless on solving technical problems. You can find out more
+              about me by reading my{' '}
               <Link
                 aria-label='Go to blog page'
                 to='/blog/'
@@ -72,26 +82,6 @@ export default function About({ location }) {
                   border: 1px solid transparent;
                   position: relative;
                   color: var(--cornflower-blue);
-
-                  &::after {
-                    background-color: var(--cornflower-blue);
-                    content: ' ';
-                    display: block;
-                    height: 1px;
-                    left: 50%;
-                    position: absolute;
-                    top: 22px;
-                    transition: left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
-                      width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-                    width: 0%;
-                  }
-
-                  &:hover {
-                    &::after {
-                      left: 0;
-                      width: 100%;
-                    }
-                  }
                 `}
               >
                 articles

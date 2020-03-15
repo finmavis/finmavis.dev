@@ -76,7 +76,7 @@ export default function ToggleSwitch(props) {
               height: 0.65rem;
               background: var(--ash);
               border-radius: 0.65rem;
-              transition: 0.2s ease;
+              transition: all 0.2s ease;
             }
           `}
         >

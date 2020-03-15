@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
@@ -9,7 +10,7 @@ import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
 const SocialLink = styled.a`
   background: none;
   transition: all 0.2s ease;
-  padding: 0.75rem 0.75rem 0.25rem;
+  padding: 0.75rem 0.5rem 0.25rem;
 
   @media (min-width: 900px) {
     padding: 0 0.5rem;
@@ -26,7 +27,17 @@ const SocialLink = styled.a`
   }
 `;
 
-export default function Footer() {
+export default function Footer(props) {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          author
+        }
+      }
+    }
+  `);
+
   return (
     <footer
       css={css`
@@ -55,7 +66,7 @@ export default function Footer() {
             align-items: center;
           `}
         >
-          &copy; Fin Mavis - {new Date().getFullYear()}
+          &copy; {data.site.siteMetadata.author} - {new Date().getFullYear()}
         </div>
         <div
           css={css`

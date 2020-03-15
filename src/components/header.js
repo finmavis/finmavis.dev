@@ -18,7 +18,9 @@ const NavLink = styled(Link)`
   }
 `;
 
-export default function Header() {
+export default function Header(props) {
+  const isBrowser = () => typeof window !== 'undefined';
+
   return (
     <header
       css={css`
@@ -65,7 +67,7 @@ export default function Header() {
           >
             Blog
           </NavLink>
-          <ToggleSwitch />
+          {isBrowser() && <ToggleSwitch />}
         </nav>
       </Container>
     </header>
