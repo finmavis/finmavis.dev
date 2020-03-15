@@ -19,7 +19,7 @@ export default function Blog({ data, pageContext, location }) {
   return (
     <Layout>
       <SEO
-        title='Fin Mavis personal notes'
+        title='Blog'
         description={`Come take a look Fin Mavis's personal notes. Maybe you will find something useful and learn from it.`}
         pathname={location.pathname}
       />

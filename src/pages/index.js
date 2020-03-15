@@ -12,7 +12,7 @@ import BlogPreview from '../components/blog-preview';
 export default function IndexPage() {
   return (
     <Layout>
-      <SEO title='Fin Mavis' />
+      <SEO title='Home' />
       <Hero />
       <Playground />
       <Experience />

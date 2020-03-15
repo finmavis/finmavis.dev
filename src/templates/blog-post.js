@@ -16,16 +16,12 @@ import FacebookRoundedIcon from '../shared/assets/svg/facebook-rounded.inline.sv
 import TwitterRoundedIcon from '../shared/assets/svg/twitter-rounded.inline.svg';
 import LinkedinRoundedIcon from '../shared/assets/svg/linkedin-rounded.inline.svg';
 
-export default function BlogPost({ data, pageContext, location, navigate }) {
+export default function BlogPost({ data, pageContext, navigate }) {
   const { site, markdownRemark, file } = data;
   const { previous, next } = pageContext;
 
   const onGoBack = () => {
-    if (document.referrer.indexOf(location.host) !== -1) {
-      window.history.back();
-    } else {
-      navigate('/blog/');
-    }
+    navigate('/blog/');
   };
 
   return (
@@ -250,7 +246,7 @@ export default function BlogPost({ data, pageContext, location, navigate }) {
                       rel='noopener noreferrer nofollow'
                       aria-label='Visit Fin Mavis twitter'
                     >
-                      Fin Mavis
+                      {site.siteMetadata.author}
                     </a>
                     .
                   </em>
@@ -272,6 +268,7 @@ export const query = graphql`
     site {
       siteMetadata {
         siteUrl
+        author
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {

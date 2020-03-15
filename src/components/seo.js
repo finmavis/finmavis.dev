@@ -36,7 +36,9 @@ function SEO({ description, lang, title, isBlogPost, image, pathname }) {
     <Helmet>
       {/* General Tags */}
       <html lang={lang} />
-      <title>{title}</title>
+      <title>
+        {title} | {site.siteMetadata.author}
+      </title>
       <link rel='canonical' href={site.siteMetadata.canonicalUrl} />
       <meta name='description' content={metaDescription} />
       <meta name='image' content={metaImage} />

@@ -7,7 +7,7 @@ import About from '../components/about';
 export default function AboutPage({ location }) {
   return (
     <Layout>
-      <SEO title='About Fin Mavis' pathname={location.pathname} />
+      <SEO title='About' pathname={location.pathname} />
       <About />
     </Layout>
   );
