@@ -11,6 +11,7 @@ const SocialLink = styled.a`
   background: none;
   transition: all 0.2s ease;
   padding: 0.75rem 0.5rem 0.25rem;
+  box-shadow: none;
 
   @media (min-width: 900px) {
     padding: 0 0.5rem;

@@ -186,6 +186,7 @@ export default function About({ location }) {
                   css={css`
                     color: var(--color-primary);
                     display: inline-block;
+                    box-shadow: none;
 
                     svg {
                       height: 1rem;

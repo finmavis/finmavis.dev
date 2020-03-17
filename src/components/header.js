@@ -12,6 +12,7 @@ const NavLink = styled(Link)`
   color: var(--color-secondary);
   font-family: inherit;
   font-weight: 700;
+  box-shadow: none;
 
   &.active {
     color: var(--color-primary);
