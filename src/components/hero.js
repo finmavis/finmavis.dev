@@ -56,7 +56,7 @@ export default function Hero() {
               }
             `}
           >
-            Also known as {data.site.siteMetadata.author}, a Software Engineer
+            Also known as {data.site.siteMetadata.author}, a Frontend Developer
             based in Jakarta
           </span>
         </h1>

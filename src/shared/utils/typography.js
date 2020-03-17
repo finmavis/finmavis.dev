@@ -7,6 +7,7 @@ fairyGateThemes.overrideThemeStyles = ({ rhythm, scale }, options) => {
       background: 'none',
       color: '#5e9bea',
       textShadow: 'none',
+      textDecoration: 'none',
     },
   };
 };

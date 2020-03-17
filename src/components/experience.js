@@ -7,7 +7,7 @@ import Position from './position';
 
 import { EXPERIENCE_DATA } from '../shared/constants/experience.constant';
 
-export default function Experience() {
+export default function Experience(props) {
   return (
     <section
       css={css`

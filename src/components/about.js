@@ -67,14 +67,12 @@ export default function About({ location }) {
             <h2>About Me</h2>
             <p>
               Hi! My name is {data.site.siteMetadata.name}, also known as{' '}
-              {data.site.siteMetadata.author}. I’m a professional software
-              engineer based in Jakarta, with very strong preferences and
-              proficiencies in web development.
+              {data.site.siteMetadata.author}. I’m a Frontend Developer based in
+              Jakarta. Currently, I'm working as a Web Engineer at Style Theory.
             </p>
             <p>
-              I’m really interested in technology, conscientious &amp;
-              relentless on solving technical problems. You can find out more
-              about me by reading my{' '}
+              Tech enthusiast, conscientious &amp; relentless on solving
+              technical problems. You can find out more about me by reading my{' '}
               <Link
                 aria-label='Go to blog page'
                 to='/blog/'

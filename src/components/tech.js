@@ -84,7 +84,7 @@ const slide6 = keyframes`
   }
 `;
 
-export default function Tech() {
+export default function Tech(props) {
   return (
     <section
       css={css`

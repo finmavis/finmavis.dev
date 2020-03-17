@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import Container from './container';
 import HeadingSection from './heading-section';
 import Position from './position';
-import CourseItem from './course-item';
+import Courses from './courses';
 
 import {
   FORMAL_EDUCATION,
@@ -36,9 +36,9 @@ export default function Education() {
         <HeadingSection>Courses</HeadingSection>
         <div>
           {COURSE_LIST.map(courseItem => (
-            <CourseItem
+            <Courses
               key={courseItem.source}
-              title={courseItem.source}
+              name={courseItem.source}
               data={courseItem.course}
             />
           ))}
