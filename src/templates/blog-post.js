@@ -1,28 +1,16 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
-import {
-  TwitterShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-} from 'react-share';
 
 import Img from 'gatsby-image';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Container from '../components/container';
+import Share from '../components/share';
 
-import FacebookRoundedIcon from '../shared/assets/svg/facebook-rounded.inline.svg';
-import TwitterRoundedIcon from '../shared/assets/svg/twitter-rounded.inline.svg';
-import LinkedinRoundedIcon from '../shared/assets/svg/linkedin-rounded.inline.svg';
-
-export default function BlogPost({ data, pageContext, navigate }) {
+export default function BlogPost({ data, pageContext }) {
   const { site, markdownRemark, file } = data;
   const { previous, next } = pageContext;
-
-  const onGoBack = () => {
-    navigate('/blog/');
-  };
 
   return (
     <Layout>
@@ -45,15 +33,11 @@ export default function BlogPost({ data, pageContext, navigate }) {
             color: var(--color-primary);
           `}
         >
-          <button
+          <Link
             aria-label='Back to blog list page'
-            onClick={onGoBack}
+            to='/blog/'
             css={css`
-              background: none;
-              cursor: pointer;
-              border: 0;
-              color: var(--cornflower-blue);
-              padding: 0;
+              display: inline-block;
               margin-top: 2.5rem;
 
               @media (max-width: 900px) {
@@ -62,7 +46,7 @@ export default function BlogPost({ data, pageContext, navigate }) {
             `}
           >
             &larr; Back to list
-          </button>
+          </Link>
           <article>
             <h1
               css={css`
@@ -114,62 +98,9 @@ export default function BlogPost({ data, pageContext, navigate }) {
               <em>{markdownRemark.frontmatter.description}</em>
             </p>
             <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
-            <div
-              css={css`
-                text-align: center;
-                margin-top: 2.5rem;
-                margin-bottom: 1.5rem;
-              `}
-            >
-              <p
-                css={css`
-                  margin-bottom: 0.75rem;
-                `}
-              >
-                Share this article:
-              </p>
-              <div
-                css={css`
-                  display: flex;
-                  justify-content: center;
-
-                  &:hover > * {
-                    opacity: 0.4;
-                  }
-
-                  & > * {
-                    cursor: pointer;
-                    margin: 0;
-                    transition: all 0.2s ease;
-                    outline: none;
-
-                    &:hover {
-                      opacity: 1;
-                    }
-                  }
-
-                  svg {
-                    height: 2rem;
-                  }
-                `}
-              >
-                <FacebookShareButton
-                  url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
-                >
-                  <FacebookRoundedIcon />
-                </FacebookShareButton>
-                <TwitterShareButton
-                  url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
-                >
-                  <TwitterRoundedIcon />
-                </TwitterShareButton>
-                <LinkedinShareButton
-                  url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
-                >
-                  <LinkedinRoundedIcon />
-                </LinkedinShareButton>
-              </div>
-            </div>
+            <Share
+              url={`${site.siteMetadata.siteUrl}${markdownRemark.frontmatter.path}`}
+            />
             <div
               css={css`
                 display: flex;

@@ -1,10 +1,29 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 import Img from 'gatsby-image';
 import Container from './container';
 import HeadingSection from './heading-section';
+
+const GridBlogPreview = styled.div`
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  flex: 0 0 100%;
+  max-width: 100%;
+
+  @media (min-width: 600px) {
+    flex: 0 0 calc(100% / 2);
+    max-width: calc(100% / 2);
+  }
+
+  @media (min-width: 900px) {
+    flex: 0 0 calc(100% / 3);
+    max-width: calc(100% / 3);
+  }
+`;
 
 export default function BlogPreview() {
   const { allMarkdownRemark } = useStaticQuery(graphql`
@@ -59,26 +78,7 @@ export default function BlogPreview() {
           `}
         >
           {allMarkdownRemark.edges.map(({ node }) => (
-            <div
-              key={node.id}
-              css={css`
-                margin-bottom: 2rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                flex: 0 0 100%;
-                max-width: 100%;
-
-                @media (min-width: 600px) {
-                  flex: 0 0 calc(100% / 2);
-                  max-width: calc(100% / 2);
-                }
-
-                @media (min-width: 900px) {
-                  flex: 0 0 calc(100% / 3);
-                  max-width: calc(100% / 3);
-                }
-              `}
-            >
+            <GridBlogPreview key={node.id}>
               <div
                 css={css`
                   background-color: var(--bg-blog-list);
@@ -143,7 +143,7 @@ export default function BlogPreview() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </GridBlogPreview>
           ))}
         </div>
         <div
