@@ -64,11 +64,12 @@
     "start": "cross-env GATSBY_ACTIVE_ENV=local npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint src/**/*.{js,jsx}",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier \"src/**/*.{js,jsx,json,css,scss,md,mdx}\"",
-    "prettier:fix": "npm run prettier -- --write",
-    "validate": "npm run lint && npm run prettier -- --list-different"
+    "prettier": "prettier src/**/*.{js,jsx,json,css,scss,md}",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
+    "validate": "npm run check-format && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -84,12 +85,10 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
-      "npm run lint:fix",
-      "git add"
+      "npm run lint"
     ],
     "src/**/*.{js,jsx,json,css,scss,md,mdx}": [
-      "npm run prettier:fix",
-      "git add"
+      "npm run format"
     ]
   }
 }

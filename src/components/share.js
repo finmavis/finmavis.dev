@@ -25,7 +25,7 @@ export default function Share({ url }) {
           margin-bottom: 0.75rem;
         `}
       >
-        Share this article:
+        Was this article helpful? Share it on:
       </p>
       <div
         css={css`

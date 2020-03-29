@@ -115,7 +115,7 @@ export default function BlogPost({ data, pageContext }) {
                     text-align: left;
                   `}
                 >
-                  &larr; {next.frontmatter.title}
+                  <small>&larr; {next.frontmatter.title}</small>
                 </Link>
               )}
               {previous && (
@@ -127,7 +127,7 @@ export default function BlogPost({ data, pageContext }) {
                     text-align: right;
                   `}
                 >
-                  {previous.frontmatter.title} &rarr;
+                  <small>{previous.frontmatter.title} &rarr;</small>
                 </Link>
               )}
             </div>
@@ -153,7 +153,7 @@ export default function BlogPost({ data, pageContext }) {
               >
                 <Img
                   fluid={file.childImageSharp.fluid}
-                  alt='Fin Mavis Photo'
+                  alt={`${site.siteMetadata.author} Photo`}
                   css={css`
                     border-radius: 50%;
                     width: 100%;
@@ -172,10 +172,10 @@ export default function BlogPost({ data, pageContext }) {
                   <em>
                     Personal notes by{' '}
                     <a
-                      href='https://twitter.com/finmavis'
+                      href={site.siteMetadata.social.twitter}
                       target='_blank'
                       rel='noopener noreferrer nofollow'
-                      aria-label='Visit Fin Mavis twitter'
+                      aria-label={`Visit ${site.siteMetadata.author} twitter`}
                     >
                       {site.siteMetadata.author}
                     </a>
@@ -200,6 +200,9 @@ export const query = graphql`
       siteMetadata {
         siteUrl
         author
+        social {
+          twitter
+        }
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {

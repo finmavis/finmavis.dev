@@ -14,6 +14,8 @@ module.exports = {
     canonicalUrl: config.canonicalUrl,
     siteUrl: config.siteUrl,
     ogImage: config.ogImage,
+    email: config.email,
+    social: config.social,
   },
   plugins: [
     'gatsby-plugin-react-helmet',

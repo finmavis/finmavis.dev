@@ -10,13 +10,14 @@ import LocationIcon from '../shared/assets/svg/location.inline.svg';
 
 import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
 
-export default function About({ location }) {
+export default function About(props) {
   const data = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
           name
           author
+          email
         }
       }
       file(relativePath: { eq: "profile.jpg" }) {
@@ -73,15 +74,7 @@ export default function About({ location }) {
             <p>
               Tech enthusiast, conscientious &amp; relentless on solving
               technical problems. You can find out more about me by reading my{' '}
-              <Link
-                aria-label='Go to blog page'
-                to='/blog/'
-                css={css`
-                  border: 1px solid transparent;
-                  position: relative;
-                  color: var(--cornflower-blue);
-                `}
-              >
+              <Link aria-label='Go to blog page' to='/blog/'>
                 articles
               </Link>
               .
@@ -110,7 +103,9 @@ export default function About({ location }) {
                     height: 0.65rem;
                   `}
                 />{' '}
-                <a href='mailto:fin.mavis@yahoo.com'>fin.mavis@yahoo.com</a>
+                <a href={`mailto:${data.site.siteMetadata.email}`}>
+                  {data.site.siteMetadata.email}
+                </a>
               </div>
               <div>
                 <LocationIcon
@@ -139,7 +134,7 @@ export default function About({ location }) {
           >
             <Img
               fluid={data.file.childImageSharp.fluid}
-              alt='Fin Mavis'
+              alt={`${data.site.siteMetadata.author} Photo`}
               css={css`
                 border-radius: 50%;
                 width: 100%;

@@ -9,7 +9,7 @@ import Container from '../components/container';
 import HeadingSection from '../components/heading-section';
 
 export default function Blog({ data, pageContext, location }) {
-  const { allMarkdownRemark } = data;
+  const { allMarkdownRemark, site } = data;
   const { currentPage, numberOfPages } = pageContext;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numberOfPages;
@@ -20,7 +20,7 @@ export default function Blog({ data, pageContext, location }) {
     <Layout>
       <SEO
         title='Blog'
-        description={`Come take a look Fin Mavis's personal notes. Maybe you will find something useful and learn from it.`}
+        description={`Come take a look ${site.siteMetadata.author}'s personal notes. Maybe you will find something useful and learn from it.`}
         pathname={location.pathname}
       />
       <section
@@ -155,6 +155,11 @@ export default function Blog({ data, pageContext, location }) {
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
+    site {
+      siteMetadata {
+        author
+      }
+    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
