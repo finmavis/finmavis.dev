@@ -95,8 +95,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: config.author,
-        short_name: config.author,
+        name: config.nickname,
+        short_name: config.nickname,
         start_url: '/',
         background_color: config.themeColor,
         theme_color: config.themeColor,
