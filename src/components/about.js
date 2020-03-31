@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import Img from 'gatsby-image';
-import Container from './container';
+import Container from './ui/container';
 
 import EmailIcon from '../shared/assets/svg/email.inline.svg';
 import LocationIcon from '../shared/assets/svg/location.inline.svg';
@@ -87,36 +87,43 @@ export default function About(props) {
               For business inquiries feel free to contact me at:
             </p>
             <address>
-              <div
+              <ul
                 css={css`
                   margin-bottom: 0.25rem;
+                  margin-left: 0;
 
                   a {
                     color: var(--color-primary);
                   }
+
+                  li {
+                    list-style: none;
+                  }
                 `}
               >
-                <EmailIcon
-                  css={css`
-                    fill: var(--color-primary);
-                    margin-right: 0.25rem;
-                    height: 0.65rem;
-                  `}
-                />{' '}
-                <a href={`mailto:${data.site.siteMetadata.email}`}>
-                  {data.site.siteMetadata.email}
-                </a>
-              </div>
-              <div>
-                <LocationIcon
-                  css={css`
-                    fill: var(--color-primary);
-                    margin-right: 0.25rem;
-                    height: 1rem;
-                  `}
-                />{' '}
-                Jakarta, Indonesia
-              </div>
+                <li>
+                  <EmailIcon
+                    css={css`
+                      fill: var(--color-primary);
+                      margin-right: 0.25rem;
+                      height: 0.65rem;
+                    `}
+                  />{' '}
+                  <a href={`mailto:${data.site.siteMetadata.email}`}>
+                    {data.site.siteMetadata.email}
+                  </a>
+                </li>
+                <li>
+                  <LocationIcon
+                    css={css`
+                      fill: var(--color-primary);
+                      margin-right: 0.25rem;
+                      height: 1rem;
+                    `}
+                  />{' '}
+                  Jakarta, Indonesia
+                </li>
+              </ul>
             </address>
           </div>
           <div
@@ -144,7 +151,7 @@ export default function About(props) {
         </div>
         <div>
           <h3>Or somewhere else on the web</h3>
-          <div
+          <ul
             css={css`
               display: flex;
               flex-wrap: wrap;
@@ -152,15 +159,17 @@ export default function About(props) {
               color: var(--color-primary);
               padding-top: 0.5rem;
               margin-bottom: 2rem;
+              margin-left: 0;
             `}
           >
             {SOCIAL_LINK.map(item => (
-              <div
+              <li
                 key={item.name}
                 css={css`
                   flex: 0 0 100%;
                   max-width: 100%;
                   margin-bottom: 1rem;
+                  list-style: none;
 
                   @media (min-width: 300px) {
                     flex: 0 0 calc(100% / 2);
@@ -192,9 +201,9 @@ export default function About(props) {
                 >
                   {item.icon} {item.label}
                 </a>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Container>
     </section>

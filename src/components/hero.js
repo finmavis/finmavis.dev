@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Container from './container';
+import Container from './ui/container';
 
 import FinIcon from '../shared/assets/svg/fin.inline.svg';
 
@@ -122,7 +122,7 @@ export default function Hero() {
       </div>
       <div
         css={css`
-          background-color: var(--bg-current-work);
+          background-color: var(--bg-hero-current-work);
           color: var(--color-primary);
           padding: 1.5rem 2rem;
           position: absolute;
@@ -133,6 +133,7 @@ export default function Hero() {
           left: 50%;
           transform: translateX(-50%);
           z-index: 2;
+          border-radius: var(--border-radius);
 
           @media (max-width: 600px) {
             padding: 1.15rem;

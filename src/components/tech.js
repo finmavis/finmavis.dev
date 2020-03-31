@@ -1,8 +1,8 @@
 import React from 'react';
 import { css, keyframes } from '@emotion/core';
 
-import Container from './container';
-import HeadingSection from './heading-section';
+import Container from './ui/container';
+import HeadingSection from './ui/heading-section';
 
 import AngularIcon from '../shared/assets/svg/angular.svg';
 import ApolloIcon from '../shared/assets/svg/apollo.inline.svg';
@@ -119,11 +119,7 @@ export default function Tech(props) {
         padding-bottom: 4rem;
       `}
     >
-      <Container
-        css={css`
-          max-width: 1100px;
-        `}
-      >
+      <Container sizes='large'>
         <HeadingSection>Technologies</HeadingSection>
         <div
           css={css`

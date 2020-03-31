@@ -7,22 +7,22 @@ export default function GlobalStyle(props) {
       styles={css`
         :root {
           --ash: #9ba0ad;
+          --alto: #dadada;
           --bone: #f9f9f9;
           --charcoal: #515151;
           --concrete: #f3f3f3;
           --white: #fff;
           --ivory: #fafafa;
           --night: #212121;
-          --ship-gray: #3c3c3e;
           --mine-shaft: #2b2a2a;
           --mine-shaft-light: #393939;
           --cornflower-blue: #5e9bea;
-          --dusty-gray: #959595;
-          --border-color: #979797;
-          --alto: #dadada;
-          --gallery: #f0f0f0;
           --ship-gray: #3c3c3e;
+          --dusty-gray: #959595;
           --dove-gray: #6b6b6b;
+          --border-color: #979797;
+          --border-radius: 5px;
+          --gallery: #f0f0f0;
         }
 
         body {
@@ -42,15 +42,15 @@ export default function GlobalStyle(props) {
           --color-primary: var(--charcoal);
           --color-secondary: var(--ash);
           --bg-color: var(--white);
+          --bg-color-secondary: var(--bone);
+          --bg-card: var(--mine-white);
           --bg-hero: linear-gradient(
             to top,
             rgba(241, 241, 241, 0.81),
             var(--bone) 58%
           );
-          --bg-current-work: var(--white);
+          --bg-hero-current-work: var(--white);
           --bg-footer: var(--concrete);
-          --bg-experience: var(--bone);
-          --bg-blog-list: var(--mine-white);
           --scrollbar-thumb: var(--alto);
           --scrollbar-track: var(--gallery);
           --bg-fade: linear-gradient(
@@ -66,19 +66,19 @@ export default function GlobalStyle(props) {
           --color-primary: var(--ivory);
           --color-secondary: var(--ash);
           --bg-color: var(--night);
+          --bg-color-secondary: var(--mine-shaft);
+          --bg-card: var(--mine-shaft);
           --bg-hero: linear-gradient(
             to bottom,
             var(--mine-shaft) 65%,
-            var(----mine-shaft-light) 106%
+            var(--mine-shaft-light) 106%
           );
-          --bg-current-work: var(--ship-gray);
+          --bg-hero-current-work: var(--ship-gray);
           --bg-footer: linear-gradient(
             to top,
             var(--mine-shaft) 106%,
             var(--ship-gray) 65%
           );
-          --bg-experience: var(--mine-shaft);
-          --bg-blog-list: var(--mine-shaft);
           --scrollbar-thumb: var(--dove-gray);
           --scrollbar-track: var(--mine-shaft-light);
           --bg-fade: linear-gradient(

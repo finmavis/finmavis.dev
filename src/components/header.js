@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-import Container from './container';
+import Container from './ui/container';
 import ToggleSwitch from './toggle-switch';
 
 const NavLink = styled(Link)`

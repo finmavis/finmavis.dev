@@ -5,7 +5,7 @@ import { css } from '@emotion/core';
 import Img from 'gatsby-image';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
-import Container from '../components/container';
+import Container from '../components/ui/container';
 import Share from '../components/share';
 
 export default function BlogPost({ data, pageContext }) {
@@ -21,11 +21,7 @@ export default function BlogPost({ data, pageContext }) {
         image={markdownRemark.frontmatter.banner.childImageSharp.fluid.src}
         pathname={markdownRemark.frontmatter.path}
       />
-      <Container
-        css={css`
-          max-width: 800px;
-        `}
-      >
+      <Container sizes='small'>
         <section
           css={css`
             display: block;

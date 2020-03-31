@@ -48,6 +48,12 @@ export default function Position({ name, year, subText }) {
   );
 }
 
+Position.defaultProps = {
+  name: '',
+  year: '',
+  subText: '',
+};
+
 Position.propTypes = {
   name: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,

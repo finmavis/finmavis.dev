@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-import Container from './container';
+import Container from './ui/container';
 
 import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
 

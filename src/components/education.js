@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import Container from './container';
-import HeadingSection from './heading-section';
+import Container from './ui/container';
+import HeadingSection from './ui/heading-section';
 import Position from './position';
 import Courses from './courses';
 
@@ -15,10 +15,10 @@ export default function Education() {
   return (
     <section
       css={css`
-        background-color: var(--bg-experience);
+        background-color: var(--bg-color-secondary);
+        clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
         padding-top: 2rem;
         padding-bottom: 4rem;
-        clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
       `}
     >
       <Container>

@@ -5,8 +5,9 @@ import Img from 'gatsby-image';
 
 import SEO from '../components/seo';
 import Layout from '../components/layout';
-import Container from '../components/container';
-import HeadingSection from '../components/heading-section';
+import Container from '../components/ui/container';
+import HeadingSection from '../components/ui/heading-section';
+import Card from '../components/ui/card';
 
 export default function Blog({ data, pageContext, location }) {
   const { allMarkdownRemark, site } = data;
@@ -33,11 +34,7 @@ export default function Blog({ data, pageContext, location }) {
           }
         `}
       >
-        <Container
-          css={css`
-            max-width: 800px;
-          `}
-        >
+        <Container sizes='small'>
           <HeadingSection
             css={css`
               text-align: left;
@@ -50,8 +47,6 @@ export default function Blog({ data, pageContext, location }) {
               <div
                 key={node.id}
                 css={css`
-                  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
-                  background-color: var(--bg-blog-list);
                   margin-bottom: 2rem;
 
                   @media (max-width: 900px) {
@@ -59,60 +54,78 @@ export default function Blog({ data, pageContext, location }) {
                   }
                 `}
               >
-                <div
-                  css={css`
-                    max-height: 20rem;
-                  `}
-                >
-                  <Link to={node.frontmatter.path}>
-                    <Img
-                      fluid={node.frontmatter.banner.childImageSharp.fluid}
-                      alt={node.frontmatter.title}
-                      css={css`
-                        max-height: 20rem;
-                      `}
-                    />
-                  </Link>
-                </div>
-                <div
-                  css={css`
-                    padding: 0 2rem 2rem;
-                    color: var(--color-primary);
+                <Card>
+                  <div
+                    css={css`
+                      max-height: 12.5rem;
 
-                    @media (max-width: 900px) {
-                      padding: 0 1.5rem 1.5rem;
-                    }
-                  `}
-                >
-                  <Link to={node.frontmatter.path}>
-                    <h3
+                      @media (min-width: 600px) {
+                        max-height: 17.5rem;
+                      }
+
+                      @media (min-width: 900px) {
+                        max-height: 20rem;
+                      }
+                    `}
+                  >
+                    <Link to={node.frontmatter.path}>
+                      <Img
+                        fluid={node.frontmatter.banner.childImageSharp.fluid}
+                        alt={node.frontmatter.title}
+                        css={css`
+                          max-height: 12.5rem;
+
+                          @media (min-width: 600px) {
+                            max-height: 17.5rem;
+                          }
+
+                          @media (min-width: 900px) {
+                            max-height: 20rem;
+                          }
+                        `}
+                      />
+                    </Link>
+                  </div>
+                  <div
+                    css={css`
+                      padding: 0 2rem 2rem;
+                      color: var(--color-primary);
+
+                      @media (max-width: 900px) {
+                        padding: 0 1.5rem 1.5rem;
+                      }
+                    `}
+                  >
+                    <Link to={node.frontmatter.path}>
+                      <h3
+                        css={css`
+                          color: var(--color-primary);
+                          margin-bottom: 0.3rem;
+                        `}
+                      >
+                        {node.frontmatter.title}
+                      </h3>
+                    </Link>
+                    <p
                       css={css`
-                        color: var(--color-primary);
-                        margin-bottom: 0.3rem;
+                        margin-bottom: 0.725rem;
                       `}
                     >
-                      {node.frontmatter.title}
-                    </h3>
-                  </Link>
-                  <p
-                    css={css`
-                      margin-bottom: 0.725rem;
-                    `}
-                  >
-                    <small>
-                      {node.frontmatter.date} • {node.timeToRead} min read
-                    </small>
-                  </p>
-                  <p>{node.excerpt}</p>
-                  <Link
-                    css={css`
-                      color: var(--cornflower-blue);
-                    `}
-                    to={node.frontmatter.path}
-                  >
-                    Read &rarr;
-                  </Link>
-                </div>
+                      <small>
+                        {node.frontmatter.date} • {node.timeToRead} min read
+                      </small>
+                    </p>
+                    <p>{node.excerpt}</p>
+                    <Link
+                      css={css`
+                        color: var(--cornflower-blue);
+                      `}
+                      to={node.frontmatter.path}
+                    >
+                      Read &rarr;
+                    </Link>
+                  </div>
+                </Card>
               </div>
             ))}
           </div>
