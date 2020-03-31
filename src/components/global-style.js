@@ -15,9 +15,14 @@ export default function GlobalStyle(props) {
           --night: #212121;
           --ship-gray: #3c3c3e;
           --mine-shaft: #2b2a2a;
+          --mine-shaft-light: #393939;
           --cornflower-blue: #5e9bea;
           --dusty-gray: #959595;
           --border-color: #979797;
+          --alto: #dadada;
+          --gallery: #f0f0f0;
+          --ship-gray: #3c3c3e;
+          --dove-gray: #6b6b6b;
         }
 
         body {
@@ -46,17 +51,43 @@ export default function GlobalStyle(props) {
           --bg-footer: var(--concrete);
           --bg-experience: var(--bone);
           --bg-blog-list: var(--mine-white);
+          --scrollbar-thumb: var(--alto);
+          --scrollbar-track: var(--gallery);
+          --bg-fade: linear-gradient(
+            to right,
+            var(--white) 0,
+            rgba(255, 255, 255, 0) 15%,
+            rgba(255, 255, 255, 0) 85%,
+            var(--white) 100%
+          );
         }
 
         body.dark-mode {
           --color-primary: var(--ivory);
           --color-secondary: var(--ash);
           --bg-color: var(--night);
-          --bg-hero: linear-gradient(to bottom, #2b2a2a 65%, #393939 106%);
+          --bg-hero: linear-gradient(
+            to bottom,
+            var(--mine-shaft) 65%,
+            var(----mine-shaft-light) 106%
+          );
           --bg-current-work: var(--ship-gray);
-          --bg-footer: linear-gradient(to top, #2b2a2a 106%, #3c3c3e 65%);
+          --bg-footer: linear-gradient(
+            to top,
+            var(--mine-shaft) 106%,
+            var(--ship-gray) 65%
+          );
           --bg-experience: var(--mine-shaft);
           --bg-blog-list: var(--mine-shaft);
+          --scrollbar-thumb: var(--dove-gray);
+          --scrollbar-track: var(--mine-shaft-light);
+          --bg-fade: linear-gradient(
+            to right,
+            var(--night) 0,
+            rgba(33, 33, 33, 0) 15%,
+            rgba(33, 33, 33, 0) 85%,
+            var(--night) 100%
+          );
         }
 
         h1,

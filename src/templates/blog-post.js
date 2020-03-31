@@ -113,9 +113,13 @@ export default function BlogPost({ data, pageContext }) {
                   css={css`
                     margin-right: auto;
                     text-align: left;
+                    box-shadow: none;
+                    text-decoration: underline;
+                    flex-basis: 48.5%;
+                    max-width: 48.5%;
                   `}
                 >
-                  <small>&larr; {next.frontmatter.title}</small>
+                  &larr; {next.frontmatter.title}
                 </Link>
               )}
               {previous && (
@@ -125,9 +129,13 @@ export default function BlogPost({ data, pageContext }) {
                   css={css`
                     margin-left: auto;
                     text-align: right;
+                    box-shadow: none;
+                    text-decoration: underline;
+                    flex-basis: 48.5%;
+                    max-width: 48.5%;
                   `}
                 >
-                  <small>{previous.frontmatter.title} &rarr;</small>
+                  {previous.frontmatter.title} &rarr;
                 </Link>
               )}
             </div>

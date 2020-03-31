@@ -21,21 +21,12 @@ import SassIcon from '../shared/assets/svg/sass.svg';
 import TsIcon from '../shared/assets/svg/typescript.svg';
 import WebpackIcon from '../shared/assets/svg/webpack.inline.svg';
 
-const slide = keyframes`
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-28rem, 0, 0);
-  }
-`;
-
 const slide1 = keyframes`
   0% {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-31rem, 0, 0);
+    transform: translate3d(-20rem, 0, 0);
   }
 `;
 
@@ -44,7 +35,7 @@ const slide2 = keyframes`
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-34rem, 0, 0);
+    transform: translate3d(-24rem, 0, 0);
   }
 `;
 
@@ -53,7 +44,7 @@ const slide3 = keyframes`
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-40rem, 0, 0);
+    transform: translate3d(-28rem, 0, 0);
   }
 `;
 
@@ -62,7 +53,7 @@ const slide4 = keyframes`
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-45rem, 0, 0);
+    transform: translate3d(-32rem, 0, 0);
   }
 `;
 
@@ -71,7 +62,7 @@ const slide5 = keyframes`
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50rem, 0, 0);
+    transform: translate3d(-36rem, 0, 0);
   }
 `;
 
@@ -80,7 +71,43 @@ const slide6 = keyframes`
     transform: translate3d(0, 0, 0);
   }
   100% {
+    transform: translate3d(-40rem, 0, 0);
+  }
+`;
+
+const slide7 = keyframes`
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-44rem, 0, 0);
+  }
+`;
+
+const slide8 = keyframes`
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-48rem, 0, 0);
+  }
+`;
+
+const slide9 = keyframes`
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
     transform: translate3d(-52rem, 0, 0);
+  }
+`;
+
+const slide10 = keyframes`
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-55rem, 0, 0);
   }
 `;
 
@@ -92,11 +119,16 @@ export default function Tech(props) {
         padding-bottom: 4rem;
       `}
     >
-      <Container>
+      <Container
+        css={css`
+          max-width: 1100px;
+        `}
+      >
         <HeadingSection>Technologies</HeadingSection>
         <div
           css={css`
             overflow: hidden;
+            position: relative;
 
             & > * {
               margin: 0;
@@ -118,34 +150,57 @@ export default function Tech(props) {
         >
           <div
             css={css`
+              background: var(--bg-fade);
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              z-index: 2;
+            `}
+          ></div>
+          <div
+            css={css`
               display: flex;
               justify-content: space-around;
               margin-bottom: 1rem;
               width: 71.75rem;
-              animation: ${slide} 30s linear alternate both infinite;
+              animation: ${slide1} 15s linear alternate both infinite;
+
+              @media (max-width: 1100px) {
+                animation: ${slide2} 15s linear alternate both infinite;
+              }
+
+              @media (max-width: 1000px) {
+                animation: ${slide3} 15s linear alternate both infinite;
+              }
 
               @media (max-width: 900px) {
-                animation: ${slide1} 30s linear alternate both infinite;
+                animation: ${slide4} 15s linear alternate both infinite;
               }
 
               @media (max-width: 800px) {
-                animation: ${slide2} 30s linear alternate both infinite;
+                animation: ${slide5} 15s linear alternate both infinite;
               }
 
               @media (max-width: 700px) {
-                animation: ${slide3} 30s linear alternate both infinite;
+                animation: ${slide6} 15s linear alternate both infinite;
               }
 
               @media (max-width: 600px) {
-                animation: ${slide4} 30s linear alternate both infinite;
+                animation: ${slide7} 15s linear alternate both infinite;
               }
 
               @media (max-width: 500px) {
-                animation: ${slide5} 30s linear alternate both infinite;
+                animation: ${slide8} 15s linear alternate both infinite;
               }
 
               @media (max-width: 400px) {
-                animation: ${slide6} 30s linear alternate both infinite;
+                animation: ${slide9} 15s linear alternate both infinite;
+              }
+
+              @media (max-width: 340px) {
+                animation: ${slide10} 15s linear alternate both infinite;
               }
 
               & > * {
@@ -167,30 +222,42 @@ export default function Tech(props) {
               display: flex;
               justify-content: space-around;
               width: 71.75rem;
-              animation: ${slide} 30s linear alternate-reverse both infinite;
+              animation: ${slide1} 15s linear alternate-reverse both infinite;
+
+              @media (max-width: 1100px) {
+                animation: ${slide2} 15s linear alternate-reverse both infinite;
+              }
+
+              @media (max-width: 1000px) {
+                animation: ${slide3} 15s linear alternate-reverse both infinite;
+              }
 
               @media (max-width: 900px) {
-                animation: ${slide1} 30s linear alternate-reverse both infinite;
+                animation: ${slide4} 15s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 800px) {
-                animation: ${slide2} 30s linear alternate-reverse both infinite;
+                animation: ${slide5} 15s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 700px) {
-                animation: ${slide3} 30s linear alternate-reverse both infinite;
+                animation: ${slide6} 15s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 600px) {
-                animation: ${slide4} 30s linear alternate-reverse both infinite;
+                animation: ${slide7} 15s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 500px) {
-                animation: ${slide5} 30s linear alternate-reverse both infinite;
+                animation: ${slide8} 15s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 400px) {
-                animation: ${slide6} 30s linear alternate-reverse both infinite;
+                animation: ${slide9} 15s linear alternate-reverse both infinite;
+              }
+
+              @media (max-width: 340px) {
+                animation: ${slide10} 15s linear alternate-reverse both infinite;
               }
             `}
           >

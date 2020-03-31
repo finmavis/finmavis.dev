@@ -1,7 +1,7 @@
 ---
 path: '/blog/server-side-rendering-react-with-razzle'
 title: 'Server side rendering React with Razzle'
-date: '2019-11-15'
+date: '2019-12-30'
 author: 'Fin Mavis'
 description: 'Learn how to create server side rendering React app using Razzle with some practical best practices.'
 banner: './images/christopher-burns.jpg'
