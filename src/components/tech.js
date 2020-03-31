@@ -152,7 +152,7 @@ export default function Tech(props) {
               position: absolute;
               top: 0;
               width: 100%;
-              z-index: 2;
+              z-index: 1;
             `}
           ></div>
           <div

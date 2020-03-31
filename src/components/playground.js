@@ -5,7 +5,11 @@ import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Card from './ui/card';
 
-import styletheory from '../shared/assets/images/style-theory.jpg';
+import styletheory from '../shared/assets/svg/style-theory.svg';
+import tunaiku from '../shared/assets/svg/tunaiku.svg';
+import tmdb from '../shared/assets/svg/tmdb.svg';
+import purgecss from '../shared/assets/svg/purgecss.svg';
+import svg from '../shared/assets/svg/svg.svg';
 
 const PLAYGROUND_DATA = [
   {
@@ -15,22 +19,22 @@ const PLAYGROUND_DATA = [
   },
   {
     name: 'Tunaiku',
-    image: styletheory,
+    image: tunaiku,
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
   {
     name: 'TMDB Clone',
-    image: styletheory,
+    image: tmdb,
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
   {
     name: 'Razzle PurgeCSS',
-    image: styletheory,
+    image: purgecss,
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
   {
     name: 'Razzle SVG Plugin',
-    image: styletheory,
+    image: svg,
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
 ];
