@@ -1,45 +1,55 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { useStaticQuery, graphql } from 'gatsby';
 
+import Img from 'gatsby-image';
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Card from './ui/card';
 
-import styletheory from '../shared/assets/svg/style-theory.svg';
-import tunaiku from '../shared/assets/svg/tunaiku.svg';
-import tmdb from '../shared/assets/svg/tmdb.svg';
-import purgecss from '../shared/assets/svg/purgecss.svg';
-import svg from '../shared/assets/svg/svg.svg';
-
-const PLAYGROUND_DATA = [
-  {
-    name: 'Style Theory',
-    image: styletheory,
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  },
-  {
-    name: 'Tunaiku',
-    image: tunaiku,
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  },
-  {
-    name: 'TMDB Clone',
-    image: tmdb,
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  },
-  {
-    name: 'Razzle PurgeCSS',
-    image: purgecss,
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  },
-  {
-    name: 'Razzle SVG Plugin',
-    image: svg,
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  },
-];
+import { PLAYGROUND_DATA } from '../shared/constants/playground.constant';
 
 export default function Playground(props) {
+  const data = useStaticQuery(graphql`
+    query {
+      styleTheory: file(relativePath: { eq: "style-theory.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      tunaiku: file(relativePath: { eq: "tunaiku.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      tmdb: file(relativePath: { eq: "tmdb.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      purgecss: file(relativePath: { eq: "purgecss.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      svg: file(relativePath: { eq: "svg.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <section
       css={css`
@@ -73,9 +83,9 @@ export default function Playground(props) {
             }
           `}
         >
-          {PLAYGROUND_DATA.map(item => (
+          {PLAYGROUND_DATA.map(({ name, imageName, description, link }) => (
             <div
-              key={item.name}
+              key={name}
               css={css`
                 flex: 0 0 15rem;
                 max-width: 15rem;
@@ -85,35 +95,47 @@ export default function Playground(props) {
               `}
             >
               <Card>
-                <img
-                  css={css`
-                    display: block;
-                    margin-bottom: 0.5rem;
-                    width: 100%;
-                  `}
-                  src={item.image}
-                  alt={item.name}
-                />
+                <a
+                  href={link}
+                  target='_blank'
+                  rel='nofollow noopener noreferrer'
+                >
+                  <Img
+                    fluid={data[imageName].childImageSharp.fluid}
+                    alt={name}
+                    css={css`
+                      display: block;
+                      margin-bottom: 0.5rem;
+                      width: 100%;
+                    `}
+                  />
+                </a>
                 <div
                   css={css`
                     padding: 0 1rem 1rem;
                     text-align: center;
                   `}
                 >
-                  <h4
-                    css={css`
-                      margin: 1rem 0 0.25rem;
-                      text-transform: uppercase;
-                    `}
+                  <a
+                    href={link}
+                    target='_blank'
+                    rel='nofollow noopener noreferrer'
                   >
-                    {item.name}
-                  </h4>
+                    <h4
+                      css={css`
+                        margin: 1rem 0 0.25rem;
+                        text-transform: uppercase;
+                      `}
+                    >
+                      {name}
+                    </h4>
+                  </a>
                   <p
                     css={css`
                       margin: 0;
                     `}
                   >
-                    {item.description}
+                    {description}
                   </p>
                 </div>
               </Card>

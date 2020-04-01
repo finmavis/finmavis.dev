@@ -1,5 +1,6 @@
 import React from 'react';
 import { css, keyframes } from '@emotion/core';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
@@ -112,6 +113,18 @@ const slide10 = keyframes`
 `;
 
 export default function Tech(props) {
+  const data = useStaticQuery(graphql`
+    query {
+      html: file(relativePath: { eq: "html.svg" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <section
       css={css`
