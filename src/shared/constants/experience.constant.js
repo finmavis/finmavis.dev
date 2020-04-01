@@ -2,7 +2,7 @@ export const EXPERIENCE_DATA = [
   {
     company: 'Style Theory',
     year: '2019 - Current',
-    position: 'Jr. Web Engineer',
+    position: 'Web Engineer',
   },
   {
     company: 'Tunaiku - Amarbank',

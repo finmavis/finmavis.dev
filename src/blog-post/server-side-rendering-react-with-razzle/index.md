@@ -11,7 +11,7 @@ bannerCreditLink: 'https://unsplash.com/photos/8KfCR12oeUM'
 
 So, you've been using React for some time, maybe you use `create-react-app` to starting your project, or maybe you use your own webpack or parcel configuration to build an app using React. Time passed and you pretty happy about it.
 
-Then everything changed when the Fire Nation attacked. Your colleague or maybe your team ask you about server side rendering, they said &ldquo;I heard that server side rendering is really legit for performance, so it will much better for user experience and it's really good to improve SEO too&rdquo;. Or maybe you're just curious enough how to improving your site performances and stumbleupon server side rendering, but you have no idea what it is or how to implement it.
+Then everything changed when the Fire Nation attacked. Your colleague or maybe your team ask you about server side rendering, they said <em>&ldquo;I heard that server side rendering is really legit for performance, so it will much better for user experience and it's really good to improve SEO too&rdquo;.</em> Or maybe you're just curious enough how to improve your site performances and stumbleupon server side rendering, but you have no idea what it is or how to implement it.
 
 ## What is server side rendering?
 
@@ -46,9 +46,9 @@ Here's the summary:
 </html>
 ```
 
-3. Browser receive that document, parse the html, then browsers see a `css` and kinda say, &ldquo;Ohh shooottt! I need to request this file&rdquo;, so browser make a request to the server and pause the render process and waiting for the response.
+3. Browser receive that document, parse the html, then browsers see a `css` and kinda say, <em>&ldquo;Ohh shooottt! I need to request this file&rdquo;</em>, so browser make a request to the server and pause the render process and waiting for the response.
 4. Our server be like, I got another request, this user request `css` file, let me give the response again with the `css` file that being requested.
-5. Browser receive that `css` file and continue to render, while rendering, the browser see `js` file and need to request again that file to the server, and be like, &ldquo;Yoooo, I need this `js` file, can you send it to me ?&rdquo; and pause the render process again.
+5. Browser receive that `css` file and continue to render, while rendering, the browser see `js` file and need to request again that file to the server, and be like, <em>&ldquo;Yoooo, I need this `js` file, can you send it to me ?&rdquo;</em> and pause the render process again.
 6. Copy that, sending you the `js` file.
 7. Browser then receive that file and continue to render.
 8. Until the browser finished load, parse and execute all the `js`, finally user see some content.
@@ -105,16 +105,16 @@ Now, let's take a look about **server side rendering** process:
 </html>
 ```
 
-3. Browser receive that document, parse it, but here's the difference, **the user can already see the content**, did you notice the response given by the server ? Yup, content already there, not just some skeleton/placeholder about our app. At least now our site viewable but still not interactive to the users.
+3. Browser receive that document, parse it, but here's the difference, **the user can already see the content**, did you notice the response given by the server? Yup, content already there, not just some skeleton/placeholder about our app. At least now our site viewable but still not interactive to the users.
 4. The process not stop there, browsers continue parse and see a `css` and `js` file and make a request to the server just like the process above. After it finished our `js/React` takes over and start execute where the app left off and then it become interactive to the users.
 
-Let's recap, so, what is **server side rendering** ? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
+Let's recap, so, what is **server side rendering**? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
 
-I still didn't get it. Can you provide the difference between **Client Side Rendering** and **Server Side Rendering** ? On **client side rendering**, we are completely running React on the browser. The initial HTML rendered by the server just a placeholder (as you see above, just a `div` with an id of root) and the entire UI or content is rendered in the browser once all the scripts load.
+I still didn't get it. Can you provide the difference between **Client Side Rendering** and **Server Side Rendering**? On **client side rendering**, we are completely running React on the browser. The initial HTML that rendered by the server (or maybe just send the HTML immediately) just a placeholder (as you see above, just a `div` with an id of root) and the entire UI or content is rendered in the browser once all the scripts load.
 
 ## Razzle
 
-You problaly already know what **create-react-app**, a tool (built by developers at Facebook) that help us to start creating our React project without to woryy about configuration stuff. All we have to do is simply run the **create-react-app** command, then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, autoprefixes, and along with other features.
+You problaly already know what **create-react-app** is, a tool (built by developers at Facebook) that help us to start creating our React project without to worry about configuration stuff. All we have to do is simply run the **create-react-app** command, then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, autoprefixes, and along with other features.
 
 Now, **Razzle**, you have no idea about it. **Razzle** is just like create-react-app. But here's the difference, **Razzle** is a tool to create **server side rendering** (React and React Router by default) app.
 
@@ -122,9 +122,9 @@ Let's quote what razzle is in their docs:
 
 > Razzle is a tool that abstracts all complex configuration needed for SSR into a single dependency--giving us the awesome developer experience of **create-react-app**, but then leaving the rest of our app's architectural decisions about frameworks, routing, and data fetching up to us.
 
-Whaaatttttt, that's amazing. **But wait**, **there's more**, we can customize **Babel** and **Webpack** razzle config, why do i mean by that ? For example we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add little bit confighuration to **webpack** for Server side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start extend razzle webpack configuration.
+Whaaatttttt, that's amazing. **But wait**, **there's more**, we can customize **Babel** and **Webpack** razzle config, why do i mean by that? For example we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add little bit configuration to **webpack** for Server side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start extend razzle webpack configuration.
 
-Razzle also come with plugins just like **gatsby** do. What does that mean ? For example we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add compression on production build ? There's a plugin for that. Need to inline svg like create-react-app did ? There's plugin for that. Didn't find the plugin you looking for ? You can build one!
+Razzle also come with plugins just like **gatsby** do. What does that mean? For example we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add assets compression on production build? There's a plugin for that. Need to inline svg like create-react-app did? There's plugin for that. Didn't find the plugin you looking for? You can build one!
 
 <small>Note: You can see all the available plugin [here](https://www.npmjs.com/search?q=razzle-plugin)</small>.
 
@@ -138,7 +138,7 @@ Before jump to the code, we need to know the goals of the things that we build. 
 4. Remove unused CSS on Production build
 5. Add gzip and brotli compression on Production build
 
-Let's jump to the code. To start razzle project, basically the same way like using create-react-app, but with razzle command.
+Let's jump to the code. To start Razzle project, basically the same way like using create-react-app, but with Razzle command.
 
 ```bash
 # Note: npx comes with npm 5.2+ and higher
@@ -148,7 +148,7 @@ Let's jump to the code. To start razzle project, basically the same way like usi
 npx create-razzle-app razzle-boilerplate
 ```
 
-Then we're ready to develop Server side rendering React app. Let's take a look on project directory that razzle generated.
+Then we're ready to develop Server side rendering React app. Let's take a look on project directory that Razzle generated:
 
 ```text
 |-- public
@@ -163,7 +163,7 @@ Then we're ready to develop Server side rendering React app. Let's take a look o
     |-- Home.js
     |-- index.js <- entry point of our server
     |-- react.svg
-    |-- server.js <- Our server (express.js) configuration
+    |-- server.js <- Our server (ExpressJS) configuration
 |-- .gitignore
 |-- package.json
 |-- README.md
@@ -180,7 +180,9 @@ Let's check if it's really server side rendering by viewing the page source on o
 
 Well, as you can see, the code is there, not just a `div` with an id of root.
 
-But you notice something, why there's so much unused space ? Can we minify that ? Of course, we'll use `common-tags` library to minify our `html` response. Let's add it then.
+But you notice something, why there's so much unused space? Can we minify it? Of course, we'll use `common-tags` library to minify our `html` response.
+
+Let's add it:
 
 ```bash
 # If you're using yarn
@@ -311,7 +313,7 @@ server
   });
 ```
 
-Ok, after we use it on our Server. Let's use it on our React Component. For this example we'll update the `title` and `meta description` tag. Open `Home.js` file then add the following code:
+Ok, after we use it on our Server. Let's use it on our React Component. For this example we'll update the `title` and `meta description` tag. Open `Home.js` file and then add the following code:
 
 ```jsx{2,7-10}
 // Home.js
@@ -348,9 +350,9 @@ function Home() {
 }
 ```
 
-And voila! The title is updated! You can read more about react helmet in [here](https://github.com/nfl/react-helmet).
+And voila! The title is updated! You can read more about React Helmet in [here](https://github.com/nfl/react-helmet).
 
-That's really easy, what about next, code splitting ? Yep, let's jump to the next then.
+That's really easy, what about next, code splitting? Yep, let's jump to the next then.
 
 ## Code Splitting
 
@@ -372,7 +374,9 @@ npm install --save @loadable/component @loadable/server
 npm install --save-dev @loadable/babel-plugin @loadable/webpack-plugin
 ```
 
-Now, create a `razzle.config.js` in the root of our project so that we can extend razzle **webpack** configuration then add **@loadable/component** config. Open up that file then add the following code:
+Now, create a `razzle.config.js` in the root of our project so that we can extend razzle **webpack** configuration and then add **@loadable/component** config.
+
+Open up the file then add the following code:
 
 ```js
 // razzle.config.js
@@ -488,7 +492,9 @@ server
   });
 ```
 
-Here you notice that our code have `extractor`, but what is it ? **Extractor** is used to collect chunks server-side and it expose an API to get them as script tags or script elements. You can see full list API [here](https://loadable-components.com/docs/api-loadable-server/).
+Here you notice that our code have `extractor`, but what is it? **Extractor** is used to collect chunks server-side and it expose an API to get them as script tags or script elements.
+
+<small>Note: You can see full list API [here](https://loadable-components.com/docs/api-loadable-server/).</small>
 
 Let's continue, after we use it on server, also update on `client.js`, and add the following code:
 
@@ -516,7 +522,7 @@ And now we're ready to use code splitting on our React app. Let's use code split
 // App.js
 import loadable from '@loadable/component';
 
-// Before using code splitting
+// Before using code splitting (You can delete this)
 import Home from './Home';
 // After, and notice that we're using dynamic import syntax
 const Home = loadable(() => import('./Home'));
@@ -581,15 +587,15 @@ function Home() {
 }
 ```
 
-Let's build it on Production mode. We can using `yarn build` or `npm run build` to build for Production. After it finished, let's serve our app using `yarn start:prod` or `npm run start:prod`. Ok, but why you ask ? Well, we gonna inspect how much bootstrap affect (size) in our Project.
+Let's build it on Production mode. We can using `yarn build` or `npm run build` to build for Production. After it finished, let's serve our app using `yarn start:prod` or `npm run start:prod`. Ok, but why you ask? Well, we gonna inspect how much bootstrap affect (size) in our Project.
 
 Open [http://localhost:3000](http://localhost:3000) again in our browser. Let's inspect it and we're gonna use **network tab** on chrome to see how much bootstrap cost.
 
 ![CSS before PurgeCSS](/images/network-tab-before-purgecss.png)
 
-Now pay attention on `vendors` css file, it's our bootstrap file. The size is **144kb**, now you said, that small, well now think if our users is on slow network, that's alot to download. Beside is it to much because we only using class `.container`, so why download all of it?
+Now pay attention on `vendors` css file, it's our bootstrap file. The size is **144kb**, now you said, that small, well now think if our users is on slow network, that's alot to download. Beside it is to much because we only using class `.container`, so why download all of it?
 
-Luckily, PurgeCSS have plugin for razzle. Let's use it then:
+Luckily, PurgeCSS have plugin for Razzle. Let's use it then:
 
 ```bash
 # If you're using yarn
@@ -599,7 +605,7 @@ yarn add --dev razzle-plugin-purgecss
 npm install --save-dev razzle-plugin-purgecss
 ```
 
-Wait a minute, how to use plugin on razzle ? Well same as when we're add `@loadable/component`, using `razzle.config.js`. Now open `razzle.plugin.js`, then add PurgeCSS as plugin.
+Wait a minute, how to use plugin on Razzle? Well same as when we're add `@loadable/component`, using `razzle.config.js`. Now open up our Razzle config file, then add PurgeCSS as plugin:
 
 ```js{3-11}
 // razzle.config.js
@@ -625,11 +631,11 @@ Now, pay attention again on our `vendors` css file. It only **3.9kb**! Holy moll
 
 ## Compression
 
-Here come the last part, why should we compress all our assets ? Here's why, quoted from [web.dev](https://web.dev/reduce-network-payloads-using-text-compression/).
+Here come the last part, why should we compress all our assets? Here's why, quoted from [web.dev](https://web.dev/reduce-network-payloads-using-text-compression/):
 
 > Compressing files can significantly improve the performance of a webpage.
 
-Why ? Because with compression, all of our assets file size will be much smaller! Remember that we have to send to user as small as possible.
+Why? Because with compression, all of our assets file size will be much smaller! Remember that we have to send to user as small as possible.
 
 Before adding compression to our project. Let's check how our project size overall.
 
@@ -683,7 +689,7 @@ module.exports = {
 };
 ```
 
-Now everytime we build for Production, it will generate gzip and brotli file. But this is not enough. We also need to set our server to serve gzip and brotli. Let's open our `server.js` file.
+Now everytime we build for Production, it will generate gzip and brotli file. But this is not enough. We also need to set our server to serve gzip and brotli. Let's open our `server.js` file:
 
 ```js{2,3,7-13}
 // server.js
@@ -748,10 +754,10 @@ And we're done. Let's check again how much we improve and saving delivering bund
 
 ![After assets get compression](/images/after-compression.png)
 
-Did you notice any diferrent ? Well, take a look at size. It improve so much, all the response size now much smaller than before. For example our `vendors` js file, before it get compressed, the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
+Did you notice any diferrent? Well, take a look at size. It improve so much, all the response size now much smaller than before. For example our `vendors` js file, before it get compressed, the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
 
-Again, we improve the perfomances and we help our user too, now our users will save so much their data plan everytime visit our site because we always send our assets as small as possible.
+Again, we improve the perfomances and we help our user saving so much their data plan everytime visit our site, because we always send our assets as small as possible.
 
-Now, we reach the end of the tutorial. In my opinion **Razzle** really help us to set up Server side rendering React app with ease. It also give us freedom to customize our app like customize the **webpack** or **babel** configuration to do whatever we want!
+Now, we reach the end of the tutorial. In my opinion **Razzle** really help to set up Server side rendering React app with ease. It also give us freedom to customize our app like customize the **webpack** or **babel** configuration to do whatever we want!
 
 So, what do you think about **Razzle**?

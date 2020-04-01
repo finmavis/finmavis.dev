@@ -184,19 +184,19 @@ export default function Tech(props) {
               }
 
               @media (max-width: 600px) {
-                animation: ${slide7} 15s linear alternate both infinite;
+                animation: ${slide7} 25s linear alternate both infinite;
               }
 
               @media (max-width: 500px) {
-                animation: ${slide8} 15s linear alternate both infinite;
+                animation: ${slide8} 25s linear alternate both infinite;
               }
 
               @media (max-width: 400px) {
-                animation: ${slide9} 15s linear alternate both infinite;
+                animation: ${slide9} 25s linear alternate both infinite;
               }
 
               @media (max-width: 340px) {
-                animation: ${slide10} 15s linear alternate both infinite;
+                animation: ${slide10} 25s linear alternate both infinite;
               }
 
               & > * {
@@ -241,19 +241,19 @@ export default function Tech(props) {
               }
 
               @media (max-width: 600px) {
-                animation: ${slide7} 15s linear alternate-reverse both infinite;
+                animation: ${slide7} 25s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 500px) {
-                animation: ${slide8} 15s linear alternate-reverse both infinite;
+                animation: ${slide8} 25s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 400px) {
-                animation: ${slide9} 15s linear alternate-reverse both infinite;
+                animation: ${slide9} 25s linear alternate-reverse both infinite;
               }
 
               @media (max-width: 340px) {
-                animation: ${slide10} 15s linear alternate-reverse both infinite;
+                animation: ${slide10} 25s linear alternate-reverse both infinite;
               }
             `}
           >

@@ -109,7 +109,7 @@ npm install --save-dev @babel/core @babel/preset-env babel-loader
 npm install --save core-js
 ```
 
-Before we add configuration to use **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/).
+Before we add configuration to using **Babel**, first, we need to define what browser that we want to support using [browserlist](https://browserl.ist/).
 
 Let's add the list of browser that we want to support in our `package.json`:
 
@@ -307,9 +307,11 @@ Let's also update our scripts to start development server using `webpack-dev-ser
 }
 ```
 
-Now, we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and open up [http://localhost:3000](http://localhost:3000).
+Now, we can start our development server using `yarn start` or `npm run start`, then it will automatically open our browser and then navigate to [http://localhost:3000](http://localhost:3000).
 
-You probably wondering, can we use `async await` in our code? Of course, we can. Let's update our `index.js` to use `async await`:
+You probably wondering, can we use `async await` in our code? Of course, we can.
+
+Let's update our `index.js` to use `async await`:
 
 ```js
 // src/index.js
@@ -570,7 +572,7 @@ And done! We can start using **SASS** on our project.
 
 You probably already know, **CSS** use case not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
 
-Did you aware that we disabled `modules` options on `css-loader` above? What happen if we enabled it? Well of course, it will process our **CSS** into **CSS Modules**.
+Did you noticed that we disabled `modules` options on `css-loader` above? What happen if we enabled it? Well of course, it will process our **CSS** into **CSS Modules**.
 
 Let's setup CSS Modules on our project:
 
@@ -1265,7 +1267,7 @@ module.exports = {
 
 ## Extract CSS into file
 
-You realize that every time we build for production, there's no css file, it's because we still use **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
+You realize that every time we build for production, there's no css file, it's because we still using **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
 
 Now, let's install it and update our webpack production config to use **MiniCssExtractPlugin** instead of **style-loader**:
 

@@ -246,7 +246,6 @@ export default function GlobalStyle(props) {
 
         blockquote {
           color: var(--color-primary);
-          border-left: 0.1rem solid #1ca086;
         }
       `}
     />

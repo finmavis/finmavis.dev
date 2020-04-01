@@ -10,6 +10,9 @@ fairyGateThemes.overrideThemeStyles = ({ rhythm, scale }, options) => {
       textDecoration: 'none',
       boxShadow: '0 1px 0 0 currentColor',
     },
+    blockquote: {
+      borderLeft: '0.1rem solid #1ca086',
+    },
   };
 };
 

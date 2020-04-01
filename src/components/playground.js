@@ -65,21 +65,19 @@ export default function Playground(props) {
             overflow-x: auto;
             padding-bottom: 1.25rem;
 
-            @media (hover: hover) {
-              &::-webkit-scrollbar {
-                width: 0.5rem;
-                height: 0.5rem;
-              }
+            &::-webkit-scrollbar {
+              width: 0.5rem;
+              height: 0.5rem;
+            }
 
-              &::-webkit-scrollbar-thumb {
-                background-color: var(--scrollbar-thumb);
-                border-radius: 1rem;
-              }
+            &::-webkit-scrollbar-thumb {
+              background-color: var(--scrollbar-thumb);
+              border-radius: 1rem;
+            }
 
-              &::-webkit-scrollbar-track {
-                background-color: var(--scrollbar-track);
-                border-radius: 1rem;
-              }
+            &::-webkit-scrollbar-track {
+              background-color: var(--scrollbar-track);
+              border-radius: 1rem;
             }
           `}
         >
