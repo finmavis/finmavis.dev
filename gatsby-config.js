@@ -18,6 +18,12 @@ module.exports = {
     social: config.social,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-162429747-1',
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     'gatsby-plugin-use-dark-mode',
