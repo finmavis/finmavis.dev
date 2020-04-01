@@ -10,7 +10,7 @@ module.exports = {
   ogImage: '/images/opengraph.png',
   manifestImage: 'static/images/opengraph.png',
   themeColor: '#216d8e',
-  email: 'fin.mavis@yahoo.com',
+  email: 'fin@finmavis.dev',
   social: {
     twitter: 'https://twitter.com/finmavis',
   },
