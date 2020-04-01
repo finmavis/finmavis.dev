@@ -158,6 +158,8 @@ export default function BlogPreview() {
                 #40b5e5 93%
               );
               transition: all 0.25s ease-out;
+              white-space: nowrap;
+              text-overflow: ellipsis;
 
               &:hover {
                 background-image: linear-gradient(
