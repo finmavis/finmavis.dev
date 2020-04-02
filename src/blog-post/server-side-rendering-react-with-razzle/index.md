@@ -20,7 +20,7 @@ Before we discuss about server side rendering, let's take a step back and review
 Here's the summary:
 
 1. Users go to our site.
-2. Our server receive a request, then give a response with initial `html` document. And the document might be like this:
+2. Our server receive a request, then give a response immediately with initial `html` document. And the document might be like this:
 
 ```html{16}
 <!-- index.html -->
@@ -110,7 +110,7 @@ Now, let's take a look about **server side rendering** process:
 
 Let's recap, so, what is **server side rendering**? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
 
-I still didn't get it. Can you provide the difference between **Client Side Rendering** and **Server Side Rendering**? On **client side rendering**, we are completely running React on the browser. The initial HTML that rendered by the server (or maybe just send the HTML immediately) just a placeholder (as you see above, just a `div` with an id of root) and the entire UI or content is rendered in the browser once all the scripts load.
+I still didn't get it. Can you provide the difference between **Client Side Rendering** and **Server Side Rendering**? On **client side rendering**, we are completely running React on the browser. The initial HTML that sent by the server just a placeholder (as you see above, just a `div` with an id of root) and the entire UI or content is rendered in the browser once all the scripts load.
 
 ## Razzle
 

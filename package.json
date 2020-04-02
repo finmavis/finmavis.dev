@@ -85,10 +85,10 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
+    "*.{js,jsx}": [
       "npm run lint"
     ],
-    "src/**/*.{js,jsx,json,css,scss,md,mdx}": [
+    "**/*.{js,jsx,json,css,scss,md,mdx}": [
       "npm run format"
     ]
   }
