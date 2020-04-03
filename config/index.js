@@ -3,7 +3,6 @@ module.exports = {
   nickname: 'Fin Mavis',
   title: 'Fin Mavis',
   lang: 'en',
-  canonicalUrl: 'https://finmavis.dev',
   siteUrl: process.env.GATSBY_SITE_URL || 'https://finmavis.dev',
   description:
     'Fin Mavis is a Frontend Developer based in Jakarta. Currently work as a Web Engineer at Style Theory.',

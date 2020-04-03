@@ -18,7 +18,6 @@ function SEO({ description, lang, title, isBlogPost, image, pathname }) {
             title
             description
             author
-            canonicalUrl
             siteUrl
             ogImage
           }
@@ -39,7 +38,6 @@ function SEO({ description, lang, title, isBlogPost, image, pathname }) {
       <title>
         {title} | {site.siteMetadata.author}
       </title>
-      <link rel='canonical' href={site.siteMetadata.canonicalUrl} />
       <meta name='description' content={metaDescription} />
       <meta name='image' content={metaImage} />
 

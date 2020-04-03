@@ -11,7 +11,6 @@ module.exports = {
     description: config.description,
     name: config.name,
     author: config.nickname,
-    canonicalUrl: config.canonicalUrl,
     siteUrl: config.siteUrl,
     ogImage: config.ogImage,
     email: config.email,
