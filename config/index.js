@@ -7,7 +7,7 @@ module.exports = {
   description:
     'Fin Mavis is a Frontend Developer based in Jakarta. Currently work as a Web Engineer at Style Theory.',
   ogImage: '/images/opengraph.png',
-  manifestImage: 'static/images/opengraph.png',
+  manifestImage: 'static/images/manifest.png',
   themeColor: '#216d8e',
   email: 'fin@finmavis.dev',
   social: {
