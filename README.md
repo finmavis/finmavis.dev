@@ -1,5 +1,7 @@
 # Fin Mavis personal website ([finmavis.dev](https://finmavis.dev))
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5f1656a-388b-4a30-9533-148532cb1ba5/deploy-status)](https://app.netlify.com/sites/finmavis/deploys)
+
 ## 🚀 Quick start
 
 To run this locally:
