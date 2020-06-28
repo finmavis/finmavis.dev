@@ -24,7 +24,7 @@ export default function Education() {
       <Container>
         <HeadingSection>Education</HeadingSection>
         <div>
-          {FORMAL_EDUCATION.map(educationItem => (
+          {FORMAL_EDUCATION.map((educationItem) => (
             <Position
               key={educationItem.school}
               name={educationItem.school}
@@ -35,7 +35,7 @@ export default function Education() {
         </div>
         <HeadingSection>Courses</HeadingSection>
         <div>
-          {COURSE_LIST.map(courseItem => (
+          {COURSE_LIST.map((courseItem) => (
             <Courses
               key={courseItem.source}
               name={courseItem.source}

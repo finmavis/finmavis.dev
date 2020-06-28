@@ -60,7 +60,7 @@ function greet(name) {
   });
 }
 
-greet('John Doe').then(response => {
+greet('John Doe').then((response) => {
   console.log(response); // -> "Hello John Doe!"
 });
 ```
@@ -1473,7 +1473,7 @@ module.exports = {
      * Reference: https://twitter.com/wSokra/status/969679223278505985
      */
     runtimeChunk: {
-      name: entrypoint => `runtime-${entrypoint.name}`,
+      name: (entrypoint) => `runtime-${entrypoint.name}`,
     },
     /**
      * Split third-party libraries into vendors chunk to enable long term caching

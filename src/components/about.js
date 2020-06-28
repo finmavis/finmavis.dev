@@ -162,7 +162,7 @@ export default function About(props) {
               margin-left: 0;
             `}
           >
-            {SOCIAL_LINK.map(item => (
+            {SOCIAL_LINK.map((item) => (
               <li
                 key={item.name}
                 css={css`

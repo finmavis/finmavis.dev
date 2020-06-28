@@ -81,7 +81,7 @@ export default function Footer(props) {
             }
           `}
         >
-          {SOCIAL_LINK.map(item => (
+          {SOCIAL_LINK.map((item) => (
             <SocialLink
               key={item.link}
               href={item.link}

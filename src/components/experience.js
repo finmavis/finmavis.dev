@@ -19,7 +19,7 @@ export default function Experience(props) {
     >
       <Container>
         <HeadingSection>Experience</HeadingSection>
-        {EXPERIENCE_DATA.map(experienceItem => (
+        {EXPERIENCE_DATA.map((experienceItem) => (
           <Position
             key={experienceItem.company}
             name={experienceItem.company}

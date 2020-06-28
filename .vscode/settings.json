@@ -5,5 +5,11 @@
   },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/.cache": true,
+    "**/node_modules": true,
+    "**/public": true
   }
 }

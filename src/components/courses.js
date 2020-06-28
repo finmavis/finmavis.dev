@@ -36,7 +36,7 @@ export default function Courses({ name, data }) {
           margin-top: 0.75rem;
         `}
       >
-        {data.map(item => (
+        {data.map((item) => (
           <CourseItem key={item.name} name={item.name} year={item.year} />
         ))}
       </div>

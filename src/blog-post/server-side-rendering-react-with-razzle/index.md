@@ -226,8 +226,8 @@ if (context.url) {
               : `<script src="${assets.client.js}" defer crossorigin></script>`}
           </body>
         </html>
-      `,
-    ),
+      `
+    )
   );
 }
 ```
@@ -265,7 +265,7 @@ server
     const markup = renderToString(
       <StaticRouter context={context} location={req.url}>
         <App />
-      </StaticRouter>,
+      </StaticRouter>
     );
     /**
      * Add helmet here
@@ -400,7 +400,7 @@ module.exports = {
         new LoadableWebpackPlugin({
           outputAsset: false,
           writeToDisk: { filename },
-        }),
+        })
       );
 
       appConfig.output.filename = isDev
@@ -453,7 +453,7 @@ server
         <StaticRouter context={context} location={req.url}>
           <App />
         </StaticRouter>
-      </ChunkExtractorManager>,
+      </ChunkExtractorManager>
     );
     const helmet = Helmet.renderStatic();
 
@@ -511,7 +511,7 @@ loadableReady(() => {
     <Router>
       <App />
     </Router>,
-    document.getElementById('root'),
+    document.getElementById('root')
   );
 });
 ```
@@ -703,7 +703,7 @@ server
     expressStaticGzip(process.env.RAZZLE_PUBLIC_DIR, {
       enableBrotli: true,
       orderPreference: ['br', 'gz'],
-    }),
+    })
   )
   .get('/*', (req, res) => {
     const extractor = new ChunkExtractor({
@@ -716,7 +716,7 @@ server
         <StaticRouter context={context} location={req.url}>
           <App />
         </StaticRouter>
-      </ChunkExtractorManager>,
+      </ChunkExtractorManager>
     );
     const helmet = Helmet.renderStatic();
 
@@ -743,8 +743,8 @@ server
 
               ${extractor.getScriptTags()}
             </body>
-            </html>`,
-        ),
+            </html>`
+        )
       );
     }
   });
