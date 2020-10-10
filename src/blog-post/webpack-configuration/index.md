@@ -11,7 +11,7 @@ bannerCreditLink: 'https://unsplash.com/photos/mDinBvq1Sfg'
 
 Hello World!
 
-This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. This guide, we not only cover configure webpack for development, but we'll also cover how to configure **webpack** for Production, because for Production, it is a best practices to optimizing all our code and assets.
+This is my first ever article, and we're gonna learn how to configure **webpack** step by step for JavaScript development. This guide, we not only cover configure webpack for development, but we'll also cover how to configure **webpack** for Production because, for Production, it is a best practice to optimizing all our code and assets.
 
 ## TL;DR
 
@@ -21,7 +21,7 @@ You can see the full config and code in this [repo](https://github.com/finmavis/
 
 First, we need to create our webpack project. Let's create a new folder, and I'll pick a folder name **webpack-boilerplate**. Inside that folder, initialize our project with `npm init` or `yarn init`. Once we done, inside our project directory will have `package.json`.
 
-After that, we need to create a **config** and **src** folder. Inside a **config** folder, create `webpack.config.js` file. Inside **src** folder create two file, `index.html` and `index.js`, it is entry point of our project.
+After that, we need to create a **config** and **src** folder. Inside a **config** folder, create `webpack.config.js` file. Inside **src** folder create two files, `index.html` and `index.js`, it's the entry point of our project.
 
 Now, the structure of our project will look like below:
 
@@ -65,7 +65,7 @@ greet('John Doe').then((response) => {
 });
 ```
 
-Now open up our `package.json`, and add a scripts to run the **webpack**:
+Now open up our `package.json`, and add scripts to run the **webpack**:
 
 ```json
 // package.json
@@ -87,15 +87,15 @@ yarn compile
 npm run compile
 ```
 
-With this scripts, **webpack** will automatically take our script at `src/index.js` as the entry point, and it will generate `dist/main.js` as the output code. Awesome right?
+With this script, **webpack** will automatically take our script at `src/index.js` as the entry point, and it will generate `dist/main.js` as the output code. Awesome right?
 
-But, we want more than this, for example, we want to use development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how?
+But, we want more than this, for example, we want to use a development server to live reload so we can get instant feedback on the browser while update our code, use the latest JS syntax, use CSS or CSS Pre-Processor like SASS, automatically add vendor prefix for our CSS, and optimize our code for production. But how?
 
-That's where **webpack configuration** come in handy! Let's use it in our project to setup development server and then setup our project to use the latest JS features (ES6 and beyond).
+That's where **webpack configuration** comes in handy! Let's use it in our project to setup a development server and then setup our project to use the latest JS features (ES6 and beyond).
 
 ## ES6 and Beyond
 
-To use the latest JS features today, we're gonna need [Babel](https://babeljs.io/). But, what is **Babel**? **Babel** is a tool that help us to **compile** our code (newest JS features) into a backwards compatible version of JS so that older browser can understand. **Babel** not only compile our code, but it will also **Polyfill** features that are missing in older browser using **core-js** library.
+To use the latest JS features today, we're gonna need [Babel](https://babeljs.io/). But, what is **Babel**? **Babel** is a tool that helps us to **compile** our code (newest JS features) into a backwards compatible version of JS so that older browser can understand. **Babel** not only compiles our code, but it will also **Polyfill** features that are missing in older browser using **core-js** library.
 
 Let's add **Babel** to our project:
 
@@ -115,7 +115,7 @@ Let's add the list of browser that we want to support in our `package.json`:
 
 ```json{10}
 // package.json
-// In this example we are using this browserlist
+// In this example, we are using this browserlist
 // Which support 91% global coverage
 // Docs: https://github.com/browserslist/browserslist
 {
@@ -136,8 +136,8 @@ Open up our `config/webpack.config.js` and add code below:
 const path = require('path');
 
 /**
- * process.cwd will return a path to our active project directory
- * For example on windows will look like:
+ * process.cwd() will return a path to our active project directory
+ * For example, on windows will look like:
  * c:\Users\username\project\webpack-boilerplate
  * On Mac:
  * /Users/username/project/webpack-boilerplate
@@ -152,8 +152,8 @@ module.exports = {
    */
   mode: 'development',
   /**
-   * Here, we tell webpack where entry point of our code
-   * If you only have single entry point you can also do it like below
+   * Here, we tell webpack where the entry point of our code
+   * If you only have a single entry point you can also do it like below
    * entry: path.resolve(ROOT_DIRECTORY, 'src/index.js'),
    * Docs: https://webpack.js.org/configuration/entry-context/
    */
@@ -162,8 +162,8 @@ module.exports = {
   },
   /**
    * Tell webpack where it should output
-   * our bundles, assets and anything else
-   * In this example it will be inside /build folder
+   * our bundles, assets, and anything else
+   * In this example, it will be inside /build folder
    * Docs: https://webpack.js.org/configuration/output/
    */
   output: {
@@ -180,21 +180,21 @@ module.exports = {
     contentBase: path.resolve(ROOT_DIRECTORY, 'build'),
     // Enable gzip compression
     compress: true,
-    // Which port we want to use, in this case we use port 3000
+    // Which port we want to use, in this case, we use port 3000
     port: 3000,
-    // This will shows a full-screen overlay in the browser when there are compiler errors
+    // This will show a full-screen overlay in the browser when there are compiler errors
     overlay: true,
   },
   /**
    * Generate source-maps to make it easier to track down errors and warnings
-   * In this example we're using cheap-module-eval-source-map (recommend by webpack)
+   * In this example, we're using cheap-module-eval-source-map (recommend by webpack)
    * Docs: https://webpack.js.org/configuration/devtool/
    */
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       /**
-       * Here we are kinda tell webpack if it come accross js file
+       * Here we kinda tell webpack if it comes across js file
        * Please use babel-loader
        * Docs: https://github.com/babel/babel-loader
        */
@@ -241,7 +241,7 @@ module.exports = {
 };
 ```
 
-Fuhhhh, that's alot. What's next? Our HTML entry point (of course, because this is web project). Let's add some content to our HTML template:
+Fuhhhh, that's a lot. What's next? Our HTML entry point (of course, because this is a web project). Let's add some content to our HTML template:
 
 ```html
 <!-- src/index.html -->
@@ -262,7 +262,7 @@ Fuhhhh, that's alot. What's next? Our HTML entry point (of course, because this 
 
 You probably ask, how to include our HTML template to our bundle?
 
-Well, to do that, we are going to use `html-webpack-plugin`. This plugin will include our HTML and inject our JS bundle automatically into our HTML using `<script>` tag.
+Well, to do that, we are going to use `html-webpack-plugin`. This plugin will include our HTML and inject our JS bundle automatically into our HTML using the `<script>` tag.
 
 Let's install it:
 
@@ -372,7 +372,7 @@ module.exports = {
 
 If we start our development server again, now the error is gone, and we can start using `async await` on our project. Yeayyy!
 
-What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use it on our project same like above.
+What about other features like `optional-chaining` and `nullish-coalescing-operator`? Well, we can install the plugins and use them on our project the same as above.
 
 ```bash
 # If you're using yarn
@@ -382,7 +382,7 @@ yarn add --dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-n
 npm install --save-dev @babel/plugin-proposal-optional-chaining @babel/plugin-proposal-nullish-coalescing-operator
 ```
 
-<small>Note: Since **Babel 7.8.0**, `optional-chaining` and `nullish-coalescing-operator` enabled by default, so if our Babel version is **7.8.0** and above, we don't have to install and add the plugin manually.</small>
+<small>Note: Since **Babel 7.8.0**, `optional-chaining`, and `nullish-coalescing-operator` enabled by default, so if our Babel version is **7.8.0** and above, we don't have to install and add the plugin manually.</small>
 
 Then don't forget to add it to our **Babel** config:
 
@@ -398,7 +398,7 @@ module.exports = {
 };
 ```
 
-What if we want to use `dynamic import`, can we do that? Yes we can! Since **Babel** version **7.4.0**, `dynamic import` support enabled by default, so we don't have to install `@babel/plugin-proposal-dynamic-import`, but if our Babel version below that version, we have to add that plugin manually to our project.
+What if we want to use `dynamic import`, can we do that? Yes, we can! Since **Babel** version **7.4.0**, `dynamic import` support enabled by default, so we don't have to install `@babel/plugin-proposal-dynamic-import`, but if our Babel version below that version, we have to add that plugin manually to our project.
 
 Let's split our greet function into separate files, then we will use `dynamic import` in our `index.js` file:
 
@@ -427,7 +427,7 @@ Now, I'm sure we've covered most of the JavaScript parts. Let's get to the next 
 
 ## Stylesheet (CSS, SASS and CSS Modules)
 
-In order to use **CSS** in our project, the step is the same with how we configure **JavaScripts**. First, we need a loader, then use the loader in our webpack configuration. There are 2 packages needed so we can use css in our project, `style-loader` and `css-loader`.
+In order to use **CSS** in our project, the step is the same as how we configure **JavaScripts**. First, we need a loader, then use the loader in our webpack configuration. There are 2 packages needed so we can use CSS in our project, `style-loader` and `css-loader`.
 
 Let's add it:
 
@@ -452,7 +452,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           /**
-           * style-loader will inject css into the DOM with <style> tag
+           * style-loader will inject CSS into the DOM with <style> tag
            */
           'style-loader',
           {
@@ -473,7 +473,7 @@ module.exports = {
 };
 ```
 
-Now, we can start using **CSS** in our project. For example, let's create `css` file inside our **src** folder named `main.css`:
+Now, we can start using **CSS** in our project. For example, let's create `CSS` file inside our **src** folder named `main.css`:
 
 ```css
 /* src/main.css */
@@ -496,14 +496,14 @@ body {
 }
 ```
 
-And dont't forget to import the style:
+And don't forget to import the style:
 
 ```js
 // src/index.js
 import './main.css';
 ```
 
-Now, if we take a look at our compiled HTML in browser, it will attached `<style>` tag in our DOM, and it might be look like this:
+Now, if we take a look at our compiled HTML in the browser, it will attach the `<style>` tag in our DOM, and it might look like below:
 
 ![CSS in the DOM example](/images/css-example.jpg)
 
@@ -570,9 +570,9 @@ module.exports = {
 
 And done! We can start using **SASS** on our project.
 
-You probably already know, **CSS** use case not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enabled **CSS Modules** on our project.
+You probably already know, **CSS** use case not limited to that, there are other alternatives such as **CSS Modules**. So, what is it? **CSS Modules** is a **CSS** file in which all class names and animation names are **scoped locally** by default. But how? Well, with the help of **webpack** we can enable **CSS Modules** on our project.
 
-Did you noticed that we disabled `modules` options on `css-loader` above? What happen if we enabled it? Well of course, it will process our **CSS** into **CSS Modules**.
+Did you notice that we disabled `modules` options on `css-loader` above? What happens if we enabled it? Well, of course, it will process our **CSS** into **CSS Modules**.
 
 Let's setup CSS Modules on our project:
 
@@ -666,7 +666,7 @@ module.exports = {
 };
 ```
 
-Now, when we want to use CSS Modules, we need to create a file with convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file.
+Now, every time we want to use CSS Modules, we need to create a file with the convention name `something.module.css` or `something.module.scss` and import it in our **JavaScript** file.
 
 Let's try create CSS Modules files named `index.module.css` and fill with the code below:
 
@@ -695,7 +695,7 @@ Now, it will add class to our `H1` element, and it will look like this:
 
 ## CSS Future Syntax and Autoprefix
 
-Wouldn't it be fun when we are writing CSS, we can use CSS future syntax today just like how we develop our web app with latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using CSS Pre-Processor like **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), **W3C** plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can't use it today.
+Wouldn't it be fun when we write CSS, we can use CSS future syntax today just like how we develop our web app with the latest JavaScript features, regardless of current browser supports. For example, maybe you already know that CSS hasn't been able to use nested rules for a long time (unless you're using CSS Pre-Processor like **SASS**), but, if we take a look at [cssdb](https://cssdb.org/) or [here](https://preset-env.cssdb.org/features), **W3C** plans to add the nesting rules feature to CSS, but still on **stage 1** though, which mean we can't use it today.
 
 Introduce **postcss-preset-env**. What is it? Basically, it’s like **Babel** for CSS. It allows us to write CSS future syntax and transpiles that code to CSS which is widely supported by most browsers. Now, with help of **postcss-preset-env**, we can start using nesting rules in CSS today!
 
@@ -885,9 +885,9 @@ module.exports = {
 
 Now, as we write our **CSS**, we can start using CSS future syntax today and it also will automatically add vendor prefixes for us!
 
-There are known issues with Flexbox, you can read more [here](https://github.com/philipwalton/flexbugs). Because Flexbox now support on most browsers, we will most likely use Flexbox in our project. As we develop our project using Flexbox, we didn't want something isn't working as we'd expect because of the Flexbox issues. Luckily, there is a fixes for that using [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes).
+There are known issues with Flexbox, you can read more [here](https://github.com/philipwalton/flexbugs). Because Flexbox now supports most browsers, we will most likely use Flexbox in our project. As we develop our project using Flexbox, we didn't want something isn't working as we'd expect because of the Flexbox issues. Luckily, there are fixes for that using [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes).
 
-Let's also add that fixes to our project:
+Let's add that fixes to our project:
 
 ```bash
 # If you're using yarn
@@ -897,7 +897,7 @@ yarn add --dev postcss-flexbugs-fixes
 npm install --save-dev postcss-flexbugs-fixes
 ```
 
-Then let's use it on our **postcss config**:
+Then, let's add it on our **postcss config**:
 
 ```js{8}
 // config/postcss.config.js
@@ -925,9 +925,9 @@ module.exports = {
 
 ## Image and other files
 
-Our webpack project, not only limited to JavaScript and CSS. It also can handle much more than that. For example, webpack can also handle assets like image and fonts.
+Our webpack project, not only limited to JavaScript and CSS. It also can handle much more than that. For example, webpack can also handle assets like images and fonts.
 
-But, how? The idea is the same with how we configure and used JavaScript. Let's include images and fonts support to our project:
+But, how? The idea is the same with how we configure and use JavaScript. Let's include images and fonts support to our project:
 
 ```bash
 yarn add --dev url-loader file-loader
@@ -965,7 +965,7 @@ module.exports = {
 };
 ```
 
-By now, we can start using image in our JavaScript and CSS files.
+By now, we can start using images in our JavaScript and CSS files.
 
 Let's also add for fonts!
 
