@@ -1,5 +1,6 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
+import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 export default function GlobalStyle(props) {
   return (
@@ -246,6 +247,25 @@ export default function GlobalStyle(props) {
 
         blockquote {
           color: var(--color-primary);
+          margin-left: 0;
+          border-left: 0.1rem solid #1ca086;
+        }
+
+        /**
+         * Override the default overlayscrollbars style
+         */
+        .os-theme-dark > .os-scrollbar > .os-scrollbar-track,
+        .os-theme-light > .os-scrollbar > .os-scrollbar-track {
+          background-color: var(--scrollbar-track);
+          border-radius: 1rem;
+        }
+
+        .os-theme-dark
+          > .os-scrollbar
+          > .os-scrollbar-track
+          > .os-scrollbar-handle {
+          background-color: var(--scrollbar-thumb);
+          border-radius: 1rem;
         }
       `}
     />

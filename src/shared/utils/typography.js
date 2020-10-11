@@ -12,6 +12,7 @@ fairyGateThemes.overrideThemeStyles = ({ rhythm, scale }, options) => {
     },
     blockquote: {
       borderLeft: '0.1rem solid #1ca086',
+      marginLeft: '0',
     },
   };
 };
