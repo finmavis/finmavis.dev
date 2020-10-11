@@ -11,16 +11,16 @@ bannerCreditLink: 'https://unsplash.com/photos/8KfCR12oeUM'
 
 So, you've been using React for some time, maybe you use `create-react-app` to starting your project, or maybe you use your own webpack or parcel configuration to build an app using React. Time passed and you pretty happy about it.
 
-Then everything changed when the Fire Nation attacked. Your colleague or maybe your team ask you about server side rendering, they said <em>&ldquo;I heard that server side rendering is really legit for performance, so it will much better for user experience and it's really good to improve SEO too&rdquo;.</em> Or maybe you're just curious enough how to improve your site performances and stumbleupon server side rendering, but you have no idea what it is or how to implement it.
+Then everything changed when the Fire Nation attacked. Your colleague or maybe your team ask you about server-side rendering, they said <em>&ldquo;I heard that server-side rendering is really legit for performance, so it will much better for user experience and it's really good to improve SEO too&rdquo;.</em> Or maybe you're just curious enough how to improve your site performances and Stumbleupon server-side rendering, but you have no idea what it is or how to implement it.
 
 ## What is server side rendering?
 
-Before we discuss about server side rendering, let's take a step back and review how normally React render content (client side rendering).
+Before we discuss server-side rendering, let's take a step back and review how normally React render content (client-side rendering).
 
 Here's the summary:
 
 1. Users go to our site.
-2. Our server receive a request, then give a response immediately with initial `html` document. And the document might be like this:
+2. Our server receives a request, then gives a response immediately with the initial `HTML` document. And the document might be like this:
 
 ```html{16}
 <!-- index.html -->
@@ -46,19 +46,19 @@ Here's the summary:
 </html>
 ```
 
-3. Browser receive that document, parse the html, then browsers see a `css` and kinda say, <em>&ldquo;Ohh shooottt! I need to request this file&rdquo;</em>, so browser make a request to the server and pause the render process and waiting for the response.
-4. Our server be like, I got another request, this user request `css` file, let me give the response again with the `css` file that being requested.
-5. Browser receive that `css` file and continue to render, while rendering, the browser see `js` file and need to request again that file to the server, and be like, <em>&ldquo;Yoooo, I need this `js` file, can you send it to me ?&rdquo;</em> and pause the render process again.
-6. Copy that, sending you the `js` file.
+3. Browser receive that document, parse the HTML, then browsers see a `CSS` and kinda say, <em>&ldquo;Ohh shooottt! I need to request this file&rdquo;</em>, so the browser makes a request to the server and pause the render process and waiting for the response.
+4. Our server be like, I got another request, this user request `CSS` file, let me give the response again with the `CSS` file that is requested.
+5. Browser receive that `CSS` file and continue to render, while rendering, the browser sees `JS` file and need to request again that file to the server, and be like, <em>&ldquo;Yoooo, I need this `JS` file, can you send it to me ?&rdquo;</em> and pause the render process again.
+6. Copy that, sending you the `JS` file.
 7. Browser then receive that file and continue to render.
-8. Until the browser finished load, parse and execute all the `js`, finally user see some content.
+8. Until the browser finished load, parse and, execute all the `JS`, finally, user sees some content.
 
 <small><em>Note: The browser rendering mechanism is much more complex than this.</em></small>
 
-Now, let's take a look about **server side rendering** process:
+Now, let's take a look at **server-side rendering** process:
 
 1. Users go to our site.
-2. Our server receive a request, then **prepare/pre-populated/render** initial `html` content or data (like user data or you fetch some data) on the server. After it finished, server send back the response, the document is problaly be like this:
+2. Our server receives a request, then **prepare/pre-populated/render** initial `HTML` content or data (like user data or you fetch some data) on the server. After it finished, the server sends back the response, the document is problaly be like this:
 
 ```html{16-37}
 <!DOCTYPE html>
@@ -106,31 +106,31 @@ Now, let's take a look about **server side rendering** process:
 ```
 
 3. Browser receive that document, parse it, but here's the difference, **the user can already see the content**, did you notice the response given by the server? Yup, content already there, not just some skeleton/placeholder about our app. At least now our site viewable but still not interactive to the users.
-4. The process not stop there, browsers continue parse and see a `css` and `js` file and make a request to the server just like the process above. After it finished our `js/React` takes over and start execute where the app left off and then it become interactive to the users.
+4. The process not stop there, browsers continue to parse and see a `CSS` and `JS` file and make a request to the server just like the process above. After it finished our `js/React` takes over and starts execute where the app left off and then it becomes interactive to the users.
 
-Let's recap, so, what is **server side rendering**? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
+Let's recap, so, what is **server-side rendering**? It’s basically about rendering a javascript application (in this case React) and turn it into static HTML with pre-populated data or content on the server.
 
-I still didn't get it. Can you provide the difference between **Client Side Rendering** and **Server Side Rendering**? On **client side rendering**, we are completely running React on the browser. The initial HTML that sent by the server just a placeholder (as you see above, just a `div` with an id of root) and the entire UI or content is rendered in the browser once all the scripts load.
+I still didn't get it. Can you provide the difference between **Client-Side Rendering** and **Server-Side Rendering**? On **client-side rendering**, we are completely running React on the browser. The initial HTML that sent by the server just a placeholder (as you see above, just a `div` with an id of root), and the entire UI or content is rendered in the browser once all the scripts load.
 
 ## Razzle
 
-You problaly already know what **create-react-app** is, a tool (built by developers at Facebook) that help us to start creating our React project without to worry about configuration stuff. All we have to do is simply run the **create-react-app** command, then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, autoprefixes, and along with other features.
+You probably already know what **create-react-app** is, a tool (built by developers at Facebook) that helps us to start creating our React project without to worry about configuration stuff. All we have to do is simply run the **create-react-app** command, then magically react app is ready to be developed. We start developing our project with amazing developer experience with features like HMR, ES6, CSS, CSS Modules, SASS/SCSS, Minify ours CSS, autoprefixes, and along with other features.
 
-Now, **Razzle**, you have no idea about it. **Razzle** is just like create-react-app. But here's the difference, **Razzle** is a tool to create **server side rendering** (React and React Router by default) app.
+Now, **Razzle**, you have no idea about it. **Razzle** is just like create-react-app. But here's the difference, **Razzle** is a tool to create **server-side rendering** (React and React Router by default) app.
 
 Let's quote what razzle is in their docs:
 
 > Razzle is a tool that abstracts all complex configuration needed for SSR into a single dependency--giving us the awesome developer experience of **create-react-app**, but then leaving the rest of our app's architectural decisions about frameworks, routing, and data fetching up to us.
 
-Whaaatttttt, that's amazing. **But wait**, **there's more**, we can customize **Babel** and **Webpack** razzle config, why do i mean by that? For example we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add little bit configuration to **webpack** for Server side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start extend razzle webpack configuration.
+Whaaatttttt, that's amazing. **But wait**, **there's more**, we can customize **Babel** and **Webpack** razzle config, why do I mean by that? For example, we want to add code splitting for our React project using [@loadable/component](https://loadable-components.com/) which needed to add a little bit configuration to **webpack** for Server-side rendering, with razzle this is a piece a cake. We just simply create a `razzle.config.js` file then we can start to extend razzle webpack configuration.
 
-Razzle also come with plugins just like **gatsby** do. What does that mean? For example we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add assets compression on production build? There's a plugin for that. Need to inline svg like create-react-app did? There's plugin for that. Didn't find the plugin you looking for? You can build one!
+Razzle also comes with plugins just like **gatsby** do. What does that mean? For example, we want to use TypeScript to develop Razzle, there's a plugin for that. Need to add assets compression on production build? There's a plugin for that. Need to inline SVG as create-react-app did? There's a plugin for that. Didn't find the plugin you looking for? You can build one!
 
 <small>Note: You can see all the available plugin [here](https://www.npmjs.com/search?q=razzle-plugin)</small>.
 
 ## The Code
 
-Before jump to the code, we need to know the goals of the things that we build. Here's the goals of this app:
+Before jump to the code, we need to know the goals of the things that we build. Here are the goals of this app:
 
 1. Server side rendering React (Of course, it's Razzle)
 2. Add React Helmet for SEO
@@ -192,7 +192,7 @@ yarn add common-tags
 npm install --save common-tags
 ```
 
-Now, open up our `server.js` again, and update our html template literals to use `common-tags`:
+Now, open up our `server.js` again, and update our HTML template literals to use `common-tags`:
 
 ```js{2,9}
 // server.js
@@ -240,7 +240,7 @@ Ok, we already checked the first point, next add **React Helmet** to our Project
 
 ## Add React Helmet
 
-First we need to install React Helmet, then use it on our server and client. To install React Helmet run the following command:
+First, we need to install React Helmet, then use it on our server and client. To install React Helmet run the following command:
 
 ```bash
 # If you're using yarn
@@ -313,7 +313,7 @@ server
   });
 ```
 
-Ok, after we use it on our Server. Let's use it on our React Component. For this example we'll update the `title` and `meta description` tag. Open `Home.js` file and then add the following code:
+Ok, after we use it on our Server. Let's use it on our React Component. For this example, we'll update the `title` and `meta description` tag. Open `Home.js` file and then add the following code:
 
 ```jsx{2,7-10}
 // Home.js
@@ -356,7 +356,7 @@ That's really easy, what about next, code splitting? Yep, let's jump to the next
 
 ## Code Splitting
 
-For code splitting we are going to use `@loadable/component`. Let's install it then.
+For code-splitting we are going to use `@loadable/component`. Let's install it then.
 
 ```bash
 # For server side rendering

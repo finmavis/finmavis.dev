@@ -995,11 +995,11 @@ module.exports = {
 
 ## Production
 
-To build our project for production, we need another config and scripts, because what we used previously is only for development. You might ask, why? Perhaps, you're already aware, that what we did previously, just so we can using webpack for development, or in other word, just make it **works** so we can start developing our project without optimizing our code (JS, CSS) and assets.
+To build our project for production, we need another config and scripts, because what we used previously is only for development. You might ask, why? Perhaps, you're already aware, that what we did previously, just so we can using webpack for development, or in other words, just make it **works** so we can start developing our project without optimizing our code (JS, CSS) and assets.
 
-For production, it slightly different. The goals is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more on optimizing your site, you can read more on [web.dev](https://web.dev/fast).
+For production, it slightly different. The goal is to serve all our code and assets to the users with the minified bundles and optimized assets to improve load time. For example, we have to minify our JS and CSS, split our bundles, then compress it to make the size smaller, and many other things. If you interested more in optimizing your site, you can read more on [web.dev](https://web.dev/fast).
 
-Because there are some difference between development and production, it is recommend to separate our webpack config, one for development and one for production. Now, because our `webpack.config.js` is so far only for development, let's update the name to `webpack.dev.js`. Let's also create a new webpack config file named `webpack.prod.js` for production inside our **config** folder.
+Because there is some differences between development and production, it is recommend to separate our webpack config, one for development and one for production. Now, because our `webpack.config.js` is so far only for development, let's update the name to `webpack.dev.js`. Let's also create a new webpack config file named `webpack.prod.js` for production inside our **config** folder.
 
 Now, our project structure would look like below:
 
@@ -1018,7 +1018,7 @@ Now, our project structure would look like below:
 |-- package.json
 ```
 
-Because we just changed the filename of our webpack config, let's update our scripts in our `package.json`, then, also add a scripts for production build.
+Because we just changed the filename of our webpack config, let's update our scripts in our `package.json`, then, also add a script for a production build.
 
 ```json
 // package.json
@@ -1030,7 +1030,7 @@ Because we just changed the filename of our webpack config, let's update our scr
 }
 ```
 
-Now, what should we do with our `webpack.prod.js`? Let's fill in the same as our `webpack.dev.js`. After we copy paste, update the `mode` to **production**, then delete some options related to development only like `devServer`. We'll also disable generate source maps in production, so we'll delete `devtool` options too. But, If you wish to generate source maps, you can keep devtool options or update the value like `source-map`. You can read more [here](https://webpack.js.org/configuration/devtool/) about devtool.
+Now, what should we do with our `webpack.prod.js`? Let's fill in the same as our `webpack.dev.js`. After we copy-paste, update the `mode` to **production**, then delete some options related to development only like `devServer`. We'll also disable generate source maps in production, so we'll delete `devtool` options too. But, If you wish to generate source maps, you can keep devtool options or update the value like `source-map`. You can read more [here](https://webpack.js.org/configuration/devtool/) about devtool.
 
 Now our `webpack.prod.js` would look like below:
 
@@ -1217,7 +1217,7 @@ By now, we can start using our `build` scripts to generate our app for productio
 
 ## Cleanup every build
 
-In general it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have plugin specifically for that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
+In general, it's good practice to clean our `/build` folder before each build, so that only used files will be generated. Webpack have a plugin specifically for that, it's `clean-webpack-plugin`. Let's add the plugin to our project:
 
 ```bash
 # If you're using yarn
@@ -1250,7 +1250,7 @@ module.exports = {
 };
 ```
 
-For a better caching, let's use hash on our output **filename** and **chunkFilename** for production:
+For a better caching, let's use a hash on our output **filename** and **chunkFilename** for production:
 
 ```js{6-7}
 // config/webpack.prod.js
@@ -1267,7 +1267,7 @@ module.exports = {
 
 ## Extract CSS into file
 
-You realize that every time we build for production, there's no css file, it's because we still using **style-loader**. For production is little bit diferrent, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
+You realize that every time we build for production, there's no CSS file, it's because we still using **style-loader**. For production is a little bit different, we want to extract it into a file. In this case, we're gonna use **MiniCssExtractPlugin** to extracts our CSS into separate file.
 
 Now, let's install it and update our webpack production config to use **MiniCssExtractPlugin** instead of **style-loader**:
 
@@ -1412,13 +1412,13 @@ module.exports = {
 };
 ```
 
-Now, every time we run scripts `yarn build` or `npm run build`, it will also create CSS file for us.
+Now, every time we run scripts `yarn build` or `npm run build`, it will also create a CSS file for us.
 
 ## Minify HTML
 
-If we take a look at our generated HTML in `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by default using **html-minifier-terser**.
+If we take a look at our generated HTML in the `/build` folder, it doesn't get minified. To minify our HTML, we gonna use **html-webpack-plugin** **minify** options, which is by default using **html-minifier-terser**.
 
-Let's add minify option to our **html-webpack-plugin** for production:
+Let's add the minify option to our **html-webpack-plugin** for production:
 
 ```js{14-23}
 // config/webpack.prod.js
@@ -1451,9 +1451,9 @@ module.exports = {
 
 ## Minify JS and Code Splitting
 
-Now, let's take a look at our JS file. You noticed that our JS file already get minified. But, we do nothing with webpack to optimize our code. How come? Well, it's because by default, when webpack run on **production** mode, it will automatically minimize our JS code using [TerserPlugin](https://github.com/webpack-contrib/terser-webpack-plugin).
+Now, let's take a look at our JS file. You noticed that our JS file already gets minified. But, we do nothing with webpack to optimize our code. How come? Well, it's because by default, when webpack runs on **production** mode, it will automatically minimize our JS code using [TerserPlugin](https://github.com/webpack-contrib/terser-webpack-plugin).
 
-Webpack also come with optimization option to split our bundle. For example, we want to split runtime code and third-party libraries into a separate chunk as they are less likely to change than our local source code.
+Webpack also comes with an optimization option to split our bundle. For example, we want to split runtime code and third-party libraries into a separate chunk as they are less likely to change than our local source code.
 
 Let's split our bundle into separate chunk to make our main bundle smaller:
 
@@ -1488,7 +1488,7 @@ module.exports = {
 };
 ```
 
-Now everytime we build, it will separate and generate **runtime** and **vendor** chunk from our main bundle code.
+Now every time we build, it will separate and generate **runtime** and **vendor** chunk from our main bundle code.
 
 ## Minify JS with custom options
 
@@ -1549,11 +1549,11 @@ module.exports = {
 
 ## Minify CSS
 
-We already seen how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, directly add **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too.
+We already saw how to minimize out HTML and JS. What about our CSS? So far, if we take a look at our extracted CSS, our CSS still not minimized. To minimize our CSS, there are 2 alternatives to achieve it. First, directly add **cssnano** to our **PostCSS** config to minify our CSS. Second, using webpack plugin, **optimize-css-assets-webpack-plugin**, which is under the hood using **cssnano** too.
 
 You might ask, what's the difference and which one is better? To be honest, I don't really know much about it. I can't say much in this subject, but, if you're someone who knows about this, could you explain it to me or maybe give some references that I can read so I'll update this blog post.
 
-For now, let's put that aside, in this guide we'll using **optimize-css-assets-webpack-plugin**. Let's add it to our project:
+For now, let's put that aside, in this guide we'll be using **optimize-css-assets-webpack-plugin**. Let's add it to our project:
 
 ```bash
 # If you're using yarn
@@ -1610,11 +1610,11 @@ module.exports = {
 
 ## Compression
 
-One of important thing before delivering our assets (HTML, CSS, JS and etc) to users, we need to compress it first. By compressing our assets alone, we can significantly reduce the total size of our assets, which leads to smaller network payloads when users visit our site or in other words, the smaller the assets, the faster to download. Faster download means a faster page load.
+One important thing before delivering our assets (HTML, CSS, JS and etc) to users, we need to compress it first. By compressing our assets alone, we can significantly reduce the total size of our assets, which leads to smaller network payloads when users visit our site or in other words, the smaller the assets, the faster to download. The faster download means a faster page load.
 
-Some say, we don't need to do compression by ourselves. Many hosting platforms, CDNs, and Web Server like nginx or Apache could provide compression dynamically as they get requested by the browser for us. But, in this guide, we will do compression while we build our project for production.
+Some said we don't need to do compression by ourselves. Many hosting platforms, CDNs, and Web Servers like Nginx or Apache could provide compression dynamically as they get requested by the browser for us. But, in this guide, we will do compression while we build our project for production.
 
-To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generate **gzip** compression. But, since Node.js **v11.7.0** support **brotli** compression, this plugin could also generate **brotli** for us. Let's add it to our project:
+To compress our assets, we need **compression-webpack-plugin**. By default, this plugin only generates **gzip** compression. But, since Node.js **v11.7.0** support **brotli** compression, this plugin could also generate **brotli** for us. Let's add it to our project:
 
 ```bash
 # If you're using yarn
@@ -1654,7 +1654,7 @@ module.exports = {
 };
 ```
 
-As side note, if you're running Node.js below **v11.7.0**, you need **brotli-webpack-plugin** to generate **brotli** compression.
+As a side note, if you're running Node.js below **v11.7.0**, you need **brotli-webpack-plugin** to generate **brotli** compression.
 
 ```bash
 # If you're using yarn
@@ -1691,6 +1691,6 @@ module.exports = {
 };
 ```
 
-Now, all we have to do is to configure our server to serve brotli compression with fallback to gzip if users browser doesn't support brotli compression. But, because our focus is only in webpack, we will just leave it as it is.
+Now, all we have to do is to configure our server to serve brotli compression with fallback to gzip if the users browser doesn't support brotli compression. But, because our focus is only on webpack, we will just leave it as it is.
 
-Well, that's really long guide, and now, we reach the end of the guide. I hope you find this guide useful and can start using it for your development. It might take a little time, but learning how this tool works will pay off.
+Well, that's a really long guide, and now, we reach the end of the guide. I hope you find this guide useful and can start using it for your development. It might take a little time, but learning how this tool works will pay off.
