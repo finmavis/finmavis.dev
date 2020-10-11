@@ -374,7 +374,7 @@ npm install --save @loadable/component @loadable/server
 npm install --save-dev @loadable/babel-plugin @loadable/webpack-plugin
 ```
 
-Now, create a `razzle.config.js` in the root of our project so that we can extend razzle **webpack** configuration and then add **@loadable/component** config.
+Now, create a `razzle.config.js` in the root of our project so that we can extend the razzle **webpack** configuration and then add **@loadable/component** config.
 
 Open up the file then add the following code:
 
@@ -431,7 +431,7 @@ module.exports = {
 };
 ```
 
-Now, let's use it on our server. Open `server.js` file again and add the following code:
+Now, let's use it on our server. Open up the `server.js` file again and add the following code:
 
 ```js{2,4,10-13,16,20}
 // server.js
@@ -492,11 +492,11 @@ server
   });
 ```
 
-Here you notice that our code have `extractor`, but what is it? **Extractor** is used to collect chunks server-side and it expose an API to get them as script tags or script elements.
+Here you notice that our code has `extractor`, but what is it? **Extractor** is used to collect chunks server-side and it exposes an API to get them as script tags or script elements.
 
 <small>Note: You can see full list API [here](https://loadable-components.com/docs/api-loadable-server/).</small>
 
-Let's continue, after we use it on server, also update on `client.js`, and add the following code:
+Let's continue, after we use it on the server, also update on `client.js`, and add the following code:
 
 ```js{2,8,15}
 // client.js
@@ -516,7 +516,7 @@ loadableReady(() => {
 });
 ```
 
-And now we're ready to use code splitting on our React app. Let's use code splitting to our React app. Open `App.js` file. Here, we are going to update how we import **Home** component.
+And now we're ready to use code splitting on our React app. Let's use code splitting to our React app. Open the `App.js` file. Here, we are going to update how we import the **Home** component.
 
 ```js{2,7}
 // App.js
@@ -530,11 +530,11 @@ const Home = loadable(() => import('./Home'));
 
 ## Remove unused CSS
 
-When we start developing our project, problaly we decided to use CSS Framework to speed up our development. At first it doesn't become problem, then at some point you realized that what css framework offers is to much, and you don't use it much. Maybe you just using the grid system, button, or maybe just the utilities. And you've been thinking, can I remove all that stuff that I don't use?
+When we start developing our project, probably we decided to use CSS Framework to speed up our development. At first, it doesn't become a problem, then at some point, you realized that what CSS framework offers is too much, and you don't use it much. Maybe you just using the grid system, button, or maybe just the utilities. And you've been thinking, can I remove all that stuff that I don't use?
 
-Well guess what, you can! Here comes [PurgeCSS](https://www.purgecss.com/), a tool to remove unused CSS. The way PurgeCSS works is, for example, we're using **bootstrap** on our project, we only using class `.container`. Now, PurgeCSS will see that and will stripping all other css class that not being used, so in our final bundle css it will only have class `.container`.
+Well, guess what, you can! Here comes [PurgeCSS](https://www.purgecss.com/), a tool to remove unused CSS. The way PurgeCSS works is, for example, we're using **bootstrap** on our project, we only using the class `.container`. Now, PurgeCSS will see that and will stripping all other CSS class that not being used, so in our final bundle CSS it will only have class `.container`.
 
-Ok, enough talking, let's see PurgeCSS in action. First we need to install some CSS Framework, i'll pick **bootstrap**. Let's install it:
+Ok, enough talking, let's see PurgeCSS in action. First, we need to install some CSS Framework, I'll pick **bootstrap**. Let's install it:
 
 ```bash
 # If you're using yarn
@@ -587,15 +587,15 @@ function Home() {
 }
 ```
 
-Let's build it on Production mode. We can using `yarn build` or `npm run build` to build for Production. After it finished, let's serve our app using `yarn start:prod` or `npm run start:prod`. Ok, but why you ask? Well, we gonna inspect how much bootstrap affect (size) in our Project.
+Let's build it on Production mode. We can use `yarn build` or `npm run build` to build for Production. After it finished, let's serve our app using `yarn start:prod` or `npm run start:prod`. Ok, but why you ask? Well, we gonna inspect how much bootstrap affect (size) in our Project.
 
-Open [http://localhost:3000](http://localhost:3000) again in our browser. Let's inspect it and we're gonna use **network tab** on chrome to see how much bootstrap cost.
+Open [http://localhost:3000](http://localhost:3000) again in our browser. Let's inspect it and we're gonna use the **network tab** on chrome to see how much bootstrap cost.
 
 ![CSS before PurgeCSS](/images/network-tab-before-purgecss.png)
 
-Now pay attention on `vendors` css file, it's our bootstrap file. The size is **144kb**, now you said, that small, well now think if our users is on slow network, that's alot to download. Beside it is to much because we only using class `.container`, so why download all of it?
+Now pay attention to the `vendors` CSS file, it's our bootstrap file. The size is **144kb**, now you said, that small, well now think if our users are on a slow network, that's a lot to download. Besides it is too much because we only using the class `.container`, so why download all of it?
 
-Luckily, PurgeCSS have plugin for Razzle. Let's use it then:
+Luckily, PurgeCSS has a plugin for Razzle. Let's use it then:
 
 ```bash
 # If you're using yarn
@@ -605,7 +605,7 @@ yarn add --dev razzle-plugin-purgecss
 npm install --save-dev razzle-plugin-purgecss
 ```
 
-Wait a minute, how to use plugin on Razzle? Well same as when we're add `@loadable/component`, using `razzle.config.js`. Now open up our Razzle config file, then add PurgeCSS as plugin:
+Wait a minute, how to use the plugin on Razzle? Well same as when we're adding `@loadable/component`, using `razzle.config.js`. Now open up our Razzle config file, then add PurgeCSS as a plugin:
 
 ```js{3-11}
 // razzle.config.js
@@ -627,21 +627,21 @@ Now let's build again for Production and inspect it.
 
 ![CSS after PurgeCSS](/images/network-tab-after-purgecss.png)
 
-Now, pay attention again on our `vendors` css file. It only **3.9kb**! Holy molly cow, it reduce **97%** the size from original size. Wowww that's amazing! Now our css bundle is not bloated with unused code, also we help our user to download as small as possible file which will saving their data plan (less download, less data plan being used) when they visit out site (even tho they didn't know that).
+Now, pay attention again to our `vendors` CSS file. It only **3.9kb**! Holy molly cow, it reduces **97%** the size from original size. Wowww that's amazing! Now our CSS bundle is not bloated with unused code, also we help our user to download as small as possible file which will save their data plan (less download, less data plan being used) when they visit our website (even tho they didn't know that).
 
 ## Compression
 
-Here come the last part, why should we compress all our assets? Here's why, quoted from [web.dev](https://web.dev/reduce-network-payloads-using-text-compression/):
+Here comes the last part, why should we compress all our assets? Here's why quoted from [web.dev](https://web.dev/reduce-network-payloads-using-text-compression/):
 
 > Compressing files can significantly improve the performance of a webpage.
 
-Why? Because with compression, all of our assets file size will be much smaller! Remember that we have to send to user as small as possible.
+Why? Because with compression, all of our assets file size will be much smaller! Remember that we have to send it to user as small as possible.
 
 Before adding compression to our project. Let's check how our project size overall.
 
 ![Assets before compression](/images/before-compression.png)
 
-We're going to use **razzle-plugin-compression** to add compression. It provide static compression for `gzip` and `brotli`. Also we need `compression` and `express-static-gzip` to serve gzip and brotli on our server.
+We're going to use **razzle-plugin-compression** to add compression. It provides static compression for `gzip` and `brotli`. Also, we need `compression` and `express-static-gzip` to serve gzip and brotli on our server.
 
 ```bash
 # If you're using yarn
@@ -653,7 +653,7 @@ npm install --save compression express-static-gzip
 npm install --save-dev razzle-plugin-compression
 ```
 
-Open our `razzle.config.js` again to use compression plugin:
+Open our `razzle.config.js` again to use the compression plugin:
 
 ```js{10-27}
 // razzle.config.js
@@ -689,7 +689,7 @@ module.exports = {
 };
 ```
 
-Now everytime we build for Production, it will generate gzip and brotli file. But this is not enough. We also need to set our server to serve gzip and brotli. Let's open our `server.js` file:
+Now every time we build for Production, it will generate a gzip and a brotli file. But this is not enough. We also need to set our server to serve gzip and brotli. Let's open our `server.js` file:
 
 ```js{2,3,7-13}
 // server.js
@@ -754,10 +754,10 @@ And we're done. Let's check again how much we improve and saving delivering bund
 
 ![After assets get compression](/images/after-compression.png)
 
-Did you notice any diferrent? Well, take a look at size. It improve so much, all the response size now much smaller than before. For example our `vendors` js file, before it get compressed, the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
+Did you notice any difference? Well, take a look at the size. It improves so much, all the response sizes now much smaller than before. For example, our `vendors` JS file, before it gets compressed, the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
 
-Again, we improve the perfomances and we help our user saving so much their data plan everytime visit our site, because we always send our assets as small as possible.
+Again, we improve the performances and we help our user saving so much their data plan every time visit our website because we always send our assets as small as possible.
 
-Now, we reach the end of the tutorial. In my opinion **Razzle** really help to set up Server side rendering React app with ease. It also give us freedom to customize our app like customize the **webpack** or **babel** configuration to do whatever we want!
+Now, we reach the end of the tutorial. In my opinion, **Razzle** really helps to set up Server-side rendering React app with ease. It also gives us the freedom to customize our app like customize the **webpack** or **babel** configuration to do whatever we want!
 
 So, what do you think about **Razzle**?
