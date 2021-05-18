@@ -18,15 +18,15 @@ export const PLAYGROUND_DATA = [
     link: 'https://tmdb-clone.firebaseapp.com',
   },
   {
-    name: 'Razzle PurgeCSS',
-    imageName: 'purgecss',
-    description: 'A Plugin for Using PurgeCSS with Razzle',
-    link: 'https://github.com/finmavis/razzle-plugin-svg-react-component',
-  },
-  {
     name: 'Razzle SVG',
     imageName: 'svg',
     description: 'A Plugin for Inlining SVGs with Razzle',
+    link: 'https://github.com/finmavis/razzle-plugin-svg-react-component',
+  },
+  {
+    name: 'Razzle PurgeCSS',
+    imageName: 'purgecss',
+    description: 'A Plugin for Using PurgeCSS with Razzle',
     link: 'https://github.com/finmavis/razzle-plugin-purgecss',
   },
 ];
