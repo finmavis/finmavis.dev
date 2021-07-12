@@ -1,7 +1,12 @@
 export const EXPERIENCE_DATA = [
   {
+    company: 'TaniHub',
+    year: '2021 - Current',
+    position: 'Frontend Engineer',
+  },
+  {
     company: 'Style Theory',
-    year: '2019 - Current',
+    year: '2019 - 2021',
     position: 'Web Engineer',
   },
   {

@@ -148,8 +148,8 @@ export default function Hero() {
             font-size: 1rem;
           `}
         >
-          I currently work at Style Theory - Southeast Asia's Largest Fashion
-          Rental Subscription Platform
+          I currently work at TaniHub - South-East Asia’s Largest
+          Agriculture-Tech Startup
         </p>
       </div>
     </section>
