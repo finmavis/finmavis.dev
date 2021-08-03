@@ -16,7 +16,7 @@ export const COURSE_LIST = [
       },
       {
         name: 'React - The Complete Guide (incl Hooks, React Router, Redux)',
-        year: 2017,
+        year: 2018,
       },
     ],
   },
@@ -30,6 +30,10 @@ export const COURSE_LIST = [
       {
         name: 'Fullstack Advanced React and GraphQL',
         year: 2018,
+      },
+      {
+        name: 'Beginner JavaScript',
+        year: 2020,
       },
     ],
   },
