@@ -69,7 +69,7 @@ export default function About(props) {
             <p>
               Hi! My name is {data.site.siteMetadata.name}, also known as{' '}
               {data.site.siteMetadata.author}. I’m a Frontend Developer based in
-              Jakarta. Currently, I'm working as a Frontend Engineer at TaniHub.
+              Jakarta. Currently, I'm working as a Frontend Engineer at Xendit.
             </p>
             <p>
               Tech enthusiast, conscientious &amp; relentless on solving
