@@ -148,8 +148,8 @@ export default function Hero() {
             font-size: 1rem;
           `}
         >
-          I currently work at TaniHub - South-East Asia’s Largest
-          Agriculture-Tech Startup
+          I currently work at Xendit - Best Payment Gateway in Indonesia and
+          Southeast Asia
         </p>
       </div>
     </section>
