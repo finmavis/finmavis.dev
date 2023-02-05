@@ -74,9 +74,9 @@
     "start": "cross-env GATSBY_ACTIVE_ENV=local npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "lint": "eslint src/**/*.{js,jsx}",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier src/**/*.{js,jsx,json,css,scss,md}",
+    "prettier": "prettier \"src/**/*.{js,jsx,json,css,scss,md}\"",
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
     "validate": "npm run check-format && npm run lint"
