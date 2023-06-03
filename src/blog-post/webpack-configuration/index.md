@@ -335,7 +335,7 @@ print();
 
 Oh no, when we start our development server again, we get these error:
 
-![Error regenerator runtime](/images/error-async-await.jpg)
+![Error regenerator runtime](./images/error-async-await.jpg)
 
 If you read the error carefully, **webpack** cannot find module `regenerator-runtime/runtime`, it's because to use `async await`, we need 2 packages, `@babel/runtime` and `@babel/plugin-transform-runtime`.
 
@@ -505,7 +505,7 @@ import './main.css';
 
 Now, if we take a look at our compiled HTML in the browser, it will attach the `<style>` tag in our DOM, and it might look like below:
 
-![CSS in the DOM example](/images/css-example.jpg)
+![CSS in the DOM example](./images/css-example.jpg)
 
 This still limited to **CSS** file only though, if we want to use CSS Pre-Processor like **SASS**, we also need to set it up.
 
@@ -691,7 +691,7 @@ h1.classList.add(styles.h1);
 
 Now, it will add class to our `H1` element, and it will look like this:
 
-![CSS Modules Example](/images/css-module-example.jpg)
+![CSS Modules Example](./images/css-module-example.jpg)
 
 ## CSS Future Syntax and Autoprefix
 

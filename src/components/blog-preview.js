@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Card from './ui/card';
@@ -10,10 +10,7 @@ import Card from './ui/card';
 export default function BlogPreview() {
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: 3
-      ) {
+      allMarkdownRemark(sort: { frontmatter: { date: DESC } }, limit: 3) {
         edges {
           node {
             id
@@ -25,9 +22,7 @@ export default function BlogPreview() {
               title
               banner {
                 childImageSharp {
-                  fluid(maxWidth: 415) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
+                  gatsbyImageData(layout: FULL_WIDTH)
                 }
               }
               bannerCreditName
@@ -86,8 +81,10 @@ export default function BlogPreview() {
                     to={node.frontmatter.path}
                     aria-label={node.frontmatter.title}
                   >
-                    <Img
-                      fluid={node.frontmatter.banner.childImageSharp.fluid}
+                    <GatsbyImage
+                      image={
+                        node.frontmatter.banner.childImageSharp.gatsbyImageData
+                      }
                       alt={node.frontmatter.title}
                       css={css`
                         max-height: 10rem;

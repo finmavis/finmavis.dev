@@ -1,12 +1,12 @@
 import React from 'react';
-import { css } from '@emotion/core';
-import useDarkMode from 'use-dark-mode';
+import { css } from '@emotion/react';
+import useDarkMode from '../shared/hooks/useDarkMode';
 
 import LightIcon from '../shared/assets/svg/light-icon.svg';
 import DarkIcon from '../shared/assets/svg/dark-icon.svg';
 
 export default function ToggleSwitch(props) {
-  const { value, toggle, enable, disable } = useDarkMode(true);
+  const darkMode = useDarkMode(true);
 
   return (
     <div
@@ -22,7 +22,7 @@ export default function ToggleSwitch(props) {
           cursor: pointer;
           margin: 0;
         `}
-        onClick={disable}
+        onClick={darkMode.disable}
         alt='Light Button'
       />
       <div
@@ -53,8 +53,8 @@ export default function ToggleSwitch(props) {
               transform: translateX(-100%);
             }
           `}
-          checked={value}
-          onChange={toggle}
+          checked={darkMode.value}
+          onChange={darkMode.toggle}
         />
         <label
           htmlFor='toggle-switch-dark-mode'
@@ -93,7 +93,7 @@ export default function ToggleSwitch(props) {
           cursor: pointer;
           margin: 0;
         `}
-        onClick={enable}
+        onClick={darkMode.enable}
         alt='Dark Button'
       />
     </div>

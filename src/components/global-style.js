@@ -1,6 +1,6 @@
 import React from 'react';
-import { Global, css } from '@emotion/core';
-import 'overlayscrollbars/css/OverlayScrollbars.css';
+import { Global, css } from '@emotion/react';
+import 'overlayscrollbars';
 
 export default function GlobalStyle(props) {
   return (

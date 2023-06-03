@@ -6,7 +6,6 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 function SEO({ description, lang, title, isBlogPost, image, pathname }) {
@@ -32,7 +31,7 @@ function SEO({ description, lang, title, isBlogPost, image, pathname }) {
   const metaUrl = `${site.siteMetadata.siteUrl}${pathname ? pathname : '/'}`;
 
   return (
-    <Helmet>
+    <>
       {/* General Tags */}
       <html lang={lang} />
       <title>
@@ -54,7 +53,7 @@ function SEO({ description, lang, title, isBlogPost, image, pathname }) {
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={metaDescription} />
       <meta name='twitter:image' content={metaImage} />
-    </Helmet>
+    </>
   );
 }
 

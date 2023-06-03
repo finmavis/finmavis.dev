@@ -1,8 +1,8 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
-import Img from 'gatsby-image';
 import Container from './ui/container';
 
 import EmailIcon from '../shared/assets/svg/email.inline.svg';
@@ -22,9 +22,7 @@ export default function About(props) {
       }
       file(relativePath: { eq: "profile.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
@@ -139,8 +137,8 @@ export default function About(props) {
               }
             `}
           >
-            <Img
-              fluid={data.file.childImageSharp.fluid}
+            <GatsbyImage
+              image={data.file.childImageSharp.gatsbyImageData}
               alt={`${data.site.siteMetadata.author} Photo`}
               css={css`
                 border-radius: 50%;

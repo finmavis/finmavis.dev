@@ -172,11 +172,11 @@ Then we're ready to develop Server side rendering React app. Let's take a look o
 
 Now navigate to our active project directory, we can start development server using scripts `yarn start` or `npm run start`. After it finished bundle our code, we can open [http://localhost:3000](http://localhost:3000/) on our browser to see our app. Here's how it looks like:
 
-![Razzle starter page](/images/razzle-starter-page.jpg)
+![Razzle starter page](./images/razzle-starter-page.jpg)
 
 Let's check if it's really server side rendering by viewing the page source on our browser.
 
-![Source code SSR](/images/open-source-ssr-page.jpg)
+![Source code SSR](./images/open-source-ssr-page.jpg)
 
 Well, as you can see, the code is there, not just a `div` with an id of root.
 
@@ -234,7 +234,7 @@ if (context.url) {
 
 Now, if we're inspecting the page source again, it will minify our HTML response like below:
 
-![Monified response](/images/minify-version.jpg)
+![Monified response](./images/minify-version.jpg)
 
 Ok, we already checked the first point, next add **React Helmet** to our Project.
 
@@ -591,7 +591,7 @@ Let's build it on Production mode. We can use `yarn build` or `npm run build` to
 
 Open [http://localhost:3000](http://localhost:3000) again in our browser. Let's inspect it and we're gonna use the **network tab** on chrome to see how much bootstrap cost.
 
-![CSS before PurgeCSS](/images/network-tab-before-purgecss.png)
+![CSS before PurgeCSS](./images/network-tab-before-purgecss.png)
 
 Now pay attention to the `vendors` CSS file, it's our bootstrap file. The size is **144kb**, now you said, that small, well now think if our users are on a slow network, that's a lot to download. Besides it is too much because we only using the class `.container`, so why download all of it?
 
@@ -625,7 +625,7 @@ module.exports = {
 
 Now let's build again for Production and inspect it.
 
-![CSS after PurgeCSS](/images/network-tab-after-purgecss.png)
+![CSS after PurgeCSS](./images/network-tab-after-purgecss.png)
 
 Now, pay attention again to our `vendors` CSS file. It only **3.9kb**! Holy molly cow, it reduces **97%** the size from original size. Wowww that's amazing! Now our CSS bundle is not bloated with unused code, also we help our user to download as small as possible file which will save their data plan (less download, less data plan being used) when they visit our website (even tho they didn't know that).
 
@@ -639,7 +639,7 @@ Why? Because with compression, all of our assets file size will be much smaller!
 
 Before adding compression to our project. Let's check how our project size overall.
 
-![Assets before compression](/images/before-compression.png)
+![Assets before compression](./images/before-compression.png)
 
 We're going to use **razzle-plugin-compression** to add compression. It provides static compression for `gzip` and `brotli`. Also, we need `compression` and `express-static-gzip` to serve gzip and brotli on our server.
 
@@ -752,7 +752,7 @@ server
 
 And we're done. Let's check again how much we improve and saving delivering bundle size to users.
 
-![After assets get compression](/images/after-compression.png)
+![After assets get compression](./images/after-compression.png)
 
 Did you notice any difference? Well, take a look at the size. It improves so much, all the response sizes now much smaller than before. For example, our `vendors` JS file, before it gets compressed, the file size is **158kb**, now after all our assets get compressed, the size is only **43.7kb**. What a save!
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, keyframes } from '@emotion/core';
+import { css, keyframes } from '@emotion/react';
 
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { css } from '@emotion/core';
-import Img from 'gatsby-image';
+import { css } from '@emotion/react';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import SEO from '../components/seo';
 import Layout from '../components/layout';
@@ -69,8 +69,11 @@ export default function Blog({ data, pageContext, location }) {
                     `}
                   >
                     <Link to={node.frontmatter.path}>
-                      <Img
-                        fluid={node.frontmatter.banner.childImageSharp.fluid}
+                      <GatsbyImage
+                        image={
+                          node.frontmatter.banner.childImageSharp
+                            .gatsbyImageData
+                        }
                         alt={node.frontmatter.title}
                         css={css`
                           max-height: 12.5rem;
@@ -174,7 +177,7 @@ export const query = graphql`
       }
     }
     allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       limit: $limit
       skip: $skip
     ) {
@@ -189,9 +192,7 @@ export const query = graphql`
             title
             banner {
               childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
             bannerCreditName

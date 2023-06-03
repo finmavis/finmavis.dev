@@ -1,8 +1,9 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
+import { getSrc } from 'gatsby-plugin-image';
 
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Container from '../components/ui/container';
@@ -18,7 +19,7 @@ export default function BlogPost({ data, pageContext }) {
         title={markdownRemark.frontmatter.title}
         description={markdownRemark.frontmatter.description}
         isBlogPost
-        image={markdownRemark.frontmatter.banner.childImageSharp.fluid.src}
+        image={getSrc(markdownRemark.frontmatter.banner)}
         pathname={markdownRemark.frontmatter.path}
       />
       <Container sizes='small'>
@@ -64,8 +65,11 @@ export default function BlogPost({ data, pageContext }) {
               </small>
             </p>
             <figure>
-              <Img
-                fluid={markdownRemark.frontmatter.banner.childImageSharp.fluid}
+              <GatsbyImage
+                image={
+                  markdownRemark.frontmatter.banner.childImageSharp
+                    .gatsbyImageData
+                }
                 alt={markdownRemark.frontmatter.bannerCredit}
                 css={css`
                   max-height: 20rem;
@@ -155,8 +159,8 @@ export default function BlogPost({ data, pageContext }) {
                   margin-right: 0.75rem;
                 `}
               >
-                <Img
-                  fluid={file.childImageSharp.fluid}
+                <GatsbyImage
+                  image={file.childImageSharp.gatsbyImageData}
                   alt={`${site.siteMetadata.author} Photo`}
                   css={css`
                     border-radius: 50%;
@@ -217,9 +221,7 @@ export const query = graphql`
         title
         banner {
           childImageSharp {
-            fluid(maxWidth: 800) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
         bannerCreditName
@@ -230,9 +232,7 @@ export const query = graphql`
     }
     file(relativePath: { eq: "profile.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 60) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
   }

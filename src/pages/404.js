@@ -12,3 +12,7 @@ export default function NotFoundPage() {
     </Layout>
   );
 }
+
+export function Head() {
+  return <title>Hello World</title>;
+}

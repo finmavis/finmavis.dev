@@ -13,4 +13,5 @@ module.exports = {
   social: {
     twitter: 'https://twitter.com/finmavis',
   },
+  gaMeasurementId: process.env.GATSBY_GA_MEASUREMENT_ID || '',
 };

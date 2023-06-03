@@ -18,12 +18,18 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: `gatsby-plugin-layout`,
       options: {
-        trackingId: 'UA-162429747-1',
+        component: require.resolve(`./src/components/layout`),
       },
     },
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-image',
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [config.gaMeasurementId],
+      },
+    },
     'gatsby-plugin-emotion',
     'gatsby-plugin-use-dark-mode',
     {
@@ -72,7 +78,17 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-remark-relative-images',
+          {
+            resolve: `gatsby-remark-relative-images`,
+            options: {
+              // [Optional] The root of "media_folder" in your config.yml
+              // Defaults to "static"
+              staticFolderName: 'images',
+              // [Optional] Include the following fields, use dot notation for nested fields
+              // All fields are included by default
+              include: ['image'],
+            },
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {

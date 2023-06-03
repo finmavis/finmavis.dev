@@ -1,8 +1,8 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Card from './ui/card';
@@ -15,37 +15,27 @@ export default function Playground(props) {
     query {
       styleTheory: file(relativePath: { eq: "style-theory.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
       tunaiku: file(relativePath: { eq: "tunaiku.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
       tmdb: file(relativePath: { eq: "tmdb.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
       purgecss: file(relativePath: { eq: "purgecss.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
       svg: file(relativePath: { eq: "svg.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
@@ -88,8 +78,8 @@ export default function Playground(props) {
                     target='_blank'
                     rel='nofollow noopener noreferrer'
                   >
-                    <Img
-                      fluid={data[imageName].childImageSharp.fluid}
+                    <GatsbyImage
+                      image={data[imageName].childImageSharp.gatsbyImageData}
                       alt={name}
                       css={css`
                         display: block;
