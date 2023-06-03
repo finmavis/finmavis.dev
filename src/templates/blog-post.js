@@ -1,9 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/react';
-import { getSrc } from 'gatsby-plugin-image';
+import { getSrc, GatsbyImage } from 'gatsby-plugin-image';
 
-import { GatsbyImage } from 'gatsby-plugin-image';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import Container from '../components/ui/container';
@@ -203,7 +202,7 @@ export default function BlogPost({ data, pageContext }) {
 }
 
 export const query = graphql`
-  query($path: String!) {
+  query ($path: String!) {
     site {
       siteMetadata {
         siteUrl

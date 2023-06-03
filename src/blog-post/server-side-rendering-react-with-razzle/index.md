@@ -1,5 +1,5 @@
 ---
-path: '/blog/server-side-rendering-react-with-razzle'
+path: 'blog/server-side-rendering-react-with-razzle/'
 title: 'Server side rendering React with Razzle'
 date: '2019-12-30'
 author: 'Fin Mavis'
@@ -292,8 +292,8 @@ server
                   name="viewport"
                   content="width=device-width, initial-scale=1"
                 />
-                ${helmet.meta.toString()} 
-                ${helmet.link.toString()} 
+                ${helmet.meta.toString()}
+                ${helmet.link.toString()}
                 ${assets.client.css
                   ? `<link rel="stylesheet" href="${assets.client.css}">`
                   : ''}
@@ -474,8 +474,8 @@ server
                   name="viewport"
                   content="width=device-width, initial-scale=1"
                 />
-                ${helmet.meta.toString()} 
-                ${helmet.link.toString()} 
+                ${helmet.meta.toString()}
+                ${helmet.link.toString()}
                 ${extractor.getLinkTags()}
                 ${extractor.getStyleTags()}
               </head>

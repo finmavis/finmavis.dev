@@ -1,5 +1,5 @@
 ---
-path: '/blog/webpack-configuration-step-by-step'
+path: '/blog/webpack-configuration-step-by-step/'
 title: 'Webpack Configuration step by step - Development to Production'
 date: '2019-10-15'
 author: 'Fin Mavis'

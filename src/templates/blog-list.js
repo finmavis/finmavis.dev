@@ -170,7 +170,7 @@ export default function Blog({ data, pageContext, location }) {
 }
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         author

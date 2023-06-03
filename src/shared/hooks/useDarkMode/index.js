@@ -1,5 +1,4 @@
 import { useEffect, useCallback, useMemo } from 'react';
-import useEventListener from '@use-it/event-listener';
 
 import initialize from './initialize';
 
