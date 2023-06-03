@@ -1,5 +1,5 @@
 ---
-path: 'blog/server-side-rendering-react-with-razzle/'
+path: '/blog/server-side-rendering-react-with-razzle/'
 title: 'Server side rendering React with Razzle'
 date: '2019-12-30'
 author: 'Fin Mavis'
