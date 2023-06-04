@@ -3,9 +3,9 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import Container from './ui/container';
+import { SOCIAL_LINK } from 'src/shared/constants/social-link.constant';
 
-import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
+import Container from './ui/container';
 
 const SocialLink = styled.a`
   background: none;

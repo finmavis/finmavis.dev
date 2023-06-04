@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import useDarkMode from '../shared/hooks/useDarkMode';
 
-import LightIcon from '../shared/assets/svg/light-icon.svg';
-import DarkIcon from '../shared/assets/svg/dark-icon.svg';
+import useDarkMode from 'src/shared/hooks/useDarkMode';
+import LightIcon from 'src/shared/assets/svg/light-icon.svg';
+import DarkIcon from 'src/shared/assets/svg/dark-icon.svg';
 
 export default function ToggleSwitch(props) {
   const darkMode = useDarkMode(true);

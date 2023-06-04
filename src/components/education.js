@@ -1,15 +1,15 @@
 import React from 'react';
 import { css } from '@emotion/react';
 
+import {
+  FORMAL_EDUCATION,
+  COURSE_LIST,
+} from 'src/shared/constants/education.constant';
+
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Position from './position';
 import Courses from './courses';
-
-import {
-  FORMAL_EDUCATION,
-  COURSE_LIST,
-} from '../shared/constants/education.constant';
 
 export default function Education() {
   return (

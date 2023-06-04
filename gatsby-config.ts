@@ -1,5 +1,8 @@
+import path from 'path';
+import dotenv from 'dotenv';
+
 const ACTIVE_ENV = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV;
-require('dotenv').config({
+dotenv.config({
   path: `.env.${ACTIVE_ENV}`,
 });
 
@@ -17,6 +20,7 @@ module.exports = {
     social: config.social,
   },
   plugins: [
+    'gatsby-plugin-root-import',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-image',
@@ -31,14 +35,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-layout',
       options: {
-        component: require.resolve('./src/components/layout'),
+        component: path.resolve('./src/components/layout'),
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/shared/assets/images`,
+        path: `./src/shared/assets/images`,
       },
     },
     {
@@ -71,7 +75,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'markdown-pages',
-        path: `${__dirname}/src/blog-post`,
+        path: `./src/blog-post`,
       },
     },
     {

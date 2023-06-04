@@ -29,4 +29,4 @@ export const PLAYGROUND_DATA = [
     description: 'A Plugin for Using PurgeCSS with Razzle',
     link: 'https://github.com/finmavis/razzle-plugin-purgecss',
   },
-];
+] as const;

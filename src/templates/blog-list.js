@@ -3,11 +3,11 @@ import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
-import SEO from '../components/seo';
-import Layout from '../components/layout';
-import Container from '../components/ui/container';
-import HeadingSection from '../components/ui/heading-section';
-import Card from '../components/ui/card';
+import SEO from 'src/components/seo';
+import Layout from 'src/components/layout';
+import Container from 'src/components/ui/container';
+import HeadingSection from 'src/components/ui/heading-section';
+import Card from 'src/components/ui/card';
 
 export default function Blog({ data, pageContext, location }) {
   const { allMarkdownRemark, site } = data;

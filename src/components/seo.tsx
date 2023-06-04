@@ -8,7 +8,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, title, isBlogPost, image, pathname }) {
+export type SEOProps = {
+  description?: string;
+  lang?: string;
+  title: string;
+  isBlogPost?: boolean;
+  image?: string;
+  pathname?: string;
+};
+
+function SEO({
+  description,
+  lang,
+  title,
+  isBlogPost,
+  image,
+  pathname,
+}: SEOProps) {
   const { site } = useStaticQuery(
     graphql`
       query {

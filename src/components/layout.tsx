@@ -5,7 +5,11 @@ import GlobalStyle from './global-style';
 import Header from './header';
 import Footer from './footer';
 
-export default function Layout({ children }) {
+export type LayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function Layout({ children }: LayoutProps) {
   return (
     <Fragment>
       <GlobalStyle />

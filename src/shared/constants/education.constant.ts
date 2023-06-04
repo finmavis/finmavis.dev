@@ -4,7 +4,7 @@ export const FORMAL_EDUCATION = [
     year: '2011 - 2015',
     major: 'Computer and Network Engineering',
   },
-];
+] as const;
 
 export const COURSE_LIST = [
   {
@@ -37,4 +37,4 @@ export const COURSE_LIST = [
       },
     ],
   },
-];
+] as const;

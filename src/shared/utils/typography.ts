@@ -1,7 +1,7 @@
 import Typography from 'typography';
 import fairyGateThemes from 'typography-theme-fairy-gates';
 
-fairyGateThemes.overrideThemeStyles = ({ rhythm, scale }, options) => {
+fairyGateThemes.overrideThemeStyles = () => {
   return {
     a: {
       background: 'none',

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import LinkedinIcon from '../../shared/assets/svg/linkedin.inline.svg';
-import TwitterIcon from '../../shared/assets/svg/twitter.inline.svg';
-import GithubIcon from '../../shared/assets/svg/github.inline.svg';
-import CodepenIcon from '../../shared/assets/svg/codepen.inline.svg';
+import LinkedinIcon from 'src/shared/assets/svg/linkedin.inline.svg';
+import TwitterIcon from 'src/shared/assets/svg/twitter.inline.svg';
+import GithubIcon from 'src/shared/assets/svg/github.inline.svg';
+import CodepenIcon from 'src/shared/assets/svg/codepen.inline.svg';
 
 export const SOCIAL_LINK = [
   {
@@ -34,4 +34,4 @@ export const SOCIAL_LINK = [
     label: 'Codepen',
     icon: <CodepenIcon />,
   },
-];
+] as const;

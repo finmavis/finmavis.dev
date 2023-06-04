@@ -3,12 +3,11 @@ import { css } from '@emotion/react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
+import EmailIcon from 'src/shared/assets/svg/email.inline.svg';
+import LocationIcon from 'src/shared/assets/svg/location.inline.svg';
+import { SOCIAL_LINK } from 'src/shared/constants/social-link.constant';
+
 import Container from './ui/container';
-
-import EmailIcon from '../shared/assets/svg/email.inline.svg';
-import LocationIcon from '../shared/assets/svg/location.inline.svg';
-
-import { SOCIAL_LINK } from '../shared/constants/social-link.constant';
 
 export default function About(props) {
   const data = useStaticQuery(graphql`

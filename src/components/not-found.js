@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 
-import NotFoundIcon from '../shared/assets/svg/not-found.inline.svg';
+import NotFoundIcon from 'src/shared/assets/svg/not-found.inline.svg';
 
 export default function NotFound() {
   return (

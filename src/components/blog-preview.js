@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/react';
-
 import { GatsbyImage } from 'gatsby-plugin-image';
+
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Card from './ui/card';

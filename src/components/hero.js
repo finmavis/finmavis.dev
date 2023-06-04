@@ -2,9 +2,9 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Container from './ui/container';
+import FinIcon from 'src/shared/assets/svg/fin.inline.svg';
 
-import FinIcon from '../shared/assets/svg/fin.inline.svg';
+import Container from './ui/container';
 
 export default function Hero() {
   const data = useStaticQuery(graphql`

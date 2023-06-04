@@ -2,12 +2,17 @@
  * Implement Gatsby's Node APIs in this file.
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const path = require('path');
+import type { GatsbyNode } from 'gatsby';
+import path from 'path';
 
 /**
  * Disable generating source maps on Production
  */
-exports.onCreateWebpackConfig = ({ getConfig, stage, actions }) => {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+  getConfig,
+  stage,
+  actions,
+}) => {
   if (getConfig().mode === 'production' && stage === 'build-javascript') {
     actions.setWebpackConfig({
       devtool: false,
@@ -15,7 +20,11 @@ exports.onCreateWebpackConfig = ({ getConfig, stage, actions }) => {
   }
 };
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
+export const createPages: GatsbyNode['createPages'] = async ({
+  actions,
+  graphql,
+  reporter,
+}) => {
   const { createPage } = actions;
 
   /**
@@ -47,7 +56,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild('Error while running GraphQL query.');
     return;
   }
-  const posts = result.data.allMarkdownRemark.edges;
+  const posts = (result.data as any).allMarkdownRemark.edges;
 
   /**
    * After we successfully pull all markdown data
@@ -75,7 +84,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
    * We also create blog posts for each markdown data
    * Also we pass context (pageContext) to the component template (blogPostTemplate) for pagination to the next/previous blog post
    */
-  posts.forEach(({ node }, index) => {
+  posts.forEach(({ node }: { node: any }, index: number) => {
     createPage({
       path: node.frontmatter.path,
       component: blogPostTemplate,

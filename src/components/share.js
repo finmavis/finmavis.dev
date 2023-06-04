@@ -7,9 +7,9 @@ import {
   LinkedinShareButton,
 } from 'react-share';
 
-import FacebookRoundedIcon from '../shared/assets/svg/facebook-rounded.inline.svg';
-import TwitterRoundedIcon from '../shared/assets/svg/twitter-rounded.inline.svg';
-import LinkedinRoundedIcon from '../shared/assets/svg/linkedin-rounded.inline.svg';
+import FacebookRoundedIcon from 'src/shared/assets/svg/facebook-rounded.inline.svg';
+import TwitterRoundedIcon from 'src/shared/assets/svg/twitter-rounded.inline.svg';
+import LinkedinRoundedIcon from 'src/shared/assets/svg/linkedin-rounded.inline.svg';
 
 export default function Share({ url }) {
   return (

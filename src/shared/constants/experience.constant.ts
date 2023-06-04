@@ -24,4 +24,4 @@ export const EXPERIENCE_DATA = [
     year: '2015 - 2018',
     position: 'Engineer',
   },
-];
+] as const;

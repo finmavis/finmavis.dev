@@ -3,10 +3,10 @@ import { graphql, Link } from 'gatsby';
 import { css } from '@emotion/react';
 import { getSrc, GatsbyImage } from 'gatsby-plugin-image';
 
-import SEO from '../components/seo';
-import Layout from '../components/layout';
-import Container from '../components/ui/container';
-import Share from '../components/share';
+import SEO from 'src/components/seo';
+import Layout from 'src/components/layout';
+import Container from 'src/components/ui/container';
+import Share from 'src/components/share';
 
 export default function BlogPost({ data, pageContext }) {
   const { site, markdownRemark, file } = data;

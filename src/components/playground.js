@@ -1,14 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useStaticQuery, graphql } from 'gatsby';
-
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+
+import { PLAYGROUND_DATA } from 'src/shared/constants/playground.constant';
+
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Card from './ui/card';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-
-import { PLAYGROUND_DATA } from '../shared/constants/playground.constant';
 
 export default function Playground(props) {
   const data = useStaticQuery(graphql`
