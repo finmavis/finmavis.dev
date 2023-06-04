@@ -192,7 +192,7 @@ export const query = graphql`
             title
             banner {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH)
+                gatsbyImageData(layout: CONSTRAINED, width: 800)
               }
             }
             bannerCreditName

@@ -22,7 +22,7 @@ export default function About(props) {
       }
       file(relativePath: { eq: "profile.jpg" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
       }
     }

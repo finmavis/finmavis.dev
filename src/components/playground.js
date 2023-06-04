@@ -15,27 +15,27 @@ export default function Playground(props) {
     query {
       styleTheory: file(relativePath: { eq: "style-theory.png" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
       }
       tunaiku: file(relativePath: { eq: "tunaiku.png" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
       }
       tmdb: file(relativePath: { eq: "tmdb.png" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
       }
       purgecss: file(relativePath: { eq: "purgecss.png" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
       }
       svg: file(relativePath: { eq: "svg.png" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
       }
     }

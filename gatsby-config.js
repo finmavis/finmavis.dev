@@ -17,12 +17,8 @@ module.exports = {
     social: config.social,
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`./src/components/layout`),
-      },
-    },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     'gatsby-plugin-image',
     {
       resolve: `gatsby-plugin-google-gtag`,
@@ -33,14 +29,18 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-use-dark-mode',
     {
+      resolve: 'gatsby-plugin-layout',
+      options: {
+        component: require.resolve('./src/components/layout'),
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
         path: `${__dirname}/src/shared/assets/images`,
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-typography',
       options: {

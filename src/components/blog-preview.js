@@ -22,7 +22,7 @@ export default function BlogPreview() {
               title
               banner {
                 childImageSharp {
-                  gatsbyImageData(layout: FULL_WIDTH)
+                  gatsbyImageData(layout: CONSTRAINED, width: 415)
                 }
               }
               bannerCreditName

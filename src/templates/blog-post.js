@@ -220,7 +220,7 @@ export const query = graphql`
         title
         banner {
           childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
+            gatsbyImageData(layout: CONSTRAINED, width: 800)
           }
         }
         bannerCreditName
@@ -231,7 +231,7 @@ export const query = graphql`
     }
     file(relativePath: { eq: "profile.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: CONSTRAINED, width: 60)
       }
     }
   }
