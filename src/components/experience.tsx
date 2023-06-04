@@ -1,4 +1,3 @@
-import React from 'react';
 import { css } from '@emotion/react';
 
 import { EXPERIENCE_DATA } from 'src/shared/constants/experience.constant';
@@ -7,7 +6,7 @@ import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 import Position from './position';
 
-export default function Experience(props) {
+export default function Experience() {
   return (
     <section
       css={css`

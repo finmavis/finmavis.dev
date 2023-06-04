@@ -1,8 +1,11 @@
-import React from 'react';
 import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
 
-export default function CourseItem({ name, year }) {
+import type { Course } from 'src/shared/constants/education.constant';
+
+export type CourseItemProps = Course['course'][number];
+
+export default function CourseItem({ name, year }: CourseItemProps) {
   return (
     <p
       key={name}

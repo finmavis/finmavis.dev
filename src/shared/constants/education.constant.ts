@@ -1,12 +1,26 @@
-export const FORMAL_EDUCATION = [
+export type Education = {
+  school: string;
+  year: string;
+  major: string;
+};
+
+export const FORMAL_EDUCATION: Education[] = [
   {
     school: '26 Jakarta Vocational high School',
     year: '2011 - 2015',
     major: 'Computer and Network Engineering',
   },
-] as const;
+];
 
-export const COURSE_LIST = [
+export type Course = {
+  source: string;
+  course: {
+    name: string;
+    year: number;
+  }[];
+};
+
+export const COURSE_LIST: Course[] = [
   {
     source: 'Udemy',
     course: [
@@ -37,4 +51,4 @@ export const COURSE_LIST = [
       },
     ],
   },
-] as const;
+];

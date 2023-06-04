@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-const Container = styled.div`
+export type ContainerProps = {
+  sizes?: 'small' | 'medium' | 'large';
+};
+
+const Container = styled.div<ContainerProps>`
   max-width: ${(props) =>
     props.sizes === 'large'
       ? '1100px'

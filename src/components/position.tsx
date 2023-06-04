@@ -1,8 +1,15 @@
-import React from 'react';
 import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
 
-export default function Position({ name, year, subText }) {
+import type { Experience } from 'src/shared/constants/experience.constant';
+
+export type PositionProps = {
+  name: Experience['company'];
+  year: Experience['year'];
+  subText: Experience['position'];
+};
+
+export default function Position({ name, year, subText }: PositionProps) {
   return (
     <div
       css={css`

@@ -1,10 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
+import type { Course } from 'src/shared/constants/education.constant';
+
 import CourseItem from './course-item';
 
-export default function Courses({ name, data }) {
+export type CoursesProps = {
+  name: string;
+  data: Course['course'];
+};
+
+export default function Courses({ name, data }: CoursesProps) {
   return (
     <div
       css={css`

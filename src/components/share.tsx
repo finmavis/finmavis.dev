@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import {
@@ -11,7 +10,11 @@ import FacebookRoundedIcon from 'src/shared/assets/svg/facebook-rounded.inline.s
 import TwitterRoundedIcon from 'src/shared/assets/svg/twitter-rounded.inline.svg';
 import LinkedinRoundedIcon from 'src/shared/assets/svg/linkedin-rounded.inline.svg';
 
-export default function Share({ url }) {
+export type ShareProps = {
+  url: string;
+};
+
+export default function Share({ url }: ShareProps) {
   return (
     <div
       css={css`

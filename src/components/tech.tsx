@@ -1,4 +1,3 @@
-import React from 'react';
 import { css, keyframes } from '@emotion/react';
 
 import AngularIcon from 'src/shared/assets/svg/angular.svg';
@@ -17,6 +16,7 @@ import ReduxIcon from 'src/shared/assets/svg/redux.inline.svg';
 import SassIcon from 'src/shared/assets/svg/sass.svg';
 import TsIcon from 'src/shared/assets/svg/typescript.svg';
 import WebpackIcon from 'src/shared/assets/svg/webpack.inline.svg';
+
 import Container from './ui/container';
 import HeadingSection from './ui/heading-section';
 
@@ -110,7 +110,7 @@ const slide10 = keyframes`
   }
 `;
 
-export default function Tech(props) {
+export default function Tech() {
   return (
     <section
       css={css`

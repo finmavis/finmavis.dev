@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'gatsby';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -19,7 +18,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-export default function Header(props) {
+export default function Header() {
   const isBrowser = typeof window !== 'undefined';
 
   return (

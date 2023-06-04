@@ -1,4 +1,10 @@
-export const EXPERIENCE_DATA = [
+export type Experience = {
+  company: string;
+  year: string;
+  position: string;
+};
+
+export const EXPERIENCE_DATA: Experience[] = [
   {
     company: 'Xendit',
     year: '2022 - Current',
@@ -24,4 +30,4 @@ export const EXPERIENCE_DATA = [
     year: '2015 - 2018',
     position: 'Engineer',
   },
-] as const;
+];

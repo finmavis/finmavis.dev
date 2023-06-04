@@ -1,4 +1,3 @@
-import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/react';
 import { GatsbyImage } from 'gatsby-plugin-image';

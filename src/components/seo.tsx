@@ -4,7 +4,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-import React from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -47,7 +47,7 @@ function SEO({
   const metaUrl = `${site.siteMetadata.siteUrl}${pathname ? pathname : '/'}`;
 
   return (
-    <>
+    <Fragment>
       {/* General Tags */}
       <html lang={lang} />
       <title>
@@ -69,7 +69,7 @@ function SEO({
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={metaDescription} />
       <meta name='twitter:image' content={metaImage} />
-    </>
+    </Fragment>
   );
 }
 
