@@ -12,6 +12,22 @@ import {
 } from '../shared/constants/education.constant';
 
 export default function Education() {
+  function onClick() {
+    window.dataLayer = window.dataLayer || [];
+    if (window.dataLayer) {
+      window.dataLayer.push({ event: 'education-track-custom-event' });
+    }
+  }
+
+  function onClickWithValue() {
+    window.dataLayer = window.dataLayer || [];
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'education-track-custom-event-with-value',
+        pagination_value: 50,
+      });
+    }
+  }
   return (
     <section
       css={css`
@@ -43,6 +59,9 @@ export default function Education() {
             />
           ))}
         </div>
+        <button id='education-track'>Click</button>
+        <button onClick={onClick}>Custom event</button>
+        <button onClick={onClickWithValue}>Custom event with value</button>
       </Container>
     </section>
   );
