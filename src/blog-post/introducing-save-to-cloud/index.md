@@ -247,8 +247,6 @@ Here's something interesting I discovered while I apply to Dropbox swtiching my 
 
 If you want to use Dropbox with Save to Cloud, please feel free to reach out to me directly and share your email so I can add you to the app.
 
-And if you have any questions, feedback, or just want to chat about the technical decisions, feel free to reach out. I'd love to hear your thoughts!
-
 ### Need More Help?
 
 If you're still unsure, here's the detailed [user guide](https://savetocloud.finmavis.dev/user-guide) that covers everything step by step!
@@ -262,3 +260,5 @@ Building Save to Cloud was quite the fun and challenging adventure! Here are som
 3. **Cost optimization is crucial**: Especially when you're paying out of pocket, this is really important especially if you work in a company that needs to have budget planning efficiently and doesn't burden the company
 4. **Sometimes the "simple" solution is the best**: SSE over WebSockets
 5. **Building from scratch teaches you a lot**: Instead of using libraries like BullMQ, I tried to build the queue management from scratch and it was a pain and really fun to create! It makes me more amazed at the authors who built these libraries, they're doing some serious magic!
+
+And if you have any questions, feedback, or just want to chat about the technical decisions, feel free to reach out. I'd love to hear your thoughts!
