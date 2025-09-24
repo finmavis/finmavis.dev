@@ -157,6 +157,19 @@ Here's how it works in practice:
 
 The server will handle 2 requests from User 1, 1 request from User 2, and 1 request from User 3 (since we're at the 4-request limit). The remaining 3 requests from User 3 get queued and will be processed immediately after some of the current downloads/uploads complete.
 
+So, for this, instead of using a library like BullMQ, I kinda wanted to explore the fun part of creating a queue from scratch!
+
+And let me tell you, it was a wild ride. I encountered a lot of problems along the way, but it was incredibly fun and I learned a ton of stuff by doing that. Sure, it's more work, but you understand every single bolt and screw by doing it from scratch.
+
+The queue management handles all the complexity of:
+
+- **Request queuing**: When the server is busy, requests wait in line like customers at a restaurant
+- **Priority handling**: Making sure requests are processed in the right order
+- **Error handling**: What happens when things go wrong (and they will!)
+- **State management**: Keeping track of what's processing, what's queued, and what's done
+
+Building this from scratch made me appreciate the authors of libraries like BullMQ even more, they're doing some serious engineering magic!
+
 ## The Tech Stack
 
 To be honest, I didn't put much thought into choosing the tech stack because I already had one particular framework in mind that I wanted to try, [Remix](https://remix.run/) or [React Router v7](https://reactrouter.com/home)!
