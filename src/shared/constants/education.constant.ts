@@ -6,6 +6,11 @@ export type Education = {
 
 export const FORMAL_EDUCATION: Education[] = [
   {
+    school: 'Binus University',
+    year: '2024 - Present',
+    major: 'Computer Science',
+  },
+  {
     school: '26 Jakarta Vocational high School',
     year: '2011 - 2015',
     major: 'Computer and Network Engineering',
