@@ -18,7 +18,7 @@ export default function About(props) {
           email
         }
       }
-      file(relativePath: { eq: "profile.jpg" }) {
+      file(relativePath: { eq: "profile.png" }) {
         childImageSharp {
           gatsbyImageData(layout: CONSTRAINED, width: 300)
         }

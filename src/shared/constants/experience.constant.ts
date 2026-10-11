@@ -6,9 +6,14 @@ export type Experience = {
 
 export const EXPERIENCE_DATA: Experience[] = [
   {
+    company: 'First Circle',
+    year: '2026 - Current',
+    position: 'Senior Software Engineer',
+  },
+  {
     company: 'Xendit',
-    year: '2022 - Current',
-    position: 'Software Engineer',
+    year: '2022 - 2026',
+    position: 'Senior Software Engineer',
   },
   {
     company: 'TaniHub',

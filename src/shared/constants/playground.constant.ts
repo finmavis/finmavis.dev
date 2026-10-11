@@ -1,5 +1,11 @@
 export const PLAYGROUND_DATA = [
   {
+    name: 'Xendit',
+    imageName: 'xendit',
+    description: 'Digital Payment Infrastructure Platform for Southeast Asia.',
+    link: 'https://www.xendit.com',
+  },
+  {
     name: 'Style Theory',
     imageName: 'styleTheory',
     description: 'Fashion Rental Subscription Platforms',
