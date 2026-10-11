@@ -148,8 +148,8 @@ export default function Hero() {
             font-size: 1rem;
           `}
         >
-          I currently work at Xendit - Best Payment Gateway in Indonesia and
-          Southeast Asia
+          I currently work at First Circle - Financial Technology that provides
+          digital banking and credit solutions for SMEs
         </p>
       </div>
     </section>
