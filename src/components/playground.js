@@ -12,7 +12,7 @@ import Card from './ui/card';
 export default function Playground(props) {
   const data = useStaticQuery(graphql`
     query {
-      styleTheory: file(relativePath: { eq: "xendit.png" }) {
+      xendit: file(relativePath: { eq: "xendit.png" }) {
         childImageSharp {
           gatsbyImageData(layout: CONSTRAINED, width: 300)
         }
