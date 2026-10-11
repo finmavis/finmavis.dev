@@ -12,6 +12,11 @@ import Card from './ui/card';
 export default function Playground(props) {
   const data = useStaticQuery(graphql`
     query {
+      firstCircle: file(relativePath: { eq: "first-circle.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(layout: CONSTRAINED, width: 300)
+        }
+      }
       xendit: file(relativePath: { eq: "xendit.png" }) {
         childImageSharp {
           gatsbyImageData(layout: CONSTRAINED, width: 300)

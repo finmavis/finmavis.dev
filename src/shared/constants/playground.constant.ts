@@ -1,5 +1,12 @@
 export const PLAYGROUND_DATA = [
   {
+    name: 'First Circle',
+    imageName: 'firstCircle',
+    description:
+      'Financial Technology that provides digital banking and credit solutions for SMEs',
+    link: 'https://www.firstcircle.ph',
+  },
+  {
     name: 'Xendit',
     imageName: 'xendit',
     description: 'Digital Payment Infrastructure Platform for Southeast Asia.',
