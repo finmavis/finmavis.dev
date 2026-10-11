@@ -2,8 +2,7 @@ export const PLAYGROUND_DATA = [
   {
     name: 'First Circle',
     imageName: 'firstCircle',
-    description:
-      'Financial Technology that provides digital banking and credit solutions for SMEs',
+    description: 'Digital SME Credit and Financing Platform.',
     link: 'https://www.firstcircle.ph',
   },
   {
