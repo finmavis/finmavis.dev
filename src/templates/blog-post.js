@@ -229,7 +229,7 @@ export const query = graphql`
       }
       html
     }
-    file(relativePath: { eq: "profile.jpg" }) {
+    file(relativePath: { eq: "profile.png" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 60)
       }
